@@ -1,0 +1,98 @@
+# Verafy AI - Robots.txt
+# Last Updated: January 12, 2026
+
+# Allow all search engines
+User-agent: *
+
+# Allow all public pages
+Allow: /
+Allow: /pricing
+Allow: /features
+Allow: /about
+Allow: /contact
+Allow: /vera-ai
+Allow: /markets
+Allow: /enterprise
+Allow: /demo
+
+# Allow pricing & plan pages
+Allow: /plans/
+Allow: /plans/starter
+Allow: /plans/standard
+Allow: /plans/pro
+Allow: /plans/tax-pack
+Allow: /plans/compare
+
+# Allow learning & growth pages
+Allow: /academy
+Allow: /earn-credits
+Allow: /referral-program
+
+# Allow resources
+Allow: /faq
+Allow: /glossary
+Allow: /documentation
+Allow: /release-notes
+
+# Allow community (public view)
+Allow: /community/
+Allow: /community/forum
+Allow: /community/blog
+
+# Allow trust centre
+Allow: /trust/
+Allow: /trust/security
+Allow: /trust/compliance
+Allow: /trust/privacy
+Allow: /trust/disclaimers
+
+# Allow legal pages
+Allow: /legal/
+Allow: /legal/privacy-policy
+Allow: /legal/terms
+Allow: /legal/refunds
+
+# Allow auth pages (for indexing the sign-up page)
+Allow: /sign-in
+Allow: /sign-up
+
+# Disallow private/internal pages
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /private/
+Disallow: /test/
+Disallow: /dev/
+Disallow: /preview/
+
+# Disallow dynamic parameters
+Disallow: /*?*action=
+Disallow: /*?*session=
+Disallow: /*?*token=
+Disallow: /*?*key=
+
+# Sitemap location
+Sitemap: https://verafy.ai/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+
+# Block known bad bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

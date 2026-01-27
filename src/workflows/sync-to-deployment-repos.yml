@@ -1,0 +1,192 @@
+name: Sync to Deployment Repos
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deployment target'
+        required: true
+        type: choice
+        options:
+          - both
+          - vercel
+          - aws
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Figma Make repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: npm run lint --if-present
+        continue-on-error: true
+
+      - name: Run type checking
+        run: npx tsc --noEmit
+        continue-on-error: true
+
+      - name: Build project
+        run: npm run build
+        env:
+          VITE_APP_NAME: "Verafy AI"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  sync-to-vercel:
+    name: Sync to Vercel Repo
+    needs: build
+    runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'push') ||
+      (github.event_name == 'workflow_dispatch' && (github.event.inputs.target == 'vercel' || github.event.inputs.target == 'both'))
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Checkout Vercel repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.VERCEL_REPO_FULL_NAME }}  # e.g., "your-username/verafyai-app"
+          token: ${{ secrets.VERCEL_REPO_TOKEN }}
+          path: vercel-repo
+
+      - name: Sync files to Vercel repo
+        run: |
+          # Remove old build files (but keep .git, README, etc.)
+          cd vercel-repo
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' ! -name 'README.md' ! -name '.gitignore' ! -name 'vercel.json' -exec rm -rf {} +
+          
+          # Copy new build files
+          cp -r ../dist/* .
+          
+          # Create deployment timestamp
+          echo "Deployed from Figma Make repo at $(date -u +'%Y-%m-%d %H:%M:%S UTC')" > DEPLOYMENT_INFO.txt
+          echo "Commit: ${{ github.sha }}" >> DEPLOYMENT_INFO.txt
+
+      - name: Commit and push to Vercel repo
+        run: |
+          cd vercel-repo
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "🚀 Deploy from Figma Make repo - ${{ github.sha }}" || echo "No changes to commit"
+          git push origin main
+
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Synced to Vercel repo - Auto-deploy triggered\n🔗 https://verafyai-app.vercel.app'
+            })
+
+  sync-to-aws:
+    name: Sync to AWS Repo
+    needs: build
+    runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'push') ||
+      (github.event_name == 'workflow_dispatch' && (github.event.inputs.target == 'aws' || github.event.inputs.target == 'both'))
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Checkout AWS repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.AWS_REPO_FULL_NAME }}  # e.g., "your-username/verafyai-aws"
+          token: ${{ secrets.AWS_REPO_TOKEN }}
+          path: aws-repo
+
+      - name: Sync files to AWS repo
+        run: |
+          # Remove old build files (but keep .git, README, infrastructure files, etc.)
+          cd aws-repo
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' ! -name 'README.md' ! -name '.gitignore' ! -name 'infrastructure' ! -name 'scripts' -exec rm -rf {} +
+          
+          # Copy new build files
+          cp -r ../dist/* .
+          
+          # Create deployment timestamp
+          echo "Deployed from Figma Make repo at $(date -u +'%Y-%m-%d %H:%M:%S UTC')" > DEPLOYMENT_INFO.txt
+          echo "Commit: ${{ github.sha }}" >> DEPLOYMENT_INFO.txt
+
+      - name: Commit and push to AWS repo
+        run: |
+          cd aws-repo
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "🚀 Deploy from Figma Make repo - ${{ github.sha }}" || echo "No changes to commit"
+          git push origin main
+
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Synced to AWS repo - CloudFront deployment triggered\n🔗 https://verafyai.com.au'
+            })
+
+  deployment-summary:
+    name: Deployment Summary
+    needs: [sync-to-vercel, sync-to-aws]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Create summary
+        run: |
+          echo "### 🚀 Deployment Sync Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "#### Deployment Status:" >> $GITHUB_STEP_SUMMARY
+          echo "- Vercel: ${{ needs.sync-to-vercel.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- AWS: ${{ needs.sync-to-aws.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "#### URLs:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 Vercel: https://verafyai-app.vercel.app" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 AWS: https://verafyai.com.au" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,102 @@
+name: Deploy to Both Platforms
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deployment target'
+        required: true
+        default: 'both'
+        type: choice
+        options:
+          - both
+          - vercel
+          - aws
+
+jobs:
+  determine-targets:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy-vercel: ${{ steps.set-targets.outputs.deploy-vercel }}
+      deploy-aws: ${{ steps.set-targets.outputs.deploy-aws }}
+    steps:
+      - name: Determine deployment targets
+        id: set-targets
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            TARGET="${{ github.event.inputs.target }}"
+          else
+            TARGET="both"
+          fi
+          
+          if [ "$TARGET" == "both" ] || [ "$TARGET" == "vercel" ]; then
+            echo "deploy-vercel=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy-vercel=false" >> $GITHUB_OUTPUT
+          fi
+          
+          if [ "$TARGET" == "both" ] || [ "$TARGET" == "aws" ]; then
+            echo "deploy-aws=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy-aws=false" >> $GITHUB_OUTPUT
+          fi
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test --if-present
+        continue-on-error: true
+
+      - name: Build project
+        run: npm run build
+        env:
+          VITE_APP_NAME: "Verafy AI"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+          retention-days: 1
+
+  deploy-vercel:
+    needs: [determine-targets, build]
+    if: needs.determine-targets.outputs.deploy-vercel == 'true'
+    uses: ./.github/workflows/deploy-vercel.yml
+    secrets: inherit
+
+  deploy-aws:
+    needs: [determine-targets, build]
+    if: needs.determine-targets.outputs.deploy-aws == 'true'
+    uses: ./.github/workflows/deploy-aws.yml
+    secrets: inherit
+
+  summary:
+    needs: [deploy-vercel, deploy-aws]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment summary
+        run: |
+          echo "### 🚀 Multi-Platform Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Vercel | ${{ needs.deploy-vercel.result == 'success' && '✅ Success' || needs.deploy-vercel.result == 'skipped' && '⏭️ Skipped' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| AWS | ${{ needs.deploy-aws.result == 'success' && '✅ Success' || needs.deploy-aws.result == 'skipped' && '⏭️ Skipped' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY

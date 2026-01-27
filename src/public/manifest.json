@@ -1,0 +1,11 @@
+{
+  "name": "Verafy AI - Portfolio Intelligence",
+  "short_name": "Verafy AI",
+  "description": "AI-Powered Portfolio Intelligence Platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#22D3EE",
+  "icons": [],
+  "version": "2025-01-14-v6"
+}
