@@ -328,7 +328,7 @@ export const DEMO_AUTHENTICATED_STATE: AuthState = {
   isAuthenticated: true,
   user: {
     id: 'demo-user-123',
-    email: CONTACT_EMAILS.support.email, // Using production email
+    email: "support@verafyai.com", // Using production email
     name: 'Demo User',
     plan: 'pro', // Full access for demo
     addOns: ['tax-pack'], // Has all add-ons
