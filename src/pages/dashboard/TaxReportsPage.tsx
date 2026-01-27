@@ -18,7 +18,7 @@ import {
   Globe,
   Flag,
 } from 'lucide-react';
-import { TaxReportPDFGenerator, TaxReportData } from '../../utils/pdfGenerator';
+// import { TaxReportPDFGenerator, TaxReportData } from '../../utils/pdfGenerator';
 
 interface TaxReportsPageProps {
   isDark: boolean;
