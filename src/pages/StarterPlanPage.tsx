@@ -1,6 +1,6 @@
 import { FloatingParticles } from '../components/FloatingParticles';
 import { InteractiveCursor } from '../components/InteractiveCursor';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { 
   Check, 

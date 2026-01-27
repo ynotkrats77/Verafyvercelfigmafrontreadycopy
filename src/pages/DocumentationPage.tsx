@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Book, Code, Zap, Search } from 'lucide-react';
 import { Button } from '../components/ui/button';
 

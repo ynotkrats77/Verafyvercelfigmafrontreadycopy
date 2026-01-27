@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Logo } from './Logo';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Lock, Unlock } from 'lucide-react';
 import { FOOTER_SECTIONS, COMPANY_INFO, SOCIAL_LINKS, PageType } from '../utils/constants';
 import { scrollToTop } from '../utils/themeUtils';

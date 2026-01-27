@@ -1,5 +1,5 @@
 import { Check, Sparkles, X } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
 import { ThemedButton } from './ui/themed-button';

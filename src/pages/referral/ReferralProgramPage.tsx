@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Users, Gift, DollarSign, TrendingUp, Mail, CheckCircle, Award, Lock, Copy, Share2 } from 'lucide-react';
 import { GlassCard } from '../../components/GlassCard';
 import { ThemedButton } from '../../components/ui/themed-button';

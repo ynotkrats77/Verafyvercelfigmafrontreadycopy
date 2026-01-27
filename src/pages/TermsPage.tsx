@@ -1,6 +1,6 @@
 import { FloatingParticles } from '../components/FloatingParticles';
 import { InteractiveCursor } from '../components/InteractiveCursor';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { FileText, User, CreditCard, Shield, AlertTriangle, Scale, XCircle, Globe, Mail } from 'lucide-react';
 
 interface TermsPageProps {

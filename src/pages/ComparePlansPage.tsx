@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Check, X, Sparkles } from 'lucide-react';
 import { ThemedButton } from '../components/ui/themed-button';
 import { PLANS, PLAN_COMPARISON, getAllPlans } from '../config/plans';

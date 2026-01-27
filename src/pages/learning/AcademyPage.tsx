@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { GraduationCap, BookOpen, Award, Clock, Star, TrendingUp, ChevronRight, Play, CheckCircle } from 'lucide-react';
 import { GlassCard } from '../../components/GlassCard';
 import { ThemedButton } from '../../components/ui/themed-button';

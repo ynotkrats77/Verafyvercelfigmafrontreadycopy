@@ -1,5 +1,5 @@
 import { ArrowRight, Shield, TrendingUp, Zap, BarChart3, PieChart, Target, Clock, Sparkles } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { ThemedButton } from '../components/ui/themed-button';
 import { StatsSection } from '../components/StatsSection';

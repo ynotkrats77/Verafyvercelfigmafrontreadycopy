@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { BookOpen, Award, Trophy, CheckCircle2, Clock, TrendingUp, Target, Zap } from 'lucide-react';
 import { GlassCard } from '../../components/GlassCard';
 import { CHART_COLORS } from '../../config/theme';

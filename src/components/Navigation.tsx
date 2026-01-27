@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Globe, Sun, Moon, Palette, Check } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS, Z_INDEX, PageType } from '../utils/constants';
 import { ThemeType } from '../hooks/useTheme';
 import { Logo } from './Logo';

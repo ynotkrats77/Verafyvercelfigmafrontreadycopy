@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Clock, Zap, Heart, TrendingUp, Shield, AlertTriangle } from 'lucide-react';
 import { ThemedButton } from './ui/themed-button';
 import { useState, useEffect } from 'react';

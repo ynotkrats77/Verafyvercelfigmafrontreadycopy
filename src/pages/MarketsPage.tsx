@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown, DollarSign, Activity } from 'lucide-react';
 
 interface MarketsPageProps {

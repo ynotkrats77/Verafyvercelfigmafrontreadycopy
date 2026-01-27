@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 
 interface ThemedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

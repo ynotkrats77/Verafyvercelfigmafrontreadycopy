@@ -1,7 +1,7 @@
 import { FAQSection } from '../components/FAQSection';
 import { PageHero } from '../components/PageHero';
 import { GlassCard } from '../components/GlassCard';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Mail, MessageCircle, FileText } from 'lucide-react';
 
 interface FAQPageProps {

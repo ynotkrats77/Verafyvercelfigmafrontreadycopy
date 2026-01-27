@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Building2, Users, Shield, Headphones, BarChart, Globe } from 'lucide-react';
 import { Button } from '../components/ui/button';
 

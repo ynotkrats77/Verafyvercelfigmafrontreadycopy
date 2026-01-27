@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { MessageSquare, TrendingUp, Users, Clock, Pin, Lock, Award, ChevronRight, Search, Plus, Filter, ThumbsUp, MessageCircle } from 'lucide-react';
 import { GlassCard } from '../../components/GlassCard';
 import { ThemedButton } from '../../components/ui/themed-button';

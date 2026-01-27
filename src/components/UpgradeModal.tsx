@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Zap, Check, TrendingUp, Sparkles, Lock } from 'lucide-react';
 import { TIER_PRICING, TIER_COLORS, UserTierConfig } from '../config/userTier';
 
