@@ -2,7 +2,7 @@ import { FloatingParticles } from '../components/FloatingParticles';
 import { InteractiveCursor } from '../components/InteractiveCursor';
 import { motion } from 'framer-motion';
 import { Shield, Lock, Database, Globe, Eye, Clock, FileText, Mail } from 'lucide-react';
-import { EmailLink } from '@/config/contacts';
+// import { EmailLink } from '@/config/contacts';
 
 interface PrivacyPolicyPageProps {
   isDark: boolean;
