@@ -30,7 +30,7 @@ import {
   Coins,
   MessageSquare,
   Lock,
-  LockOpen,
+  LockKeyhole,
   Crown,
   User,
   CreditCard,
@@ -350,7 +350,7 @@ export function DashboardSidebar({ isDark, currentSection = 'dashboard', onNavig
                 {/* Lock/Unlock Icon for ALL tier-locked items */}
                 {showLockIcon && (
                   isTrial || hasAccess ? (
-                    <LockOpen className="w-4 h-4 flex-shrink-0" style={{ color: '#22d3ee' }} />
+                    <LockKeyhole className="w-4 h-4 flex-shrink-0" style={{ color: '#22d3ee' }} />
                   ) : (
                     <Lock className="w-4 h-4 flex-shrink-0" style={{ color: isDark ? '#64748b' : '#94a3b8' }} />
                   )
