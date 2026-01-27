@@ -388,7 +388,7 @@ export const SESSION_CONFIG = {
 // Mock Authentication Configuration
 // This file simulates auth behavior for demo purposes
 
-import { CONTACT_EMAILS } from './contacts';
+// import { CONTACT_EMAILS } from './contacts';
 
 export interface User {
   id: string;
