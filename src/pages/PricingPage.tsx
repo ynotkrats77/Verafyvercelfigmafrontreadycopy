@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Zap, Shield, TrendingUp } from "lucide-react";
 import { useState } from "react";
 import { FloatingParticles } from '../components/FloatingParticles';

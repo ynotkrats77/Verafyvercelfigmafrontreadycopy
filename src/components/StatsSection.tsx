@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { TrendingUp, Users, Zap } from "lucide-react";
 

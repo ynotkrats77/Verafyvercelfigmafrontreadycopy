@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, Shield, Lock, Calculator, AlertTriangle, HelpCircle, CreditCard, DollarSign, Sparkles, Users, TrendingUp } from "lucide-react";
 import { useState, memo } from "react";
 

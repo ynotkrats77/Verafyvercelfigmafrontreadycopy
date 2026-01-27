@@ -4,7 +4,7 @@ import { Button } from "./components/ui/button";
 import { ThemeSelector } from "./components/ThemeSelector";
 import { Layout } from "./components/Layout";
 import { useTheme } from "./hooks/useTheme";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import type { PageType } from "./types/navigation";
 
 /**

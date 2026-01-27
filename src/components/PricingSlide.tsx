@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Check, Zap } from "lucide-react";
 import { Badge } from "./ui/badge";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 interface Feature {
   name: string;

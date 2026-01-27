@@ -1,5 +1,5 @@
 import { Smartphone, Monitor, Tablet, Menu, Bell, User, Search, Settings, Home, BarChart3, Wallet, TrendingUp } from "lucide-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 interface DesignSystemShowcaseProps {
   isDark: boolean;
