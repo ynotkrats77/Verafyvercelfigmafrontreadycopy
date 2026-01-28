@@ -191,7 +191,7 @@
 
 @layer base {
   * {
-    @apply border-[var(--border)] outline-[var(--ring)]/50;
+    
   }
 
   body {
