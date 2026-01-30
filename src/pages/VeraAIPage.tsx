@@ -712,7 +712,7 @@ export function VeraAIPage({ isDark }: VeraAIPageProps) {
               viewport={{ once: true }}
               className={`text-4xl font-bold text-center mb-12 ${isDark ? 'text-white' : 'text-slate-900'}`}
             >
-              What Vera <span style={{ color: '#EF4444' }}>Does NOT</span> Do
+              What Vera <span className="text-red-500">Does NOT</span> Do
             </motion.h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -723,27 +723,17 @@ export function VeraAIPage({ isDark }: VeraAIPageProps) {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="p-4 rounded-xl border-2 backdrop-blur-xl"
-                  style={{
-                    background: isDark 
-                      ? 'rgba(15, 23, 42, 0.6)' 
-                      : 'rgba(255, 255, 255, 0.8)',
-                    borderColor: '#EF444440',
-                  }}
+                  className={`p-4 rounded-xl border-2 backdrop-blur-xl border-red-500/30 ${
+                    isDark ? 'bg-slate-900/60' : 'bg-white/80'
+                  }`}
                 >
                   <div className="flex items-start gap-3 mb-2">
-                    <XCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#EF4444' }} />
+                    <XCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-red-500" />
                     <span className={`text-sm font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                       {item.label}
                     </span>
                   </div>
-                  <span 
-                    className="text-xs px-2 py-1 rounded"
-                    style={{
-                      background: '#EF444420',
-                      color: '#EF4444'
-                    }}
-                  >
+                  <span className="text-xs px-2 py-1 rounded bg-red-500/20 text-red-500">
                     {item.category}
                   </span>
                 </motion.div>
