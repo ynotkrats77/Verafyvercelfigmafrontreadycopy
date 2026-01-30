@@ -137,7 +137,7 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
               { label: 'Funding Deployed', value: '$175K', sub: '$150K seed + $25K AWS', icon: DollarSign, color: 'cyan' },
               { label: 'R&D Tax Credit', value: '$60K', sub: 'Expected Q1 2026', icon: FileText, color: 'blue' },
               { label: 'Raising', value: '$1M', sub: 'Seed Q1 2026', icon: TrendingUp, color: 'purple' },
-              { label: 'Full Ecosystem', value: 'Q4 2026', sub: '12 months', icon: Layers, color: 'yellow' },
+              { label: 'Full Ecosystem', value: '2027', sub: 'Product build 2026', icon: Layers, color: 'yellow' },
             ].map((item, i) => (
               <GlowCard key={i} className="p-6 text-center" highlight={i === 0}>
                 <div className={`w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center ${
@@ -243,10 +243,10 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
                   {[
                     'Multi-platform portfolio aggregation (equities, ETFs)',
                     'Real-time portfolio tracking across all holdings',
-                    'Cost base calculations with corporate actions',
-                    'Multi-portfolio support (personal, joint, trusts)',
+                    'Portfolio Engine to support calculations',
+                    'Multi-portfolio support',
                     'Web platform (responsive design)',
-                    'User authentication (Cognito)',
+                    'User authentication using OAuth2.0',
                     'Action Centre alert system',
                     '1st Gen Vera Insight & AI Chat',
                   ].map((item, i) => (
@@ -261,8 +261,6 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
                 <p className={`text-sm font-semibold mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Tax Intelligence:</p>
                 <ul className="space-y-2">
                   {[
-                    'CGT calculation engine (FIFO, LIFO, discount)',
-                    'Pre-trade tax modeling',
                     'Wash sale detection',
                     '50% CGT discount tracking (12-month holding)',
                   ].map((item, i) => (
@@ -317,13 +315,13 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
 
           {/* Tech Stack */}
           <GlowCard className="p-6 mb-8">
-            <h4 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Technology Stack Deployed</h4>
+            <h4 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Technology Stack – Deployed on AWS Private Cloud</h4>
             <div className="grid md:grid-cols-4 gap-4">
               {[
-                { title: 'Compute & Backend', items: ['AWS Lambda (serverless)', 'Python/FastAPI backend', 'API Gateway'], icon: Server },
-                { title: 'Database & Storage', items: ['RDS PostgreSQL', 'DynamoDB (real-time)', 'S3 (documents)'], icon: Database },
-                { title: 'Frontend', items: ['React (Web)', 'React Native (planned)', 'Responsive design'], icon: Code },
-                { title: 'Authentication', items: ['AWS Cognito', 'MFA support', 'Passwordless'], icon: Shield },
+                { title: 'Compute & Backend', items: ['Loosely coupled microservices', 'Independently deployable', 'Horizontally scalable'], icon: Server },
+                { title: 'Data & Persistence', items: ['Intentionally Polyglot', 'Transactional integrity', 'Low-latency, high-throughput'], icon: Database },
+                { title: 'Frontend & UX', items: ['Multi-channel delivery', 'Shared domain model', 'Responsive design'], icon: Code },
+                { title: 'Authentication', items: ['OAuth2.0', 'MFA support', 'Passwordless'], icon: Shield },
               ].map((section, i) => (
                 <div key={i} className={`p-4 rounded-xl ${isDark ? 'bg-slate-800/50' : 'bg-slate-100'}`}>
                   <div className="flex items-center gap-2 mb-3">
@@ -351,7 +349,7 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
                 <div>
                   <p className={`text-sm font-semibold mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>What Goes Live:</p>
                   <ul className="space-y-1">
-                    {['Portfolio tracking (equities, ETFs, managed funds)', 'CGT calculation engine', 'Pre-trade tax modeling', 'Action Centre', 'Vera AI chat (v1)', 'Tax pack export (basic)'].map((item, i) => (
+                    {['Portfolio tracking (equities, ETFs)', 'Action Centre', 'Vera AI chat (v1)', 'Tax pack export (basic)'].map((item, i) => (
                       <li key={i} className={`text-sm flex items-center gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                         <Check className="w-4 h-4 text-cyan-400" /> {item}
                       </li>
@@ -537,10 +535,10 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
                 </thead>
                 <tbody>
                   {[
-                    { dim: 'Interface', verafy: 'Modern web', xplan: 'Legacy desktop' },
-                    { dim: 'Tax intelligence', verafy: 'AI-powered', xplan: 'Basic' },
+                    { dim: 'Interface', verafy: 'Modern web', xplan: 'Modern web' },
+                    { dim: 'Tax intelligence', verafy: 'AI-powered', xplan: 'Extensive tax suite' },
                     { dim: 'Price', verafy: '$3,600/year', xplan: '$10K+/year' },
-                    { dim: 'Architecture', verafy: 'API-first', xplan: 'Closed system' },
+                    { dim: 'Architecture', verafy: 'API-first', xplan: 'API-driven' },
                     { dim: 'AI insights', verafy: 'Yes', xplan: 'None' },
                   ].map((row, i) => (
                     <tr key={i} className={`border-b ${isDark ? 'border-slate-800' : 'border-slate-100'}`}>
@@ -573,7 +571,7 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
         <section className="mb-20">
           <SectionHeader
             title="Full Ecosystem Integration"
-            subtitle="By December 2026, all three products connected"
+            subtitle="Full ecosystem 2027, all three products connected"
             isDark={isDark}
           />
 
