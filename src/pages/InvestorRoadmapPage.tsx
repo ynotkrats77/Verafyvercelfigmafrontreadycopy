@@ -24,6 +24,7 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import { GlowCard } from '../components/GlowCard';
+import { SectionHeader } from '../components/SectionHeader';
 
 interface InvestorRoadmapPageProps {
   isDark: boolean;
@@ -52,20 +53,6 @@ const FloatingParticles = () => (
         }}
       />
     ))}
-  </div>
-);
-
-// Section header component
-const SectionHeader = ({ title, subtitle, isDark }: { title: string; subtitle?: string; isDark: boolean }) => (
-  <div className="text-center mb-12">
-    <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-      {title}
-    </h2>
-    {subtitle && (
-      <p className={`text-xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-        {subtitle}
-      </p>
-    )}
   </div>
 );
 
