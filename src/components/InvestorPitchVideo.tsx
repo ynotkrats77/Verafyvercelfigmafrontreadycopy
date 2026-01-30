@@ -869,8 +869,9 @@ export function InvestorPitchVideo({ isDark, onClose }: InvestorPitchVideoProps)
   const [scale, setScale] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(503);
   const [isMuted, setIsMuted] = useState(false);
+  const [audioReady, setAudioReady] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -906,7 +907,12 @@ export function InvestorPitchVideo({ isDark, onClose }: InvestorPitchVideoProps)
   const handleLoadedMetadata = useCallback(() => {
     if (audioRef.current) {
       setDuration(audioRef.current.duration);
+      setAudioReady(true);
     }
+  }, []);
+
+  const handleCanPlay = useCallback(() => {
+    setAudioReady(true);
   }, []);
 
   const togglePlay = useCallback(() => {
@@ -977,9 +983,13 @@ export function InvestorPitchVideo({ isDark, onClose }: InvestorPitchVideoProps)
       <audio
         ref={audioRef}
         src="/Vera_Pitch_Full.mp3"
+        preload="auto"
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
+        onCanPlay={handleCanPlay}
         onEnded={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       />
 
       {/* Slide container */}
@@ -1012,6 +1022,27 @@ export function InvestorPitchVideo({ isDark, onClose }: InvestorPitchVideoProps)
               Slide {currentSlide + 1} / {SLIDES.length}
             </div>
           </div>
+
+          {/* Big centered play button overlay when paused */}
+          {!isPlaying && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 flex items-center justify-center z-30 bg-black/40"
+            >
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={togglePlay}
+                className="w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white shadow-2xl shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all"
+              >
+                <Play className="w-16 h-16 ml-2" />
+              </motion.button>
+              <div className="absolute bottom-32 text-white text-2xl font-medium">
+                Click to play narrated pitch
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
 
@@ -1043,9 +1074,9 @@ export function InvestorPitchVideo({ isDark, onClose }: InvestorPitchVideoProps)
             {/* Play/Pause */}
             <button
               onClick={togglePlay}
-              className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
+              className="w-14 h-14 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
             >
-              {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-1" />}
+              {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7 ml-1" />}
             </button>
 
             {/* Prev/Next */}
