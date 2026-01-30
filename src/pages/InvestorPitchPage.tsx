@@ -292,7 +292,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
           <div className="text-center">
             <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-cyan-500/30">
               <Zap className="w-6 h-6 text-cyan-400" />
-              <span className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>All three phases live by Christmas 2026</span>
+              <span className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Product build 2026. Full ecosystem 2027.</span>
               <Zap className="w-6 h-6 text-purple-400" />
             </div>
           </div>
