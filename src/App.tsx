@@ -1,10 +1,8 @@
 import { useState, lazy, Suspense } from "react";
-import { Home, Sun, Moon, Monitor, Presentation, Palette, Download, User, DollarSign, Briefcase, Video } from "lucide-react";
+import { Sun, Moon, Monitor } from "lucide-react";
 import { Button } from "./components/ui/button";
-import { ThemeSelector } from "./components/ThemeSelector";
 import { Layout } from "./components/Layout";
 import { useTheme } from "./hooks/useTheme";
-import { motion } from "framer-motion";
 import type { PageType } from "./types/navigation";
 
 /**
@@ -99,41 +97,6 @@ const ModeToggleButtons = ({ isDark, onToggleDark, onBackToWeb }: ModeToggleButt
   </div>
 );
 
-// Extracted reusable floating action button
-interface FloatingActionButtonProps {
-  icon: React.ReactNode;
-  isActive?: boolean;
-  isDark: boolean;
-  onClick: () => void;
-  title: string;
-  ariaLabel: string;
-}
-
-const FloatingActionButton = ({ icon, isActive, isDark, onClick, title, ariaLabel }: FloatingActionButtonProps) => (
-  <motion.div
-    whileHover={{ scale: 1.1, y: -2 }}
-    whileTap={{ scale: 0.95 }}
-    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-  >
-    <Button 
-      variant="outline" 
-      size="icon" 
-      className={`border-2 transition-colors focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 ${
-        isActive
-          ? 'bg-theme-primary text-white border-theme-primary'
-          : isDark 
-            ? 'bg-slate-900 border-cyan-500/30 hover:bg-slate-800 hover:border-cyan-400' 
-            : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'
-      }`}
-      onClick={onClick}
-      title={title}
-      aria-label={ariaLabel}
-    >
-      {icon}
-    </Button>
-  </motion.div>
-);
-
 export default function App() {
   const [mode, setMode] = useState<'web' | 'slide' | 'design' | 'export' | 'auth' | 'investor' | 'video'>('web');
   const [currentPage, setCurrentPage] = useState<PageType>('home');
@@ -196,101 +159,15 @@ export default function App() {
 
   // Main web application
   return (
-    <Layout isDark={isDark} onToggleDark={() => setIsDark(!isDark)} currentPage={currentPage} onNavigate={setCurrentPage} theme={theme} onThemeChange={setTheme}>
-      {/* Floating Action Buttons */}
-      <div className="fixed bottom-4 right-4 z-50 flex gap-2">
-        <FloatingActionButton
-          icon={<Home className={`h-4 w-4 ${currentPage === 'home' ? 'text-white' : isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isActive={currentPage === 'home'}
-          isDark={isDark}
-          onClick={() => setCurrentPage('home')}
-          title="Home Page"
-          ariaLabel="Navigate to Home Page"
-        />
-        
-        <FloatingActionButton
-          icon={<DollarSign className={`h-4 w-4 ${currentPage === 'pricing' ? 'text-white' : isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isActive={currentPage === 'pricing'}
-          isDark={isDark}
-          onClick={() => setCurrentPage('pricing')}
-          title="Pricing Page"
-          ariaLabel="Navigate to Pricing Page"
-        />
-
-        <FloatingActionButton
-          icon={<User className={`h-4 w-4 ${currentPage === 'dashboard' ? 'text-white' : isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isActive={currentPage === 'dashboard'}
-          isDark={isDark}
-          onClick={() => setCurrentPage('dashboard')}
-          title="Dashboard (Post-Signin)"
-          ariaLabel="Navigate to Dashboard"
-        />
-        
-        <motion.div
-          whileHover={{ scale: 1.1, y: -2 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        >
-          <ThemeSelector currentTheme={theme} onThemeChange={setTheme} isDark={isDark} />
-        </motion.div>
-        
-        <FloatingActionButton
-          icon={isDark ? <Sun className="h-4 w-4 text-slate-400" aria-hidden="true" /> : <Moon className="h-4 w-4 text-slate-600" aria-hidden="true" />}
-          isDark={isDark}
-          onClick={() => setIsDark(!isDark)}
-          title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          ariaLabel={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-        />
-        
-        <FloatingActionButton
-          icon={<Presentation className="h-4 w-4 text-slate-400" aria-hidden="true" />}
-          isDark={isDark}
-          onClick={() => setMode('slide')}
-          title="Presentation Mode"
-          ariaLabel="Switch to Presentation Mode"
-        />
-        
-        <FloatingActionButton
-          icon={<Palette className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isDark={isDark}
-          onClick={() => setMode('design')}
-          title="Design System"
-          ariaLabel="View Design System"
-        />
-        
-        <FloatingActionButton
-          icon={<Download className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isDark={isDark}
-          onClick={() => setMode('export')}
-          title="Export Logo"
-          ariaLabel="Export Logo"
-        />
-        
-        <FloatingActionButton
-          icon={<Download className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isDark={isDark}
-          onClick={() => setMode('auth')}
-          title="Authentication Buttons"
-          ariaLabel="View Authentication Buttons"
-        />
-
-        <FloatingActionButton
-          icon={<Briefcase className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isDark={isDark}
-          onClick={() => setMode('investor')}
-          title="Investor Pitch Deck"
-          ariaLabel="View Investor Pitch Deck"
-        />
-
-        <FloatingActionButton
-          icon={<Video className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
-          isDark={isDark}
-          onClick={() => setMode('video')}
-          title="Pitch Video with Audio"
-          ariaLabel="Watch Pitch Video with Audio"
-        />
-      </div>
-
+    <Layout
+      isDark={isDark}
+      onToggleDark={() => setIsDark(!isDark)}
+      currentPage={currentPage}
+      onNavigate={setCurrentPage}
+      theme={theme}
+      onThemeChange={setTheme}
+      onModeChange={setMode}
+    >
       {/* Page Content - Lazy loaded with Suspense */}
       <Suspense fallback={<PageLoader />}>
         {currentPage === 'home' && <HomePage isDark={isDark} />}

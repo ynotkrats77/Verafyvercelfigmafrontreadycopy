@@ -16,6 +16,8 @@ interface LayoutProps {
   showBackToTop?: boolean;
   theme?: ThemeType;
   onThemeChange?: (theme: ThemeType) => void;
+  // Dev mode controls
+  onModeChange?: (mode: 'web' | 'slide' | 'design' | 'export' | 'auth' | 'investor' | 'video') => void;
 }
 
 /**
@@ -34,8 +36,8 @@ interface LayoutProps {
  * @param theme - Current theme
  * @param onThemeChange - Function to change theme
  */
-export function Layout({ 
-  children, 
+export function Layout({
+  children,
   isDark,
   onToggleDark,
   currentPage,
@@ -43,7 +45,8 @@ export function Layout({
   showScrollProgress = true,
   showBackToTop = true,
   theme,
-  onThemeChange
+  onThemeChange,
+  onModeChange
 }: LayoutProps) {
   return (
     <div className={`min-h-screen relative transition-colors duration-500 ${
@@ -72,7 +75,15 @@ export function Layout({
       {showBackToTop && <BackToTop isDark={isDark} />}
       
       {/* Fixed Footer */}
-      <Footer isDark={isDark} onNavigate={onNavigate} />
+      <Footer
+        isDark={isDark}
+        onNavigate={onNavigate}
+        currentPage={currentPage}
+        onModeChange={onModeChange}
+        onToggleDark={onToggleDark}
+        theme={theme}
+        onThemeChange={onThemeChange}
+      />
     </div>
   );
 }

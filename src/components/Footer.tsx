@@ -1,14 +1,23 @@
 import { useState } from 'react';
 import { Logo } from './Logo';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Lock, Unlock } from 'lucide-react';
+import { ChevronDown, Unlock, Presentation, Palette, Download, Briefcase, Video, Sun, Moon, Home, DollarSign, User, KeyRound } from 'lucide-react';
 import { FOOTER_SECTIONS, COMPANY_INFO, SOCIAL_LINKS, PageType } from '../utils/constants';
 import { scrollToTop } from '../utils/themeUtils';
 import { TEMP_BYPASS_AUTH } from '../config/authSettings';
+import { Button } from './ui/button';
+import { ThemeSelector } from './ThemeSelector';
+import type { ThemeName } from '../utils/themeConfig';
 
 interface FooterProps {
   isDark: boolean;
   onNavigate?: (page: PageType) => void;
+  // Dev mode button props
+  currentPage?: PageType;
+  onModeChange?: (mode: 'web' | 'slide' | 'design' | 'export' | 'auth' | 'investor' | 'video') => void;
+  onToggleDark?: () => void;
+  theme?: ThemeName;
+  onThemeChange?: (theme: ThemeName) => void;
 }
 
 interface FooterSection {
@@ -85,7 +94,7 @@ function MobileAccordion({ section, isDark, onNavigate }: MobileAccordionProps) 
   );
 }
 
-export function Footer({ isDark, onNavigate }: FooterProps) {
+export function Footer({ isDark, onNavigate, currentPage, onModeChange, onToggleDark, theme, onThemeChange }: FooterProps) {
   const handleNavClick = (page: PageType) => {
     if (onNavigate) {
       onNavigate(page);
@@ -516,34 +525,149 @@ export function Footer({ isDark, onNavigate }: FooterProps) {
 
           {/* TEMPORARY: Developer Dashboard Access */}
           {TEMP_BYPASS_AUTH && (
-            <div className="mt-6 pt-6 border-t border-slate-800">
-              <div className="flex flex-col items-center gap-3">
+            <div className={`mt-6 pt-6 border-t ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
+              <div className="flex flex-col items-center gap-4">
                 <div className="flex items-center gap-2">
                   <Unlock className="w-4 h-4 text-amber-500" />
                   <span className={`text-xs font-semibold ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
                     DEVELOPMENT MODE - Auth Bypass Active
                   </span>
                 </div>
-                <motion.button
-                  onClick={() => {
-                    if (onNavigate) {
-                      onNavigate('dashboard');
-                      scrollToTop();
-                    }
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 py-2.5 rounded-lg font-semibold text-sm transition-all shadow-lg"
-                  style={{
-                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                    color: '#fff',
-                  }}
-                >
-                  🔓 Access Dashboard (Temporary Dev Link)
-                </motion.button>
+
+                {/* Developer Action Buttons */}
+                <div className="flex flex-wrap justify-center gap-2">
+                  {/* Page Navigation */}
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${
+                      currentPage === 'home'
+                        ? 'bg-theme-primary text-white border-theme-primary'
+                        : isDark
+                          ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400'
+                          : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'
+                    }`}
+                    onClick={() => onNavigate?.('home')}
+                    title="Home Page"
+                  >
+                    <Home className={`h-4 w-4 ${currentPage === 'home' ? 'text-white' : isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${
+                      currentPage === 'pricing'
+                        ? 'bg-theme-primary text-white border-theme-primary'
+                        : isDark
+                          ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400'
+                          : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'
+                    }`}
+                    onClick={() => onNavigate?.('pricing')}
+                    title="Pricing Page"
+                  >
+                    <DollarSign className={`h-4 w-4 ${currentPage === 'pricing' ? 'text-white' : isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${
+                      currentPage === 'dashboard'
+                        ? 'bg-theme-primary text-white border-theme-primary'
+                        : isDark
+                          ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400'
+                          : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'
+                    }`}
+                    onClick={() => onNavigate?.('dashboard')}
+                    title="Dashboard"
+                  >
+                    <User className={`h-4 w-4 ${currentPage === 'dashboard' ? 'text-white' : isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <div className={`w-px h-8 ${isDark ? 'bg-slate-700' : 'bg-slate-300'}`} />
+
+                  {/* Theme Controls */}
+                  {theme && onThemeChange && (
+                    <ThemeSelector currentTheme={theme} onThemeChange={onThemeChange} isDark={isDark} />
+                  )}
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800' : 'bg-white border-slate-300 hover:bg-slate-50'}`}
+                    onClick={onToggleDark}
+                    title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                  >
+                    {isDark ? <Sun className="h-4 w-4 text-slate-400" /> : <Moon className="h-4 w-4 text-slate-600" />}
+                  </Button>
+
+                  <div className={`w-px h-8 ${isDark ? 'bg-slate-700' : 'bg-slate-300'}`} />
+
+                  {/* Demo Mode Buttons */}
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400' : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'}`}
+                    onClick={() => onModeChange?.('slide')}
+                    title="Presentation Mode"
+                  >
+                    <Presentation className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400' : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'}`}
+                    onClick={() => onModeChange?.('design')}
+                    title="Design System"
+                  >
+                    <Palette className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400' : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'}`}
+                    onClick={() => onModeChange?.('export')}
+                    title="Export Logo"
+                  >
+                    <Download className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400' : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'}`}
+                    onClick={() => onModeChange?.('auth')}
+                    title="Auth Buttons"
+                  >
+                    <KeyRound className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400' : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'}`}
+                    onClick={() => onModeChange?.('investor')}
+                    title="Investor Pitch Deck"
+                  >
+                    <Briefcase className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400' : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'}`}
+                    onClick={() => onModeChange?.('video')}
+                    title="Pitch Video"
+                  >
+                    <Video className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
+                  </Button>
+                </div>
+
                 <p className={`text-[10px] text-center max-w-md ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
-                  Note: All dashboard sections are protected under authentication. This link bypasses auth for development only.
-                  Set TEMP_BYPASS_AUTH = false in /config/authSettings.ts for production.
+                  Dev controls: Page nav | Theme | Demo modes. Set TEMP_BYPASS_AUTH = false in /config/authSettings.ts for production.
                 </p>
               </div>
             </div>
