@@ -688,8 +688,8 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                     {[
                       'CEO GPRA: $2M → $12M (500% growth)',
                       'Raised $10M from health funds',
-                      'Risk algorithm 98% accuracy',
-                      'Secured $18M in project funding',
+                      'Risk algorithm 98% accuracy (Sonic Healthcare)',
+                      'COO AMA WA: wealth programs for 3,000 doctors',
                     ].map((item, i) => (
                       <li key={i} className={`flex items-start gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                         <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
@@ -723,10 +723,10 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                   <p className={`text-xs mb-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Track Record</p>
                   <ul className="space-y-1.5">
                     {[
-                      '10+ years: Python, React, AWS',
-                      'Ex-GBST/xplan (insider knowledge)',
-                      'Ex-JP Morgan (7 years)',
-                      'Built entire beta before raising',
+                      'Ex-GBST/xplan – knows where gatekeeping is coded',
+                      'Ex-JP Morgan & enterprise fintech',
+                      'Built entire beta solo before raising',
+                      'Python, React, AWS, financial APIs',
                     ].map((item, i) => (
                       <li key={i} className={`flex items-start gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                         <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />

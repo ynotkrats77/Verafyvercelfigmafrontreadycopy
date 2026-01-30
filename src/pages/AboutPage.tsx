@@ -37,11 +37,11 @@ export function AboutPage({ isDark }: AboutPageProps) {
   const solvingFor = [
     {
       icon: GraduationCap,
-      text: 'The 26-year-old spending a decade financially illiterate because no one taught them',
+      text: 'The 26-year-old who wants to build wealth but doesn\'t know where to start',
     },
     {
       icon: Heart,
-      text: 'Divorcées trapped in bad splits because they never learned to negotiate',
+      text: 'Anyone navigating a life transition who needs clear financial guidance',
     },
     {
       icon: AlertTriangle,
@@ -49,7 +49,7 @@ export function AboutPage({ isDark }: AboutPageProps) {
     },
     {
       icon: Briefcase,
-      text: 'Anyone locked out of wealth-building by advisor minimums they can\'t meet',
+      text: 'The millions locked out of wealth-building by advisor minimums they can\'t meet',
     },
   ];
 
@@ -62,7 +62,7 @@ export function AboutPage({ isDark }: AboutPageProps) {
         'CEO GPRA: $2M → $12M revenue (500% growth)',
         'Raised $10M from health funds & PHNs for integrated care models',
         'Built national risk algorithm predicting hospitalization (98% accuracy) – still used by Sonic Healthcare and government',
-        'COO, AMA WA: led policy and commercial strategy for 3,000 doctors',
+        'COO, AMA WA: led policy, commercial strategy, and member wealth programs for 3,000 doctors – including financial planning and advisory services through AMA Finance',
         'Board advisor on healthcare workforce and AI transformation',
       ],
       extra: '25 years transforming complex systems across healthcare, finance, and government. Former First Officer, commercial shipping. NLP Master Practitioner – systems thinking, transformational leadership.',
@@ -72,8 +72,7 @@ export function AboutPage({ isDark }: AboutPageProps) {
       role: 'Co-Founder & CTO',
       credentials: '40% equity stake – deeply aligned for the long term',
       highlights: [
-        'Senior Software Engineer at GBST (xplan platform) – the system advisors use to manage billions in client wealth',
-        'Led platform development at AMA Finance – regulatory-compliant wealth solutions',
+        'Senior Software Engineer at GBST (xplan platform) – the system advisors use to manage billions in client wealth. Knows where the inefficiencies and gatekeeping are coded in.',
         'Engineering roles at JP Morgan and enterprise fintech',
         'Built VerafyAI\'s entire beta product solo before raising a dollar',
       ],
