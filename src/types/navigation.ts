@@ -46,4 +46,6 @@ export type PageType =
   | 'subscriptions'
   | 'academy-record'
   | 'help'
-  | 'logout';
+  | 'logout'
+  | 'investor-pitch'
+  | 'investor-video';

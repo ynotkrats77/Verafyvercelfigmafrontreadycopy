@@ -220,6 +220,13 @@ export const FOOTER_SECTIONS = {
       { label: 'Disclaimers', page: 'disclaimers' as PageType },
     ],
   },
+  investors: {
+    title: 'Investors',
+    links: [
+      { label: 'Pitch Deck', page: 'investor-pitch' as PageType },
+      { label: 'Video Presentation', page: 'investor-video' as PageType },
+    ],
+  },
 } as const;
 
 // Company information

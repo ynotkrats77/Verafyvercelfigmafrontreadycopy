@@ -99,6 +99,7 @@ export function Footer({ isDark, onNavigate }: FooterProps) {
     FOOTER_SECTIONS.resources,
     FOOTER_SECTIONS.company,
     FOOTER_SECTIONS.legal,
+    FOOTER_SECTIONS.investors,
   ];
 
   return (
@@ -119,8 +120,8 @@ export function Footer({ isDark, onNavigate }: FooterProps) {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Desktop Layout: Brand + 5 Columns */}
-        <div className="hidden lg:grid lg:grid-cols-6 gap-8 xl:gap-12 py-12">
+        {/* Desktop Layout: Brand + 6 Columns */}
+        <div className="hidden lg:grid lg:grid-cols-7 gap-6 xl:gap-10 py-12">
           {/* Brand Column - Takes 1 column */}
           <div>
             <div className="flex items-center gap-2 mb-4">
