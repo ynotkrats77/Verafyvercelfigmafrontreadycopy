@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from "react";
-import { Home, Sun, Moon, Monitor, Presentation, Palette, Download, User, DollarSign, Briefcase } from "lucide-react";
+import { Home, Sun, Moon, Monitor, Presentation, Palette, Download, User, DollarSign, Briefcase, Video } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { ThemeSelector } from "./components/ThemeSelector";
 import { Layout } from "./components/Layout";
@@ -49,6 +49,7 @@ const DesignSystemShowcase = lazy(() => import("./components/DesignSystemShowcas
 const LogoExporter = lazy(() => import("./components/LogoExporter").then(m => ({ default: m.LogoExporter })));
 const AuthButtonShowcase = lazy(() => import("./components/AuthButtonShowcase").then(m => ({ default: m.AuthButtonShowcase })));
 const InvestorPitchDeck = lazy(() => import("./components/InvestorPitchDeck").then(m => ({ default: m.InvestorPitchDeck })));
+const InvestorPitchVideo = lazy(() => import("./components/InvestorPitchVideo").then(m => ({ default: m.InvestorPitchVideo })));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -128,7 +129,7 @@ const FloatingActionButton = ({ icon, isActive, isDark, onClick, title, ariaLabe
 );
 
 export default function App() {
-  const [mode, setMode] = useState<'web' | 'slide' | 'design' | 'export' | 'auth' | 'investor'>('web');
+  const [mode, setMode] = useState<'web' | 'slide' | 'design' | 'export' | 'auth' | 'investor' | 'video'>('web');
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [isDark, setIsDark] = useState(true);
   const { theme, setTheme } = useTheme();
@@ -175,6 +176,14 @@ export default function App() {
       <Suspense fallback={<PageLoader />}>
         <InvestorPitchDeck isDark={isDark} />
         <ModeToggleButtons isDark={isDark} onToggleDark={() => setIsDark(!isDark)} onBackToWeb={() => setMode('web')} />
+      </Suspense>
+    );
+  }
+
+  if (mode === 'video') {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <InvestorPitchVideo isDark={isDark} onClose={() => setMode('web')} />
       </Suspense>
     );
   }
@@ -265,6 +274,14 @@ export default function App() {
           onClick={() => setMode('investor')}
           title="Investor Pitch Deck"
           ariaLabel="View Investor Pitch Deck"
+        />
+
+        <FloatingActionButton
+          icon={<Video className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
+          isDark={isDark}
+          onClick={() => setMode('video')}
+          title="Pitch Video with Audio"
+          ariaLabel="Watch Pitch Video with Audio"
         />
       </div>
 
