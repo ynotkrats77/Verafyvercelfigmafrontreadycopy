@@ -9,16 +9,12 @@ import {
   Target,
   Rocket,
   Shield,
-  BarChart3,
   Globe,
   Zap,
   Check,
   X,
-  ArrowRight,
   LineChart,
-  PieChart,
   Award,
-  Building2,
   Wallet,
   Brain,
   Clock,
@@ -34,7 +30,6 @@ import {
   AlertTriangle,
   CheckCircle2,
   Mail,
-  Phone
 } from 'lucide-react';
 
 interface InvestorPitchDeckProps {
@@ -45,13 +40,13 @@ interface SlideProps {
   isDark: boolean;
 }
 
-// Floating particles component
+// Floating particles component - cyan/blue only
 const FloatingParticles = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {[...Array(20)].map((_, i) => (
+    {[...Array(15)].map((_, i) => (
       <motion.div
         key={i}
-        className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+        className="absolute w-1.5 h-1.5 bg-cyan-400/20 rounded-full"
         initial={{
           x: Math.random() * 1920,
           y: Math.random() * 1080,
@@ -59,10 +54,10 @@ const FloatingParticles = () => (
         animate={{
           x: [null, Math.random() * 1920],
           y: [null, Math.random() * 1080],
-          opacity: [0.2, 0.5, 0.2],
+          opacity: [0.15, 0.4, 0.15],
         }}
         transition={{
-          duration: 10 + Math.random() * 20,
+          duration: 12 + Math.random() * 20,
           repeat: Infinity,
           ease: "linear",
         }}
@@ -71,39 +66,7 @@ const FloatingParticles = () => (
   </div>
 );
 
-// Animated counter component
-const AnimatedNumber = ({ value, suffix = '', prefix = '' }: { value: string; suffix?: string; prefix?: string }) => {
-  const numericValue = parseFloat(value.replace(/[^0-9.]/g, ''));
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = numericValue / steps;
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= numericValue) {
-        setCount(numericValue);
-        clearInterval(timer);
-      } else {
-        setCount(current);
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [numericValue]);
-
-  const formatted = value.includes('M') ? `${count.toFixed(0)}M` :
-                    value.includes('K') ? `${count.toFixed(0)}K` :
-                    value.includes('B') ? `${count.toFixed(1)}B` :
-                    count.toFixed(0);
-
-  return <span>{prefix}{formatted}{suffix}</span>;
-};
-
-// Glowing card component
+// Glowing card component - cyan/blue scheme
 const GlowCard = ({ children, className = '', delay = 0, highlight = false }: { children: React.ReactNode; className?: string; delay?: number; highlight?: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
@@ -113,17 +76,17 @@ const GlowCard = ({ children, className = '', delay = 0, highlight = false }: { 
     className={`relative rounded-2xl backdrop-blur-sm ${className}`}
     style={{
       background: highlight
-        ? 'linear-gradient(135deg, rgba(13, 79, 79, 0.9), rgba(6, 95, 95, 0.9))'
-        : 'linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8))',
-      border: highlight ? '2px solid rgba(34, 211, 238, 0.5)' : '1px solid rgba(34, 211, 238, 0.2)',
+        ? 'linear-gradient(135deg, rgba(8, 145, 178, 0.3), rgba(6, 182, 212, 0.2))'
+        : 'linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9))',
+      border: highlight ? '2px solid rgba(34, 211, 238, 0.6)' : '1px solid rgba(34, 211, 238, 0.2)',
       boxShadow: highlight
-        ? '0 0 40px rgba(34, 211, 238, 0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
-        : '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+        ? '0 0 50px rgba(34, 211, 238, 0.25), inset 0 1px 0 rgba(255,255,255,0.1)'
+        : '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
     }}
   >
     {highlight && (
       <div className="absolute inset-0 rounded-2xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 animate-pulse" />
       </div>
     )}
     <div className="relative z-10">{children}</div>
@@ -132,19 +95,16 @@ const GlowCard = ({ children, className = '', delay = 0, highlight = false }: { 
 
 // Slide 1: Title Slide
 const TitleSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-950 via-[#0d4f4f] to-slate-900">
+  <div className="h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
 
-    {/* Ambient glow */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px]">
-      <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-[150px] animate-pulse" />
+    {/* Background Elements - matching pricing page */}
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-slate-950/0 to-slate-950/0" />
+      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950/0 to-slate-950/0" />
+      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
     </div>
-
-    {/* Grid pattern */}
-    <div className="absolute inset-0 opacity-10" style={{
-      backgroundImage: 'linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px)',
-      backgroundSize: '50px 50px'
-    }} />
 
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -154,37 +114,33 @@ const TitleSlide: React.FC<SlideProps> = ({ isDark }) => (
     >
       {/* Logo */}
       <motion.div
-        className="flex items-center justify-center gap-4 mb-8"
+        className="flex items-center justify-center gap-4 mb-10"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
         <div className="relative">
-          <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-cyan-500/50">
-            <div className="w-10 h-10 bg-white rounded-lg transform rotate-45" />
+          <div className="w-24 h-24 bg-cyan-500/20 rounded-xl flex items-center justify-center border border-cyan-500/30">
+            <div className="w-12 h-12 bg-cyan-400 rounded-lg transform rotate-45" />
           </div>
-          <div className="absolute inset-0 bg-cyan-400/50 rounded-2xl blur-xl animate-pulse" />
+          <div className="absolute inset-0 bg-cyan-400/30 rounded-xl blur-xl animate-pulse" />
         </div>
       </motion.div>
 
       {/* Main Title */}
       <motion.h1
-        className="text-9xl font-bold mb-6"
+        className="text-[140px] font-bold mb-6 leading-none"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
       >
-        <span className="bg-gradient-to-r from-white via-cyan-100 to-white bg-clip-text text-transparent">
-          Verafy
-        </span>
-        <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
-          AI
-        </span>
+        <span className="text-white">Verafy</span>
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">AI</span>
       </motion.h1>
 
       {/* Tagline */}
       <motion.p
-        className="text-3xl text-cyan-400 italic mb-4 font-light"
+        className="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 italic mb-6 font-light"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6 }}
@@ -193,22 +149,22 @@ const TitleSlide: React.FC<SlideProps> = ({ isDark }) => (
       </motion.p>
 
       <motion.p
-        className="text-2xl text-white/70 mb-16"
+        className="text-3xl text-slate-300 mb-20"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8 }}
       >
-        Where <span className="text-cyan-400 font-semibold">9 million</span> investors meet institutional intelligence
+        Where <span className="text-cyan-400 font-bold">9 million</span> investors meet institutional intelligence
       </motion.p>
 
       {/* Contact */}
       <motion.div
-        className="text-lg text-white/50 space-y-1"
+        className="text-2xl text-slate-400 space-y-2"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <p className="text-white/70">Amit Vohra | Co-founder & CEO</p>
+        <p className="text-white">Amit Vohra | Co-founder & CEO</p>
         <p>amit@verafyai.com | verafyai.com.au</p>
       </motion.div>
     </motion.div>
@@ -218,13 +174,13 @@ const TitleSlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1.2, type: "spring" }}
-      className="absolute top-8 right-12"
+      className="absolute top-10 right-16"
     >
       <div className="relative">
-        <div className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-xl text-slate-900 font-bold text-xl shadow-2xl shadow-cyan-500/50">
+        <div className="px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl text-white font-bold text-2xl shadow-2xl shadow-cyan-500/40">
           $1M Seed @ $10M Pre-Money
         </div>
-        <div className="absolute inset-0 bg-cyan-400/50 rounded-xl blur-xl -z-10 animate-pulse" />
+        <div className="absolute inset-0 bg-cyan-400/40 rounded-xl blur-xl -z-10 animate-pulse" />
       </div>
     </motion.div>
   </div>
@@ -232,33 +188,33 @@ const TitleSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 2: Two Markets. One Broken System.
 const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
 
     {/* Background glows */}
-    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-500/10 rounded-full blur-[150px]" />
-    <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]" />
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
+    <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
 
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="mb-12"
+      className="mb-14"
     >
-      <h2 className="text-6xl font-bold text-white mb-4">
+      <h2 className="text-7xl font-bold text-white mb-4">
         Two Markets. <span className="text-red-400">One Broken System.</span>
       </h2>
     </motion.div>
 
-    <div className="flex-1 grid grid-cols-2 gap-8 mb-8">
+    <div className="flex-1 grid grid-cols-2 gap-12 mb-10">
       {/* Retail Investors */}
-      <GlowCard className="p-8" delay={0.2} highlight>
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center">
-            <Users className="w-7 h-7 text-white" />
+      <GlowCard className="p-10" delay={0.2} highlight>
+        <div className="flex items-center gap-5 mb-8">
+          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+            <Users className="w-8 h-8 text-white" />
           </div>
-          <h3 className="text-3xl font-bold text-cyan-400">9 Million Retail Investors</h3>
+          <h3 className="text-4xl font-bold text-cyan-400">9 Million Retail Investors</h3>
         </div>
-        <ul className="space-y-4">
+        <ul className="space-y-5">
           {[
             { icon: AlertTriangle, text: 'Making decisions without institutional tools' },
             { icon: FileText, text: 'Spreadsheets, basic trackers, or nothing' },
@@ -270,9 +226,9 @@ const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 + i * 0.1 }}
-              className="flex items-center gap-3 text-lg text-white/80"
+              className="flex items-center gap-4 text-2xl text-white"
             >
-              <item.icon className="w-5 h-5 text-red-400" />
+              <item.icon className="w-7 h-7 text-red-400 flex-shrink-0" />
               {item.text}
             </motion.li>
           ))}
@@ -280,18 +236,18 @@ const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Financial Advisers */}
-      <GlowCard className="p-8" delay={0.3}>
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center">
-            <Briefcase className="w-7 h-7 text-white" />
+      <GlowCard className="p-10" delay={0.3}>
+        <div className="flex items-center gap-5 mb-8">
+          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center">
+            <Briefcase className="w-8 h-8 text-white" />
           </div>
-          <h3 className="text-3xl font-bold text-white">15,000 Financial Advisers</h3>
+          <h3 className="text-4xl font-bold text-white">15,000 Financial Advisers</h3>
         </div>
-        <ul className="space-y-4">
+        <ul className="space-y-5">
           {[
             { icon: Lock, text: 'Trapped in legacy software (Xplan)' },
-            { icon: DollarSign, text: '$2,000-$4,000/month for complexity they don\'t need' },
-            { icon: Clock, text: '3-week SOA turnarounds via paraplanners' },
+            { icon: DollarSign, text: '$2,000-$4,000/month for complexity' },
+            { icon: Clock, text: '3-week SOA turnarounds' },
             { icon: AlertTriangle, text: 'Hours on paperwork, minutes with clients' },
           ].map((item, i) => (
             <motion.li
@@ -299,9 +255,9 @@ const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 + i * 0.1 }}
-              className="flex items-center gap-3 text-lg text-white/80"
+              className="flex items-center gap-4 text-2xl text-white"
             >
-              <item.icon className="w-5 h-5 text-orange-400" />
+              <item.icon className="w-7 h-7 text-orange-400 flex-shrink-0" />
               {item.text}
             </motion.li>
           ))}
@@ -314,13 +270,13 @@ const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8 }}
-      className="p-6 rounded-xl bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30"
+      className="p-8 rounded-xl bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30"
     >
-      <p className="text-xl text-white text-center">
-        The gap between investors who need help and advisers who can deliver has never been wider.
+      <p className="text-3xl text-white text-center">
+        The gap between investors and advisers has never been wider.
       </p>
-      <p className="text-lg text-cyan-400 italic text-center mt-2">
-        They call it a 'necessary evil.' <span className="text-white font-semibold">The industry is ripe for disruption.</span>
+      <p className="text-2xl text-cyan-400 italic text-center mt-3">
+        The industry is ripe for disruption.
       </p>
     </motion.div>
   </div>
@@ -328,42 +284,43 @@ const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 3: The Solution - Three Phases
 const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
 
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[150px]" />
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
+    <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
 
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       className="mb-12 text-center"
     >
-      <h2 className="text-6xl font-bold text-white mb-4">
-        The Solution: <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">Three Phases</span>
+      <h2 className="text-7xl font-bold text-white mb-4">
+        The Solution: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Three Phases</span>
       </h2>
     </motion.div>
 
-    <div className="flex-1 grid grid-cols-3 gap-8">
+    <div className="flex-1 grid grid-cols-3 gap-10">
       {/* Phase 1 */}
-      <GlowCard className="p-8 flex flex-col" delay={0.2} highlight>
-        <div className="text-center mb-6">
+      <GlowCard className="p-10 flex flex-col" delay={0.2} highlight>
+        <div className="text-center mb-8">
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-500/50 mb-4"
+            className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-cyan-500/20 border border-cyan-500/50 mb-5"
             animate={{ boxShadow: ['0 0 20px rgba(34, 211, 238, 0.3)', '0 0 40px rgba(34, 211, 238, 0.5)', '0 0 20px rgba(34, 211, 238, 0.3)'] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-cyan-400 font-semibold text-sm">NOW - LIVE</span>
+            <Sparkles className="w-6 h-6 text-cyan-400" />
+            <span className="text-cyan-400 font-bold text-xl">NOW - LIVE</span>
           </motion.div>
-          <h3 className="text-2xl font-bold text-white mb-2">Portfolio Intelligence</h3>
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center shadow-lg shadow-cyan-500/50">
-            <Brain className="w-8 h-8 text-white" />
+          <h3 className="text-3xl font-bold text-white mb-4">Portfolio Intelligence</h3>
+          <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg shadow-cyan-500/40">
+            <Brain className="w-10 h-10 text-white" />
           </div>
         </div>
-        <ul className="space-y-3 flex-1">
+        <ul className="space-y-4 flex-1">
           {['Connect broker → real-time analysis', 'Tax optimisation, rebalancing', 'Plain English actions', '$5-$20/month'].map((item, i) => (
-            <li key={i} className="flex items-center gap-2 text-white/80">
-              <Check className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+            <li key={i} className="flex items-center gap-3 text-xl text-white">
+              <Check className="w-6 h-6 text-cyan-400 flex-shrink-0" />
               {item}
             </li>
           ))}
@@ -371,21 +328,21 @@ const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Phase 2 */}
-      <GlowCard className="p-8 flex flex-col" delay={0.3}>
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-500/30 mb-4">
-            <Calendar className="w-4 h-4 text-blue-400" />
-            <span className="text-blue-400 font-semibold text-sm">JULY 2026</span>
+      <GlowCard className="p-10 flex flex-col" delay={0.3}>
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-blue-500/20 border border-blue-500/30 mb-5">
+            <Calendar className="w-6 h-6 text-blue-400" />
+            <span className="text-blue-400 font-bold text-xl">JULY 2026</span>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">Trading App</h3>
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-            <LineChart className="w-8 h-8 text-white" />
+          <h3 className="text-3xl font-bold text-white mb-4">Trading App</h3>
+          <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
+            <LineChart className="w-10 h-10 text-white" />
           </div>
         </div>
-        <ul className="space-y-3 flex-1">
+        <ul className="space-y-4 flex-1">
           {['Standalone app, separate entity', 'IBKR brokerage gateway', 'AWS enterprise deployment', 'Chinese wall maintained'].map((item, i) => (
-            <li key={i} className="flex items-center gap-2 text-white/80">
-              <Check className="w-4 h-4 text-blue-400 flex-shrink-0" />
+            <li key={i} className="flex items-center gap-3 text-xl text-white">
+              <Check className="w-6 h-6 text-blue-400 flex-shrink-0" />
               {item}
             </li>
           ))}
@@ -393,21 +350,21 @@ const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Phase 3 */}
-      <GlowCard className="p-8 flex flex-col" delay={0.4}>
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 mb-4">
-            <Rocket className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-400 font-semibold text-sm">2027</span>
+      <GlowCard className="p-10 flex flex-col" delay={0.4}>
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-purple-500/20 border border-purple-500/30 mb-5">
+            <Rocket className="w-6 h-6 text-purple-400" />
+            <span className="text-purple-400 font-bold text-xl">2027</span>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">Xplan Lite</h3>
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-            <FileText className="w-8 h-8 text-white" />
+          <h3 className="text-3xl font-bold text-white mb-4">Xplan Lite</h3>
+          <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+            <FileText className="w-10 h-10 text-white" />
           </div>
         </div>
-        <ul className="space-y-3 flex-1">
+        <ul className="space-y-4 flex-1">
           {['One-meeting SOA generation', 'Conversational fact-find', 'No paraplanners needed', '$1,500-$4,000/month'].map((item, i) => (
-            <li key={i} className="flex items-center gap-2 text-white/80">
-              <Check className="w-4 h-4 text-purple-400 flex-shrink-0" />
+            <li key={i} className="flex items-center gap-3 text-xl text-white">
+              <Check className="w-6 h-6 text-purple-400 flex-shrink-0" />
               {item}
             </li>
           ))}
@@ -420,12 +377,12 @@ const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ scaleX: 0 }}
       animate={{ scaleX: 1 }}
       transition={{ delay: 0.8, duration: 1 }}
-      className="mt-8 text-center"
+      className="mt-10 text-center"
     >
-      <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-cyan-500/30">
-        <Zap className="w-6 h-6 text-cyan-400" />
-        <span className="text-2xl font-bold text-white">All three phases live by Christmas 2026</span>
-        <Zap className="w-6 h-6 text-purple-400" />
+      <div className="inline-flex items-center gap-5 px-10 py-5 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-cyan-500/30">
+        <Zap className="w-8 h-8 text-cyan-400" />
+        <span className="text-3xl font-bold text-white">All three phases live by Christmas 2026</span>
+        <Zap className="w-8 h-8 text-purple-400" />
       </div>
     </motion.div>
   </div>
@@ -433,31 +390,31 @@ const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 4: Vera - Bloomberg Terminal meets ChatGPT
 const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
 
-    <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px]" />
-    <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[150px]" />
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
+    <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
 
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="mb-10"
+      className="mb-12"
     >
-      <h2 className="text-5xl font-bold text-white mb-2">
-        Vera: <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">Bloomberg Terminal meets ChatGPT</span>
+      <h2 className="text-6xl font-bold text-white mb-3">
+        Vera: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Bloomberg Terminal meets ChatGPT</span>
       </h2>
-      <p className="text-xl text-cyan-400 italic">For the 9 million, not the 9 thousand</p>
+      <p className="text-3xl text-cyan-400 italic">For the 9 million, not the 9 thousand</p>
     </motion.div>
 
-    <div className="flex-1 grid grid-cols-2 gap-12">
+    <div className="flex-1 grid grid-cols-2 gap-14">
       {/* What Vera Does */}
-      <GlowCard className="p-8" delay={0.2}>
-        <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <Brain className="w-8 h-8 text-cyan-400" />
+      <GlowCard className="p-10" delay={0.2}>
+        <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
+          <Brain className="w-10 h-10 text-cyan-400" />
           What Vera Does
         </h3>
-        <ul className="space-y-4">
+        <ul className="space-y-5">
           {[
             { icon: LineChart, text: 'Real-time portfolio analysis' },
             { icon: TrendingDown, text: 'Tax-loss harvesting alerts' },
@@ -471,10 +428,10 @@ const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.1 }}
-              className="flex items-center gap-3 text-lg text-white/80"
+              className="flex items-center gap-4 text-2xl text-white"
             >
-              <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-                <item.icon className="w-5 h-5 text-cyan-400" />
+              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                <item.icon className="w-6 h-6 text-cyan-400" />
               </div>
               {item.text}
             </motion.li>
@@ -483,16 +440,16 @@ const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Comparison Table */}
-      <GlowCard className="p-8" delay={0.3}>
-        <h3 className="text-2xl font-bold text-white mb-6">Competitive Comparison</h3>
-        <div className="rounded-xl overflow-hidden border border-white/10">
+      <GlowCard className="p-10" delay={0.3}>
+        <h3 className="text-3xl font-bold text-white mb-8">Competitive Comparison</h3>
+        <div className="rounded-xl overflow-hidden border border-cyan-500/20">
           <table className="w-full">
             <thead>
-              <tr className="bg-gradient-to-r from-cyan-500/30 to-teal-500/30">
-                <th className="p-4 text-left text-white font-semibold">Feature</th>
-                <th className="p-4 text-center text-white/70 font-semibold">Sharesight</th>
-                <th className="p-4 text-center text-white/70 font-semibold">Empower</th>
-                <th className="p-4 text-center text-cyan-400 font-bold">VerafyAI</th>
+              <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
+                <th className="p-5 text-left text-xl text-white font-semibold">Feature</th>
+                <th className="p-5 text-center text-xl text-slate-300 font-semibold">Sharesight</th>
+                <th className="p-5 text-center text-xl text-slate-300 font-semibold">Empower</th>
+                <th className="p-5 text-center text-xl text-cyan-400 font-bold">VerafyAI</th>
               </tr>
             </thead>
             <tbody>
@@ -508,23 +465,23 @@ const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 + i * 0.1 }}
-                  className="border-t border-white/10"
+                  className="border-t border-slate-700"
                 >
-                  <td className="p-4 text-white/80">{feature}</td>
-                  <td className="p-4 text-center">
+                  <td className="p-5 text-xl text-white">{feature}</td>
+                  <td className="p-5 text-center">
                     {typeof s === 'boolean' ? (
-                      s ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />
-                    ) : <span className="text-white/50 text-sm">{s}</span>}
+                      s ? <Check className="w-7 h-7 text-green-400 mx-auto" /> : <X className="w-7 h-7 text-red-400/50 mx-auto" />
+                    ) : <span className="text-slate-400 text-lg">{s}</span>}
                   </td>
-                  <td className="p-4 text-center">
+                  <td className="p-5 text-center">
                     {typeof e === 'boolean' ? (
-                      e ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />
-                    ) : <span className="text-white/50 text-sm">{e}</span>}
+                      e ? <Check className="w-7 h-7 text-green-400 mx-auto" /> : <X className="w-7 h-7 text-red-400/50 mx-auto" />
+                    ) : <span className="text-slate-400 text-lg">{e}</span>}
                   </td>
-                  <td className="p-4 text-center bg-cyan-500/10">
+                  <td className="p-5 text-center bg-cyan-500/10">
                     {typeof v === 'boolean' ? (
-                      v ? <CheckCircle2 className="w-6 h-6 text-cyan-400 mx-auto" /> : <X className="w-5 h-5 text-red-400 mx-auto" />
-                    ) : <span className="text-cyan-400 font-bold">{v}</span>}
+                      v ? <CheckCircle2 className="w-8 h-8 text-cyan-400 mx-auto" /> : <X className="w-7 h-7 text-red-400 mx-auto" />
+                    ) : <span className="text-cyan-400 font-bold text-xl">{v}</span>}
                   </td>
                 </motion.tr>
               ))}
@@ -538,11 +495,11 @@ const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1 }}
-      className="mt-8 text-center"
+      className="mt-10 text-center"
     >
-      <p className="text-2xl font-bold">
-        <span className="text-white/60">Not charts that make you feel smart.</span>{' '}
-        <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">Actions that make you money.</span>
+      <p className="text-3xl font-bold">
+        <span className="text-slate-400">Not charts that make you feel smart.</span>{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Actions that make you money.</span>
       </p>
     </motion.div>
   </div>
@@ -550,30 +507,32 @@ const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 5: Chinese Walls - Regulatory Survival
 const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
+
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
 
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="mb-8"
+      className="mb-10"
     >
-      <h2 className="text-5xl font-bold text-white mb-2">
+      <h2 className="text-6xl font-bold text-white mb-3">
         Chinese Walls: <span className="text-orange-400">Regulatory Survival</span>
       </h2>
-      <p className="text-xl text-white/60">
+      <p className="text-2xl text-slate-300">
         The smarts live in Portfolio. The trades live in Trading. No AI recommendations crossing the wall.
       </p>
     </motion.div>
 
-    <div className="flex-1 flex items-center justify-center gap-4">
+    <div className="flex-1 flex items-center justify-center gap-6">
       {/* Portfolio Intelligence */}
-      <GlowCard className="flex-1 p-8 h-[400px]" delay={0.2} highlight>
-        <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
-          <Brain className="w-8 h-8" />
+      <GlowCard className="flex-1 p-10 h-[450px]" delay={0.2} highlight>
+        <h3 className="text-3xl font-bold text-cyan-400 mb-8 flex items-center gap-4">
+          <Brain className="w-10 h-10" />
           PORTFOLIO INTELLIGENCE
         </h3>
-        <ul className="space-y-4">
+        <ul className="space-y-5">
           {[
             'AI-powered analysis',
             'Tax optimisation insights',
@@ -586,9 +545,9 @@ const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 + i * 0.1 }}
-              className="flex items-center gap-3 text-lg text-white/80"
+              className="flex items-center gap-4 text-2xl text-white"
             >
-              <CheckCircle2 className="w-5 h-5 text-cyan-400" />
+              <CheckCircle2 className="w-7 h-7 text-cyan-400 flex-shrink-0" />
               {item}
             </motion.li>
           ))}
@@ -600,24 +559,24 @@ const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
         transition={{ delay: 0.5, duration: 0.8 }}
-        className="w-20 h-[400px] relative"
+        className="w-24 h-[450px] relative"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-500 via-red-500 to-orange-500 rounded-lg opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-500 via-red-500 to-orange-500 rounded-lg opacity-90" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="transform -rotate-90 text-white font-bold text-2xl tracking-[0.3em] whitespace-nowrap">
+          <div className="transform -rotate-90 text-white font-bold text-3xl tracking-[0.3em] whitespace-nowrap">
             WALL
           </div>
         </div>
-        <div className="absolute inset-0 bg-orange-500/50 blur-xl -z-10 animate-pulse" />
+        <div className="absolute inset-0 bg-orange-500/40 blur-xl -z-10 animate-pulse" />
       </motion.div>
 
       {/* Trading App */}
-      <GlowCard className="flex-1 p-8 h-[400px]" delay={0.3}>
-        <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <LineChart className="w-8 h-8 text-slate-400" />
+      <GlowCard className="flex-1 p-10 h-[450px]" delay={0.3}>
+        <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
+          <LineChart className="w-10 h-10 text-slate-400" />
           TRADING APP
         </h3>
-        <ul className="space-y-4">
+        <ul className="space-y-5">
           {[
             'Clean execution only',
             'No AI recommendations',
@@ -630,9 +589,9 @@ const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 + i * 0.1 }}
-              className="flex items-center gap-3 text-lg text-white/80"
+              className="flex items-center gap-4 text-2xl text-white"
             >
-              <Check className="w-5 h-5 text-slate-500" />
+              <Check className="w-7 h-7 text-slate-400 flex-shrink-0" />
               {item}
             </motion.li>
           ))}
@@ -644,9 +603,9 @@ const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1 }}
-      className="mt-8 p-6 rounded-xl bg-gradient-to-r from-slate-800/80 to-slate-900/80 border border-white/10"
+      className="mt-10 p-8 rounded-xl bg-slate-800/50 border border-slate-700"
     >
-      <p className="text-xl text-white text-center italic">
+      <p className="text-2xl text-white text-center italic">
         "Anyone building AI-driven trading recommendations without an AFSL is building a <span className="text-red-400 font-semibold">time bomb</span>.
         <span className="text-cyan-400 font-semibold"> We are not that.</span>"
       </p>
@@ -656,25 +615,27 @@ const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 6: Xplan Lite - One Meeting. Job Done.
 const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
+
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px]" />
 
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="mb-8"
+      className="mb-10"
     >
-      <h2 className="text-5xl font-bold text-white mb-2">
-        Xplan Lite: <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">One Meeting. Job Done.</span>
+      <h2 className="text-6xl font-bold text-white mb-3">
+        Xplan Lite: <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">One Meeting. Job Done.</span>
       </h2>
-      <p className="text-xl text-white/60">
+      <p className="text-2xl text-slate-300">
         Not a killer. A simplifier. For the 60-70% who don't need enterprise complexity.
       </p>
     </motion.div>
 
-    <div className="flex-1 grid grid-cols-2 gap-12">
+    <div className="flex-1 grid grid-cols-2 gap-14">
       {/* Flow */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-4">
         {[
           { label: 'Meeting Start', highlight: true, icon: Play },
           { label: 'Conversational Fact-Find', icon: MessageSquare },
@@ -689,18 +650,18 @@ const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 + i * 0.1 }}
-              className={`p-4 rounded-xl flex items-center gap-4 ${
+              className={`p-5 rounded-xl flex items-center gap-5 ${
                 step.highlight
                   ? 'bg-gradient-to-r from-purple-500/30 to-pink-500/30 border border-purple-500/50'
-                  : 'bg-white/5 border border-white/10'
+                  : 'bg-slate-800/50 border border-slate-700'
               }`}
             >
-              <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                step.highlight ? 'bg-purple-500' : 'bg-white/10'
+              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                step.highlight ? 'bg-purple-500' : 'bg-slate-700'
               }`}>
-                <step.icon className={`w-5 h-5 ${step.highlight ? 'text-white' : 'text-white/60'}`} />
+                <step.icon className={`w-6 h-6 ${step.highlight ? 'text-white' : 'text-slate-300'}`} />
               </div>
-              <span className={`text-lg ${step.highlight ? 'text-white font-semibold' : 'text-white/80'}`}>
+              <span className={`text-2xl ${step.highlight ? 'text-white font-semibold' : 'text-slate-200'}`}>
                 {step.label}
               </span>
               {step.highlight && (
@@ -709,13 +670,13 @@ const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
                   transition={{ duration: 2, repeat: Infinity }}
                   className="ml-auto"
                 >
-                  <Sparkles className="w-5 h-5 text-purple-400" />
+                  <Sparkles className="w-6 h-6 text-purple-400" />
                 </motion.div>
               )}
             </motion.div>
             {i < 6 && (
               <div className="flex justify-center">
-                <ArrowDown className="w-5 h-5 text-white/30" />
+                <ArrowDown className="w-6 h-6 text-slate-500" />
               </div>
             )}
           </React.Fragment>
@@ -723,41 +684,41 @@ const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
       </div>
 
       {/* Comparison */}
-      <div className="space-y-8">
-        <GlowCard className="p-6" delay={0.4}>
-          <h3 className="text-2xl font-bold text-red-400 mb-4 flex items-center gap-3">
-            <X className="w-8 h-8" />
+      <div className="space-y-10">
+        <GlowCard className="p-8" delay={0.4}>
+          <h3 className="text-3xl font-bold text-red-400 mb-6 flex items-center gap-4">
+            <X className="w-10 h-10" />
             Current Industry
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {[
               '3-week SOA turnaround',
               'Send to paraplanners',
               '$4,000/month platforms',
               '80% features unused',
             ].map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-lg text-white/70">
-                <X className="w-5 h-5 text-red-400/70" />
+              <li key={i} className="flex items-center gap-4 text-2xl text-slate-300">
+                <X className="w-7 h-7 text-red-400/70 flex-shrink-0" />
                 {item}
               </li>
             ))}
           </ul>
         </GlowCard>
 
-        <GlowCard className="p-6" delay={0.5} highlight>
-          <h3 className="text-2xl font-bold text-cyan-400 mb-4 flex items-center gap-3">
-            <CheckCircle2 className="w-8 h-8" />
+        <GlowCard className="p-8" delay={0.5} highlight>
+          <h3 className="text-3xl font-bold text-cyan-400 mb-6 flex items-center gap-4">
+            <CheckCircle2 className="w-10 h-10" />
             With Xplan Lite
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {[
               { text: '55 minutes total', highlight: true },
               { text: 'No paraplanners needed' },
               { text: '$1,500-$4,000/month' },
               { text: 'Everything they actually need' },
             ].map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-lg text-white/90">
-                <Check className="w-5 h-5 text-cyan-400" />
+              <li key={i} className="flex items-center gap-4 text-2xl text-white">
+                <Check className="w-7 h-7 text-cyan-400 flex-shrink-0" />
                 <span className={item.highlight ? 'text-cyan-400 font-bold' : ''}>{item.text}</span>
               </li>
             ))}
@@ -770,21 +731,22 @@ const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 7: Market Opportunity
 const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
 
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-cyan-500/5 rounded-full blur-[200px]" />
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
+    <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
 
     <motion.h2
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="text-6xl font-bold text-white mb-12 text-center"
+      className="text-7xl font-bold text-white mb-14 text-center"
     >
       Market Opportunity
     </motion.h2>
 
     {/* Big Numbers */}
-    <div className="grid grid-cols-3 gap-8 mb-12">
+    <div className="grid grid-cols-3 gap-10 mb-14">
       {[
         { value: '9M+', label: 'Australians own shares/ETFs', color: 'cyan' },
         { value: '15K', label: 'Financial advisers in AU', color: 'blue' },
@@ -797,47 +759,42 @@ const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
           transition={{ delay: 0.2 + i * 0.1 }}
           className="text-center"
         >
-          <div className={`text-7xl font-bold mb-2 bg-gradient-to-r from-${stat.color}-400 to-${stat.color}-500 bg-clip-text text-transparent`}
-               style={{
-                 background: `linear-gradient(to right, var(--${stat.color === 'cyan' ? 'cyan' : stat.color === 'blue' ? 'blue' : 'purple'}-400), var(--${stat.color}-500))`,
-                 WebkitBackgroundClip: 'text',
-                 WebkitTextFillColor: 'transparent',
-                 color: stat.color === 'cyan' ? '#22d3ee' : stat.color === 'blue' ? '#3b82f6' : '#a855f7'
-               }}>
+          <div className="text-8xl font-bold mb-3"
+               style={{ color: stat.color === 'cyan' ? '#22d3ee' : stat.color === 'blue' ? '#3b82f6' : '#a855f7' }}>
             {stat.value}
           </div>
-          <div className="text-lg text-white/60">{stat.label}</div>
+          <div className="text-2xl text-slate-300">{stat.label}</div>
         </motion.div>
       ))}
     </div>
 
     {/* TAM boxes */}
-    <div className="flex-1 grid grid-cols-2 gap-8">
-      <GlowCard className="p-8" delay={0.5}>
-        <h3 className="text-2xl font-bold text-cyan-400 mb-4 flex items-center gap-3">
-          <Users className="w-8 h-8" />
+    <div className="flex-1 grid grid-cols-2 gap-10">
+      <GlowCard className="p-10" delay={0.5}>
+        <h3 className="text-3xl font-bold text-cyan-400 mb-6 flex items-center gap-4">
+          <Users className="w-10 h-10" />
           Phase 1 TAM: Retail
         </h3>
-        <p className="text-xl text-white mb-4">
-          9M × $15/mo avg = <span className="text-3xl font-bold text-cyan-400">$1.6B</span> potential
+        <p className="text-2xl text-white mb-6">
+          9M × $15/mo avg = <span className="text-5xl font-bold text-cyan-400">$1.6B</span> potential
         </p>
-        <div className="space-y-2 text-white/70">
-          <p className="flex items-center gap-2"><TrendingUp className="w-4 h-4 text-green-400" /> 2.5M new investors since COVID</p>
-          <p className="flex items-center gap-2"><TrendingUp className="w-4 h-4 text-green-400" /> 61% of Millennials now invest</p>
+        <div className="space-y-3 text-xl text-slate-300">
+          <p className="flex items-center gap-3"><TrendingUp className="w-6 h-6 text-green-400" /> 2.5M new investors since COVID</p>
+          <p className="flex items-center gap-3"><TrendingUp className="w-6 h-6 text-green-400" /> 61% of Millennials now invest</p>
         </div>
       </GlowCard>
 
-      <GlowCard className="p-8" delay={0.6}>
-        <h3 className="text-2xl font-bold text-purple-400 mb-4 flex items-center gap-3">
-          <Briefcase className="w-8 h-8" />
+      <GlowCard className="p-10" delay={0.6}>
+        <h3 className="text-3xl font-bold text-purple-400 mb-6 flex items-center gap-4">
+          <Briefcase className="w-10 h-10" />
           Phase 3 TAM: Advisers
         </h3>
-        <p className="text-xl text-white mb-4">
-          15K × $3K/mo = <span className="text-3xl font-bold text-purple-400">$540M</span>/year
+        <p className="text-2xl text-white mb-6">
+          15K × $3K/mo = <span className="text-5xl font-bold text-purple-400">$540M</span>/year
         </p>
-        <div className="space-y-2 text-white/70">
-          <p className="flex items-center gap-2"><DollarSign className="w-4 h-4 text-orange-400" /> Average practice pays $2-4K/mo</p>
-          <p className="flex items-center gap-2"><AlertTriangle className="w-4 h-4 text-orange-400" /> for software they barely use</p>
+        <div className="space-y-3 text-xl text-slate-300">
+          <p className="flex items-center gap-3"><DollarSign className="w-6 h-6 text-orange-400" /> Average practice pays $2-4K/mo</p>
+          <p className="flex items-center gap-3"><AlertTriangle className="w-6 h-6 text-orange-400" /> for software they barely use</p>
         </div>
       </GlowCard>
     </div>
@@ -846,11 +803,11 @@ const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8 }}
-      className="mt-8 text-center"
+      className="mt-10 text-center"
     >
-      <p className="text-2xl font-bold">
-        <span className="text-white/60">We start with the millions.</span>{' '}
-        <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">We scale to the thousands.</span>
+      <p className="text-3xl font-bold">
+        <span className="text-slate-400">We start with the millions.</span>{' '}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">We scale to the thousands.</span>
       </p>
     </motion.div>
   </div>
@@ -858,30 +815,32 @@ const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 8: Traction & Team
 const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
+
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
 
     <motion.h2
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="text-6xl font-bold text-white mb-10"
+      className="text-7xl font-bold text-white mb-12"
     >
       Traction & Team
     </motion.h2>
 
-    <div className="flex-1 grid grid-cols-3 gap-8">
+    <div className="flex-1 grid grid-cols-3 gap-10">
       {/* What's Live */}
-      <GlowCard className="p-6" delay={0.2} highlight>
-        <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
-          <Rocket className="w-7 h-7" />
+      <GlowCard className="p-8" delay={0.2} highlight>
+        <h3 className="text-3xl font-bold text-cyan-400 mb-8 flex items-center gap-4">
+          <Rocket className="w-10 h-10" />
           What's Live
         </h3>
-        <ul className="space-y-4">
+        <ul className="space-y-5">
           {[
             'Platform built (AWS, React, Claude AI)',
             '$150K pre-seed raised',
             'Beta waitlist at capacity',
-            '2 patents lodged, more in pipeline',
+            '2 patents lodged',
             'IBKR integration ready',
           ].map((item, i) => (
             <motion.li
@@ -889,9 +848,9 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.1 }}
-              className="flex items-start gap-3 text-white/80"
+              className="flex items-start gap-4 text-xl text-white"
             >
-              <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="w-7 h-7 text-cyan-400 mt-1 flex-shrink-0" />
               {item}
             </motion.li>
           ))}
@@ -899,12 +858,12 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Timeline */}
-      <GlowCard className="p-6" delay={0.3}>
-        <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <Calendar className="w-7 h-7 text-blue-400" />
+      <GlowCard className="p-8" delay={0.3}>
+        <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
+          <Calendar className="w-10 h-10 text-blue-400" />
           Timeline
         </h3>
-        <ul className="space-y-4 text-white/80">
+        <ul className="space-y-5 text-xl">
           {[
             { date: 'Feb 15', text: 'Beta launch' },
             { date: 'Apr 1', text: 'Public launch' },
@@ -918,9 +877,9 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 + i * 0.1 }}
-              className={`flex items-center gap-3 ${item.highlight ? 'text-cyan-400 font-bold' : ''}`}
+              className={`flex items-center gap-4 ${item.highlight ? 'text-cyan-400 font-bold' : 'text-white'}`}
             >
-              <span className="w-20 text-blue-400 font-semibold">{item.date}:</span>
+              <span className="w-24 text-blue-400 font-semibold flex-shrink-0">{item.date}:</span>
               {item.text}
             </motion.li>
           ))}
@@ -928,23 +887,23 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Team */}
-      <GlowCard className="p-6" delay={0.4}>
-        <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <Users className="w-7 h-7 text-purple-400" />
+      <GlowCard className="p-8" delay={0.4}>
+        <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
+          <Users className="w-10 h-10 text-purple-400" />
           Team
         </h3>
         <div className="space-y-6">
-          <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-            <h4 className="text-lg font-bold text-white mb-1">Amit Vohra - CEO</h4>
-            <p className="text-sm text-white/60">PhD, MBA, GAICD</p>
-            <p className="text-sm text-cyan-400">Ex-CEO GPRA (500% revenue growth)</p>
-            <p className="text-sm text-white/60">Ex-EGM Sonic Clinical Services | Chairman GP2U</p>
+          <div className="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+            <h4 className="text-2xl font-bold text-white mb-2">Amit Vohra - CEO</h4>
+            <p className="text-lg text-slate-400">PhD, MBA, GAICD</p>
+            <p className="text-lg text-cyan-400">Ex-CEO GPRA (500% revenue growth)</p>
+            <p className="text-lg text-slate-400">Chairman GP2U</p>
           </div>
-          <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-            <h4 className="text-lg font-bold text-white mb-1">Nupur Agarwal - CTO</h4>
-            <p className="text-sm text-white/60">MBA + Double Masters</p>
-            <p className="text-sm text-cyan-400">Ex-GBST | Ex-JP Morgan (7 yrs)</p>
-            <p className="text-sm text-white/60">Headhunted by Xplan (declined)</p>
+          <div className="p-5 rounded-xl bg-slate-800/50 border border-slate-700">
+            <h4 className="text-2xl font-bold text-white mb-2">Nupur Agarwal - CTO</h4>
+            <p className="text-lg text-slate-400">MBA + Double Masters</p>
+            <p className="text-lg text-cyan-400">Ex-GBST | Ex-JP Morgan (7 yrs)</p>
+            <p className="text-lg text-slate-400">Headhunted by Xplan</p>
           </div>
         </div>
       </GlowCard>
@@ -954,60 +913,62 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 9: Business Model
 const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
+
+    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
 
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="mb-8"
+      className="mb-10"
     >
-      <h2 className="text-6xl font-bold text-white mb-2">Business Model</h2>
-      <p className="text-2xl text-cyan-400 font-semibold">Three Revenue Streams</p>
+      <h2 className="text-7xl font-bold text-white mb-3">Business Model</h2>
+      <p className="text-3xl text-cyan-400 font-semibold">Three Revenue Streams</p>
     </motion.div>
 
-    <div className="grid grid-cols-3 gap-6 mb-8">
+    <div className="grid grid-cols-3 gap-8 mb-10">
       {/* Phase 1 */}
-      <GlowCard className="p-6" delay={0.2} highlight>
-        <h3 className="text-xl font-bold text-cyan-400 mb-4 flex items-center gap-2">
-          <Brain className="w-6 h-6" />
+      <GlowCard className="p-8" delay={0.2} highlight>
+        <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
+          <Brain className="w-8 h-8" />
           Phase 1: SaaS
         </h3>
-        <div className="space-y-2 text-white/80 mb-4">
-          <p>Starter: <span className="text-white font-semibold">$5/mo</span></p>
-          <p>Standard: <span className="text-white font-semibold">$10/mo</span></p>
-          <p>Pro: <span className="text-white font-semibold">$20/mo</span></p>
+        <div className="space-y-3 text-xl text-white mb-6">
+          <p>Starter: <span className="font-bold">$5/mo</span></p>
+          <p>Standard: <span className="font-bold">$10/mo</span></p>
+          <p>Pro: <span className="font-bold">$20/mo</span></p>
         </div>
-        <div className="p-3 rounded-lg bg-orange-500/20 border border-orange-500/30">
-          <p className="text-orange-400 font-semibold flex items-center gap-2">
-            <Zap className="w-4 h-4" />
+        <div className="p-4 rounded-lg bg-orange-500/20 border border-orange-500/30">
+          <p className="text-orange-400 font-semibold text-lg flex items-center gap-2">
+            <Zap className="w-5 h-5" />
             Founding: 50% off for life
           </p>
         </div>
       </GlowCard>
 
       {/* Phase 2 */}
-      <GlowCard className="p-6" delay={0.3}>
-        <h3 className="text-xl font-bold text-blue-400 mb-4 flex items-center gap-2">
-          <LineChart className="w-6 h-6" />
+      <GlowCard className="p-8" delay={0.3}>
+        <h3 className="text-2xl font-bold text-blue-400 mb-6 flex items-center gap-3">
+          <LineChart className="w-8 h-8" />
           Phase 2: Trading
         </h3>
-        <div className="space-y-2 text-white/80">
+        <div className="space-y-3 text-xl text-white">
           <p>Brokerage fees</p>
           <p>Premium features</p>
           <p>Standalone entity</p>
-          <p className="text-white/50 italic">No advice liability</p>
+          <p className="text-slate-400 italic">No advice liability</p>
         </div>
       </GlowCard>
 
       {/* Phase 3 */}
-      <GlowCard className="p-6" delay={0.4}>
-        <h3 className="text-xl font-bold text-purple-400 mb-4 flex items-center gap-2">
-          <FileText className="w-6 h-6" />
+      <GlowCard className="p-8" delay={0.4}>
+        <h3 className="text-2xl font-bold text-purple-400 mb-6 flex items-center gap-3">
+          <FileText className="w-8 h-8" />
           Phase 3: Adviser
         </h3>
-        <div className="space-y-2 text-white/80">
-          <p className="text-white font-semibold">$1,500-$4,000/mo per practice</p>
+        <div className="space-y-3 text-xl text-white">
+          <p className="font-bold">$1,500-$4,000/mo per practice</p>
           <p>Implementation fees</p>
           <p>Data/compliance add-ons</p>
         </div>
@@ -1015,9 +976,9 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
     </div>
 
     {/* Unit Economics */}
-    <GlowCard className="p-6" delay={0.5}>
-      <h3 className="text-2xl font-bold text-white mb-4">Unit Economics</h3>
-      <div className="grid grid-cols-4 gap-4">
+    <GlowCard className="p-8" delay={0.5}>
+      <h3 className="text-3xl font-bold text-white mb-6">Unit Economics</h3>
+      <div className="grid grid-cols-4 gap-6">
         {[
           { label: 'CAC', value: '$25', color: 'white' },
           { label: 'LTV', value: '$360+', color: 'white' },
@@ -1029,10 +990,10 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 + i * 0.1 }}
-            className={`p-4 rounded-xl text-center ${item.highlight ? 'bg-cyan-500/20 border border-cyan-500/50' : 'bg-white/5 border border-white/10'}`}
+            className={`p-6 rounded-xl text-center ${item.highlight ? 'bg-cyan-500/20 border-2 border-cyan-500/50' : 'bg-slate-800/50 border border-slate-700'}`}
           >
-            <div className="text-sm text-white/60 mb-1">{item.label}</div>
-            <div className={`text-3xl font-bold ${item.highlight ? 'text-cyan-400' : 'text-white'}`}>{item.value}</div>
+            <div className="text-xl text-slate-400 mb-2">{item.label}</div>
+            <div className={`text-4xl font-bold ${item.highlight ? 'text-cyan-400' : 'text-white'}`}>{item.value}</div>
           </motion.div>
         ))}
       </div>
@@ -1042,9 +1003,9 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1 }}
-      className="mt-6 text-center"
+      className="mt-8 text-center"
     >
-      <p className="text-xl font-bold">
+      <p className="text-2xl font-bold">
         <span className="text-cyan-400">High margin SaaS.</span>{' '}
         <span className="text-blue-400">Global scale.</span>{' '}
         <span className="text-purple-400">Defensible IP.</span>
@@ -1055,32 +1016,33 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 10: The Ask
 const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-[#0d4f4f] via-[#0a3d3d] to-slate-900">
+  <div className="h-full flex flex-col p-20 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
 
-    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[150px]" />
+    <div className="absolute top-[-10%] right-[-5%] w-[700px] h-[700px] bg-cyan-500/15 rounded-full blur-[120px]" />
+    <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
 
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="mb-10"
+      className="mb-12"
     >
-      <h2 className="text-7xl font-bold text-white mb-4">The Ask</h2>
-      <div className="inline-flex items-center gap-4 px-6 py-3 rounded-full bg-cyan-500/20 border border-cyan-500/50">
-        <DollarSign className="w-8 h-8 text-cyan-400" />
-        <span className="text-3xl font-bold text-cyan-400">$1M Seed @ $10M Pre-Money</span>
+      <h2 className="text-8xl font-bold text-white mb-6">The Ask</h2>
+      <div className="inline-flex items-center gap-5 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-500/30 border-2 border-cyan-500/50">
+        <DollarSign className="w-10 h-10 text-cyan-400" />
+        <span className="text-4xl font-bold text-cyan-400">$1M Seed @ $10M Pre-Money</span>
       </div>
     </motion.div>
 
-    <div className="flex-1 grid grid-cols-2 gap-12">
+    <div className="flex-1 grid grid-cols-2 gap-14">
       {/* Use of Funds */}
-      <GlowCard className="p-8" delay={0.2}>
-        <h3 className="text-2xl font-bold text-white mb-6">Use of Funds</h3>
-        <div className="space-y-6">
+      <GlowCard className="p-10" delay={0.2}>
+        <h3 className="text-3xl font-bold text-white mb-8">Use of Funds</h3>
+        <div className="space-y-8">
           {[
-            { label: 'Product (Phase 1, 2, 3)', pct: 40, amount: '$400K', color: 'cyan' },
-            { label: 'Growth & Partnerships', pct: 30, amount: '$300K', color: 'blue' },
-            { label: 'Runway & Operations', pct: 30, amount: '$300K', color: 'purple' },
+            { label: 'Product (Phase 1, 2, 3)', pct: 40, amount: '$400K', color: '#22d3ee' },
+            { label: 'Growth & Partnerships', pct: 30, amount: '$300K', color: '#3b82f6' },
+            { label: 'Runway & Operations', pct: 30, amount: '$300K', color: '#a855f7' },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -1088,22 +1050,20 @@ const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.15 }}
             >
-              <div className="flex justify-between text-lg text-white mb-2">
+              <div className="flex justify-between text-xl text-white mb-3">
                 <span>{item.label}</span>
                 <span className="font-bold">
                   <span className="text-cyan-400">{item.pct}%</span>{' '}
-                  <span className="text-white/50">{item.amount}</span>
+                  <span className="text-slate-400">{item.amount}</span>
                 </span>
               </div>
-              <div className="h-4 bg-white/10 rounded-full overflow-hidden">
+              <div className="h-5 bg-slate-800 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${item.pct}%` }}
                   transition={{ delay: 0.5 + i * 0.1, duration: 1 }}
                   className="h-full rounded-full"
-                  style={{
-                    background: `linear-gradient(to right, ${item.color === 'cyan' ? '#22d3ee' : item.color === 'blue' ? '#3b82f6' : '#a855f7'}, ${item.color === 'cyan' ? '#14b8a6' : item.color === 'blue' ? '#6366f1' : '#ec4899'})`
-                  }}
+                  style={{ background: item.color }}
                 />
               </div>
             </motion.div>
@@ -1112,9 +1072,9 @@ const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* What You Get */}
-      <GlowCard className="p-8" delay={0.3} highlight>
-        <h3 className="text-2xl font-bold text-cyan-400 mb-6">What You Get</h3>
-        <ul className="space-y-4">
+      <GlowCard className="p-10" delay={0.3} highlight>
+        <h3 className="text-3xl font-bold text-cyan-400 mb-8">What You Get</h3>
+        <ul className="space-y-6">
           {[
             'Seat at the table for AU wealth management disruption',
             'Jurisdiction agnostic products → global play',
@@ -1126,9 +1086,9 @@ const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 + i * 0.1 }}
-              className="flex items-start gap-3 text-lg text-white"
+              className="flex items-start gap-4 text-2xl text-white"
             >
-              <CheckCircle2 className="w-6 h-6 text-cyan-400 mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="w-8 h-8 text-cyan-400 mt-1 flex-shrink-0" />
               {item}
             </motion.li>
           ))}
@@ -1140,24 +1100,24 @@ const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 11: The Vision
 const VisionSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-950 via-[#0a1929] to-slate-950">
+  <div className="h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
 
     {/* Multiple glows */}
-    <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px]" />
-    <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]" />
+    <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px]" />
+    <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px]" />
 
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1 }}
-      className="text-center max-w-5xl px-8"
+      className="text-center max-w-6xl px-10"
     >
       <motion.h2
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-7xl font-bold text-white mb-8"
+        className="text-8xl font-bold text-white mb-10"
       >
         The Vision
       </motion.h2>
@@ -1166,7 +1126,7 @@ const VisionSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="text-3xl text-cyan-400 mb-12"
+        className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-14"
       >
         The interface between humans and the global financial system
       </motion.p>
@@ -1175,7 +1135,7 @@ const VisionSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="text-xl text-white/70 mb-12 italic leading-relaxed"
+        className="text-2xl text-slate-300 mb-14 italic leading-relaxed"
       >
         Over the next 3 years, my ability to detect behavioural patterns at an individual and industry level
         will grow to a point that we will <span className="text-cyan-400 font-semibold">carry risk for the advice</span> delivered through the pattern.
@@ -1185,7 +1145,7 @@ const VisionSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="text-2xl text-white mb-12"
+        className="text-3xl text-white mb-14"
       >
         The ecosystem. The infrastructure. <span className="text-cyan-400">The rails that everything else runs on.</span>
       </motion.p>
@@ -1194,9 +1154,9 @@ const VisionSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
-        className="p-6 rounded-xl bg-white/5 border border-white/10 inline-block"
+        className="p-8 rounded-xl bg-slate-800/50 border border-slate-700 inline-block"
       >
-        <p className="text-xl text-cyan-400 italic">
+        <p className="text-2xl text-cyan-400 italic">
           "Nupur & Amit aren't selling their houses to build another tracker."
         </p>
       </motion.div>
@@ -1206,17 +1166,25 @@ const VisionSlide: React.FC<SlideProps> = ({ isDark }) => (
 
 // Slide 12: Thank You
 const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0d4f4f] via-[#0a3d3d] to-slate-900">
+  <div className="h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
+
+    {/* Background Elements - matching pricing page */}
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-slate-950/0 to-slate-950/0" />
+      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950/0 to-slate-950/0" />
+      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px]" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
+    </div>
 
     {/* Animated glow */}
     <motion.div
       animate={{
         scale: [1, 1.2, 1],
-        opacity: [0.3, 0.5, 0.3],
+        opacity: [0.2, 0.4, 0.2],
       }}
       transition={{ duration: 4, repeat: Infinity }}
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/30 rounded-full blur-[150px]"
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/20 rounded-full blur-[150px]"
     />
 
     <motion.div
@@ -1230,13 +1198,13 @@ const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="mb-8"
+        className="mb-10"
       >
         <div className="inline-block relative">
-          <div className="w-24 h-24 mx-auto bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-cyan-500/50">
-            <div className="w-12 h-12 bg-white rounded-lg transform rotate-45" />
+          <div className="w-28 h-28 mx-auto bg-cyan-500/20 rounded-xl flex items-center justify-center border border-cyan-500/30">
+            <div className="w-14 h-14 bg-cyan-400 rounded-lg transform rotate-45" />
           </div>
-          <div className="absolute inset-0 bg-cyan-400/50 rounded-2xl blur-2xl animate-pulse" />
+          <div className="absolute inset-0 bg-cyan-400/30 rounded-xl blur-2xl animate-pulse" />
         </div>
       </motion.div>
 
@@ -1244,7 +1212,7 @@ const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="text-9xl font-bold text-white mb-8"
+        className="text-[140px] font-bold text-white mb-10 leading-none"
       >
         VerafyAI
       </motion.h1>
@@ -1253,7 +1221,7 @@ const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="text-5xl text-cyan-400 mb-8 font-light"
+        className="text-6xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-10 font-light"
       >
         I am inevitable.
       </motion.p>
@@ -1262,7 +1230,7 @@ const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="text-xl text-white/70 mb-12 italic max-w-2xl mx-auto"
+        className="text-2xl text-slate-300 mb-14 italic max-w-3xl mx-auto"
       >
         The only question is whether you will be in the room when I truly arrive.
       </motion.p>
@@ -1271,19 +1239,19 @@ const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
-        className="space-y-4"
+        className="space-y-5"
       >
-        <div className="flex items-center justify-center gap-8 text-white/60">
-          <span className="flex items-center gap-2">
-            <Mail className="w-5 h-5" />
+        <div className="flex items-center justify-center gap-10 text-xl text-slate-400">
+          <span className="flex items-center gap-3">
+            <Mail className="w-6 h-6" />
             amit@verafyai.com
           </span>
-          <span className="flex items-center gap-2">
-            <Globe className="w-5 h-5" />
+          <span className="flex items-center gap-3">
+            <Globe className="w-6 h-6" />
             verafyai.com.au
           </span>
         </div>
-        <p className="text-2xl text-white font-semibold">
+        <p className="text-4xl text-white font-semibold">
           Thank you. Questions?
         </p>
       </motion.div>
@@ -1373,27 +1341,27 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
         </AnimatePresence>
 
         {/* Navigation */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-5 z-20">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setCurrentSlide(prev => Math.max(prev - 1, 0))}
             disabled={currentSlide === 0}
-            className="p-3 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-black/70 hover:border-cyan-500/50 transition-all"
+            className="p-4 rounded-full bg-black/50 backdrop-blur-sm border border-cyan-500/30 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-black/70 hover:border-cyan-500/50 transition-all"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-8 h-8" />
           </motion.button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {slides.map((_, i) => (
               <motion.button
                 key={i}
                 whileHover={{ scale: 1.2 }}
                 onClick={() => setCurrentSlide(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-3 rounded-full transition-all duration-300 ${
                   i === currentSlide
-                    ? 'w-10 bg-gradient-to-r from-cyan-400 to-teal-400'
-                    : 'w-2 bg-white/30 hover:bg-white/50'
+                    ? 'w-12 bg-gradient-to-r from-cyan-400 to-blue-500'
+                    : 'w-3 bg-slate-600 hover:bg-slate-500'
                 }`}
               />
             ))}
@@ -1404,21 +1372,21 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
             whileTap={{ scale: 0.95 }}
             onClick={() => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))}
             disabled={currentSlide === slides.length - 1}
-            className="p-3 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-black/70 hover:border-cyan-500/50 transition-all"
+            className="p-4 rounded-full bg-black/50 backdrop-blur-sm border border-cyan-500/30 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-black/70 hover:border-cyan-500/50 transition-all"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-8 h-8" />
           </motion.button>
         </div>
 
         {/* Slide Counter */}
-        <div className="absolute top-6 right-8 z-20">
-          <div className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white/70 text-sm">
+        <div className="absolute top-8 right-10 z-20">
+          <div className="px-5 py-3 rounded-full bg-black/50 backdrop-blur-sm border border-cyan-500/30 text-slate-300 text-lg">
             {currentSlide + 1} / {slides.length}
           </div>
         </div>
 
         {/* Keyboard hint */}
-        <div className="absolute bottom-6 right-8 text-white/40 text-xs z-20">
+        <div className="absolute bottom-8 right-10 text-slate-500 text-sm z-20">
           Use arrow keys to navigate
         </div>
       </div>
