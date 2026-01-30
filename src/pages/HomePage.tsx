@@ -1,6 +1,5 @@
-import { ArrowRight, Shield, TrendingUp, Zap, BarChart3, PieChart, Target, Clock, Sparkles } from 'lucide-react';
+import { ArrowRight, Shield, TrendingUp, Zap, BarChart3, Target, Sparkles, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Button } from '../components/ui/button';
 import { ThemedButton } from '../components/ui/themed-button';
 import { StatsSection } from '../components/StatsSection';
 import { Testimonials } from '../components/Testimonials';
@@ -8,11 +7,9 @@ import { FAQSection } from '../components/FAQSection';
 import { FloatingParticles } from '../components/FloatingParticles';
 import { InteractiveCursor } from '../components/InteractiveCursor';
 import { ChatScreenshot } from '../components/ChatScreenshot';
-import { PageType } from '../utils/constants';
 import Slider from 'react-slick';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CountdownTimer } from '../components/CountdownTimer';
-import { Check } from 'lucide-react';
 
 interface HomePageProps {
   isDark: boolean;

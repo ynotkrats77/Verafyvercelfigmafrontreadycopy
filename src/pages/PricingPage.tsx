@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, Shield, TrendingUp, Check, X, Award, Brain, Calculator, MessageSquare, Target, Users, BookOpen, Gift, ChevronRight } from "lucide-react";
+import { Zap, Shield, TrendingUp, Check, X, Award, Brain, Calculator, MessageSquare, Target, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { FloatingParticles } from '../components/FloatingParticles';
 import { InteractiveCursor } from '../components/InteractiveCursor';
