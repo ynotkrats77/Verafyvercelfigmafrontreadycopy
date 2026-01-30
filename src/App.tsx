@@ -44,6 +44,9 @@ const DashboardPage = lazy(() => import("./pages/DashboardPage").then(m => ({ de
 const ComparePlansPage = lazy(() => import("./pages/ComparePlansPage").then(m => ({ default: m.ComparePlansPage })));
 const InvestorPitchPage = lazy(() => import("./pages/InvestorPitchPage").then(m => ({ default: m.InvestorPitchPage })));
 const InvestorVideoPage = lazy(() => import("./pages/InvestorVideoPage").then(m => ({ default: m.InvestorVideoPage })));
+const InvestorCommercialsPage = lazy(() => import("./pages/InvestorCommercialsPage").then(m => ({ default: m.InvestorCommercialsPage })));
+const InvestorRoadmapPage = lazy(() => import("./pages/InvestorRoadmapPage").then(m => ({ default: m.InvestorRoadmapPage })));
+const InvestorFinancialsPage = lazy(() => import("./pages/InvestorFinancialsPage").then(m => ({ default: m.InvestorFinancialsPage })));
 
 // Lazy load demo modes (only loaded when needed)
 const PricingSlide = lazy(() => import("./components/PricingSlide").then(m => ({ default: m.PricingSlide })));
@@ -319,6 +322,9 @@ export default function App() {
         {currentPage === 'compare-plans' && <ComparePlansPage isDark={isDark} />}
         {currentPage === 'investor-pitch' && <InvestorPitchPage isDark={isDark} />}
         {currentPage === 'investor-video' && <InvestorVideoPage isDark={isDark} />}
+        {currentPage === 'investor-commercials' && <InvestorCommercialsPage isDark={isDark} />}
+        {currentPage === 'investor-roadmap' && <InvestorRoadmapPage isDark={isDark} />}
+        {currentPage === 'investor-financials' && <InvestorFinancialsPage isDark={isDark} />}
       </Suspense>
     </Layout>
   );

@@ -31,6 +31,10 @@ import {
   Mail,
   Maximize2,
   Minimize2,
+  Cpu,
+  Server,
+  Linkedin,
+  GraduationCap,
 } from 'lucide-react';
 
 interface InvestorPitchPageProps {
@@ -301,29 +305,34 @@ const VeraSlide = () => (
           <table className="w-full">
             <thead>
               <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
-                <th className="p-4 text-left text-lg text-white font-semibold">Feature</th>
-                <th className="p-4 text-center text-lg text-slate-300">Sharesight</th>
-                <th className="p-4 text-center text-lg text-slate-300">Empower</th>
-                <th className="p-4 text-center text-lg text-cyan-400 font-bold">VerafyAI</th>
+                <th className="p-3 text-left text-base text-white font-semibold">Feature</th>
+                <th className="p-3 text-center text-base text-slate-300">Sharesight</th>
+                <th className="p-3 text-center text-base text-slate-300">Navexa</th>
+                <th className="p-3 text-center text-base text-slate-300">Empower</th>
+                <th className="p-3 text-center text-base text-cyan-400 font-bold">VerafyAI</th>
               </tr>
             </thead>
             <tbody>
               {[
-                ['AI Analysis', false, false, true],
-                ['Plain English', false, false, true],
-                ['AU Tax Rules', true, false, true],
-                ['Actionable', false, false, true],
-              ].map(([feature, s, e, v], i) => (
+                ['Pre-trade CGT', false, false, false, true],
+                ['AI Recommendations', false, false, false, true],
+                ['Plain English', false, false, false, true],
+                ['AU Tax Rules', true, true, false, true],
+                ['Price', '$42/mo', '$19/mo', 'Free', '$20/mo'],
+              ].map(([feature, s, n, e, v], i) => (
                 <tr key={i} className="border-t border-slate-700">
-                  <td className="p-4 text-lg text-white">{feature}</td>
-                  <td className="p-4 text-center">
-                    {s ? <Check className="w-6 h-6 text-green-400 mx-auto" /> : <X className="w-6 h-6 text-red-400/50 mx-auto" />}
+                  <td className="p-3 text-base text-white">{feature}</td>
+                  <td className="p-3 text-center">
+                    {typeof s === 'boolean' ? (s ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className="text-slate-400 text-sm">{s}</span>}
                   </td>
-                  <td className="p-4 text-center">
-                    {e ? <Check className="w-6 h-6 text-green-400 mx-auto" /> : <X className="w-6 h-6 text-red-400/50 mx-auto" />}
+                  <td className="p-3 text-center">
+                    {typeof n === 'boolean' ? (n ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className="text-slate-400 text-sm">{n}</span>}
                   </td>
-                  <td className="p-4 text-center bg-cyan-500/10">
-                    {v ? <CheckCircle2 className="w-7 h-7 text-cyan-400 mx-auto" /> : <X className="w-6 h-6 text-red-400 mx-auto" />}
+                  <td className="p-3 text-center">
+                    {typeof e === 'boolean' ? (e ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className="text-slate-400 text-sm">{e}</span>}
+                  </td>
+                  <td className="p-3 text-center bg-cyan-500/10">
+                    {typeof v === 'boolean' ? (v ? <CheckCircle2 className="w-6 h-6 text-cyan-400 mx-auto" /> : <X className="w-5 h-5 text-red-400 mx-auto" />) : <span className="text-cyan-400 font-bold text-sm">{v}</span>}
                   </td>
                 </tr>
               ))}
@@ -445,15 +454,25 @@ const MarketSlide = () => (
 const TractionSlide = () => (
   <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
-    <h2 className="text-6xl font-bold text-white mb-10">Traction & Team</h2>
-    <div className="flex-1 grid grid-cols-3 gap-8">
-      <GlowCard className="p-6" highlight>
+    <h2 className="text-6xl font-bold text-white mb-10">Traction</h2>
+    <p className="text-2xl text-cyan-400 mb-8">Built the product before raising</p>
+    <div className="flex-1 grid grid-cols-2 gap-10">
+      <GlowCard className="p-8" highlight>
         <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
           <Rocket className="w-8 h-8" />
           What's Live
         </h3>
         <ul className="space-y-4">
-          {['Platform built (AWS, React, Claude AI)', '$150K pre-seed raised', 'Beta waitlist at capacity', '2 patents lodged', 'IBKR integration ready'].map((item, i) => (
+          {[
+            'Platform built (AWS, React, Claude AI)',
+            '$150K pre-seed deployed',
+            '$25K AWS credits secured',
+            'CGT engine complete',
+            'Beta waitlist at capacity',
+            '2 patents lodged',
+            'R&D tax credit: $60K expected Q1 2026',
+            'Trademarks filed (IP Australia)',
+          ].map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-lg text-white">
               <CheckCircle2 className="w-6 h-6 text-cyan-400 mt-0.5 flex-shrink-0" />
               {item}
@@ -461,43 +480,31 @@ const TractionSlide = () => (
           ))}
         </ul>
       </GlowCard>
-      <GlowCard className="p-6">
+      <GlowCard className="p-8">
         <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
           <Calendar className="w-8 h-8 text-blue-400" />
           Timeline
         </h3>
-        <ul className="space-y-4 text-lg">
+        <ul className="space-y-5 text-lg">
           {[
-            { date: 'Feb 15', text: 'Beta launch' },
-            { date: 'Apr 1', text: 'Public launch' },
-            { date: 'Jun 30', text: 'Tax/reporting (EOFY)' },
-            { date: 'Jul', text: 'Trading app (IBKR)' },
-            { date: '2027', text: 'Xplan Lite pilot' },
-            { date: 'Christmas', text: 'All phases live', highlight: true },
+            { date: 'Nov 2025', text: 'Infrastructure deployed', status: 'done' },
+            { date: 'Jan 2026', text: 'Core product built', status: 'done' },
+            { date: 'Feb 15', text: 'Beta launch', status: 'target' },
+            { date: 'Apr 1', text: 'Public launch', status: 'target' },
+            { date: 'Q2-Q3', text: 'Trading platform (IBKR)', status: 'planned' },
+            { date: 'Q4', text: 'Advisor platform', status: 'planned' },
           ].map((item, i) => (
-            <li key={i} className={`flex items-center gap-3 ${item.highlight ? 'text-cyan-400 font-bold' : 'text-white'}`}>
-              <span className="w-20 text-blue-400 font-semibold flex-shrink-0">{item.date}:</span>
-              {item.text}
+            <li key={i} className="flex items-center gap-3">
+              <span className="w-24 text-blue-400 font-semibold flex-shrink-0">{item.date}</span>
+              <span className={`flex-1 ${item.status === 'target' ? 'text-cyan-400 font-semibold' : 'text-white'}`}>{item.text}</span>
+              {item.status === 'done' && <CheckCircle2 className="w-5 h-5 text-green-400" />}
+              {item.status === 'target' && <Target className="w-5 h-5 text-cyan-400" />}
+              {item.status === 'planned' && <Clock className="w-5 h-5 text-slate-500" />}
             </li>
           ))}
         </ul>
-      </GlowCard>
-      <GlowCard className="p-6">
-        <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <Users className="w-8 h-8 text-purple-400" />
-          Team
-        </h3>
-        <div className="space-y-4">
-          <div className="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
-            <h4 className="text-xl font-bold text-white mb-1">Amit Vohra - CEO</h4>
-            <p className="text-sm text-slate-400">PhD, MBA, GAICD</p>
-            <p className="text-sm text-cyan-400">Ex-CEO GPRA (500% revenue growth)</p>
-          </div>
-          <div className="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
-            <h4 className="text-xl font-bold text-white mb-1">Nupur Agarwal - CTO</h4>
-            <p className="text-sm text-slate-400">MBA + Double Masters</p>
-            <p className="text-sm text-cyan-400">Ex-GBST | Ex-JP Morgan (7 yrs)</p>
-          </div>
+        <div className="mt-6 p-4 rounded-lg bg-cyan-500/20 border border-cyan-500/30 text-center">
+          <p className="text-cyan-400 font-bold text-lg">We're not raising to build. We're raising to accelerate.</p>
         </div>
       </GlowCard>
     </div>
@@ -557,10 +564,10 @@ const BusinessModelSlide = () => (
       <h3 className="text-2xl font-bold text-white mb-4">Unit Economics</h3>
       <div className="grid grid-cols-4 gap-4">
         {[
-          { label: 'CAC', value: '$25', highlight: false },
-          { label: 'LTV', value: '$360+', highlight: false },
-          { label: 'LTV:CAC', value: '14:1', highlight: true },
-          { label: 'Payback', value: '2 months', highlight: false },
+          { label: 'CAC (blended)', value: '$17', highlight: false },
+          { label: 'LTV', value: '$816', highlight: false },
+          { label: 'LTV:CAC', value: '48:1', highlight: true },
+          { label: 'Payback', value: '<1 month', highlight: false },
         ].map((item, i) => (
           <div key={i} className={`p-4 rounded-xl text-center ${item.highlight ? 'bg-cyan-500/20 border-2 border-cyan-500/50' : 'bg-slate-800/50 border border-slate-700'}`}>
             <div className="text-lg text-slate-400 mb-1">{item.label}</div>
@@ -647,6 +654,255 @@ const VisionSlide = () => (
   </div>
 );
 
+const TeamSlide = () => (
+  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <FloatingParticles />
+    <div className="mb-10 text-center">
+      <h2 className="text-6xl font-bold text-white mb-4">The Team</h2>
+      <p className="text-2xl text-cyan-400">Proven Founders, Aligned Incentives</p>
+    </div>
+    <div className="flex-1 grid grid-cols-3 gap-8">
+      {/* Amit Vohra - CEO */}
+      <GlowCard className="p-6 flex flex-col" highlight>
+        <div className="text-center mb-4">
+          <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center mb-4 text-4xl font-bold text-white">
+            AV
+          </div>
+          <h3 className="text-2xl font-bold text-white">Amit Vohra</h3>
+          <p className="text-cyan-400 font-semibold">Co-Founder & CEO</p>
+        </div>
+        <div className="space-y-2 text-sm flex-1">
+          <div className="flex items-center gap-2 text-slate-400">
+            <GraduationCap className="w-4 h-4 text-cyan-400" />
+            <span>PhD, MBA (Distinction), GAICD</span>
+          </div>
+          <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700 mt-3">
+            <p className="text-xs text-slate-500 mb-2">Track Record</p>
+            <ul className="space-y-1.5 text-slate-300">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>CEO GPRA: $2M → $12M (500% growth)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Raised $10M from health funds</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Risk algorithm 98% accuracy (Dept of Health)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Secured $18M in project funding</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-4 pt-4 border-t border-slate-700 flex items-center justify-center gap-2">
+          <Linkedin className="w-4 h-4 text-blue-400" />
+          <span className="text-sm text-slate-400">linkedin.com/in/amitvohra</span>
+        </div>
+      </GlowCard>
+
+      {/* Nupur Agarwal - CTO */}
+      <GlowCard className="p-6 flex flex-col" highlight>
+        <div className="text-center mb-4">
+          <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center mb-4 text-4xl font-bold text-white">
+            NA
+          </div>
+          <h3 className="text-2xl font-bold text-white">Nupur Agarwal</h3>
+          <p className="text-purple-400 font-semibold">Co-Founder & CTO</p>
+        </div>
+        <div className="space-y-2 text-sm flex-1">
+          <div className="flex items-center gap-2 text-slate-400">
+            <GraduationCap className="w-4 h-4 text-purple-400" />
+            <span>MBA + Double Masters</span>
+          </div>
+          <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700 mt-3">
+            <p className="text-xs text-slate-500 mb-2">Track Record</p>
+            <ul className="space-y-1.5 text-slate-300">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>10+ years: Python, React, AWS</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Ex-GBST/xplan (insider knowledge)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Ex-JP Morgan (7 years)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Built entire beta before raising</span>
+              </li>
+            </ul>
+          </div>
+          <div className="mt-3 p-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-center">
+            <span className="text-purple-400 font-semibold text-sm">40% equity – deeply aligned</span>
+          </div>
+        </div>
+        <div className="mt-4 pt-4 border-t border-slate-700 flex items-center justify-center gap-2">
+          <Linkedin className="w-4 h-4 text-blue-400" />
+          <span className="text-sm text-slate-400">linkedin.com/in/nupuragarwal</span>
+        </div>
+      </GlowCard>
+
+      {/* Subodh Ramugade - Head of AI */}
+      <GlowCard className="p-6 flex flex-col">
+        <div className="text-center mb-4">
+          <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center mb-4 text-4xl font-bold text-white">
+            SR
+          </div>
+          <h3 className="text-2xl font-bold text-white">Subodh Ramugade</h3>
+          <p className="text-orange-400 font-semibold">Head of AI</p>
+        </div>
+        <div className="space-y-2 text-sm flex-1">
+          <div className="flex items-center gap-2 text-slate-400">
+            <GraduationCap className="w-4 h-4 text-orange-400" />
+            <span>MIT Deep Learning | AI/ML Expert</span>
+          </div>
+          <div className="p-3 rounded-lg bg-slate-800/50 border border-slate-700 mt-3">
+            <p className="text-xs text-slate-500 mb-2">Track Record</p>
+            <ul className="space-y-1.5 text-slate-300">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>VP, AI in Healthcare (CloudxLab)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Ex-Amazon (Digital Payments UX Lead)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Ex-JP Morgan Sydney</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <span>Complex systems architecture expert</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-4 pt-4 border-t border-slate-700 flex items-center justify-center gap-2">
+          <Linkedin className="w-4 h-4 text-blue-400" />
+          <span className="text-sm text-slate-400">linkedin.com/in/subodhramugade</span>
+        </div>
+      </GlowCard>
+    </div>
+    <div className="mt-6 p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+      <div className="flex items-center justify-center gap-8 text-lg">
+        <div className="flex items-center gap-2">
+          <CheckCircle2 className="w-5 h-5 text-cyan-400" />
+          <span className="text-white">Both founders learned about money at 40</span>
+          <span className="text-cyan-400">(founder-market fit)</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <CheckCircle2 className="w-5 h-5 text-cyan-400" />
+          <span className="text-white">Houses on market</span>
+          <span className="text-cyan-400">(skin in game)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const ArchitectureSlide = () => (
+  <div className="h-full flex flex-col p-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <FloatingParticles />
+    <div className="mb-8">
+      <h2 className="text-6xl font-bold text-white mb-4">
+        Smart Architecture = <span className="text-cyan-400">Fast + Cheap</span>
+      </h2>
+      <p className="text-2xl text-slate-300">Hybrid Intelligence: Rules for math, AI for insights</p>
+    </div>
+    <div className="flex-1 grid grid-cols-2 gap-10">
+      <GlowCard className="p-8">
+        <h3 className="text-2xl font-bold text-red-400 mb-6 flex items-center gap-3">
+          <AlertTriangle className="w-8 h-8" />
+          The Problem with "AI Everything"
+        </h3>
+        <ul className="space-y-4">
+          {[
+            { label: 'Response time', value: '3.8 seconds', icon: Clock },
+            { label: 'API costs at scale', value: '$4,800/month', icon: DollarSign },
+            { label: 'Hallucination risk', value: 'On financial calculations', icon: AlertTriangle },
+          ].map((item, i) => (
+            <li key={i} className="flex items-center gap-4 text-xl text-white">
+              <div className="w-12 h-12 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                <item.icon className="w-6 h-6 text-red-400" />
+              </div>
+              <div>
+                <span className="text-slate-400">{item.label}: </span>
+                <span className="text-red-400 font-semibold">{item.value}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </GlowCard>
+
+      <GlowCard className="p-8" highlight>
+        <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
+          <Cpu className="w-8 h-8" />
+          Our Hybrid Approach
+        </h3>
+        <div className="rounded-xl overflow-hidden border border-cyan-500/30 mb-6">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-cyan-500/20">
+                <th className="p-3 text-left text-white">Task</th>
+                <th className="p-3 text-center text-white">Method</th>
+                <th className="p-3 text-center text-white">Speed</th>
+                <th className="p-3 text-center text-white">Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t border-slate-700">
+                <td className="p-3 text-slate-300">Math (CGT, returns)</td>
+                <td className="p-3 text-center">
+                  <span className="px-2 py-1 rounded bg-blue-500/20 text-blue-400 text-sm">Rules Engine</span>
+                </td>
+                <td className="p-3 text-center text-green-400 font-bold">5ms</td>
+                <td className="p-3 text-center text-green-400 font-bold">$0</td>
+              </tr>
+              <tr className="border-t border-slate-700">
+                <td className="p-3 text-slate-300">Insights (behavioral)</td>
+                <td className="p-3 text-center">
+                  <span className="px-2 py-1 rounded bg-purple-500/20 text-purple-400 text-sm">AI (Claude)</span>
+                </td>
+                <td className="p-3 text-center text-cyan-400 font-bold">500ms</td>
+                <td className="p-3 text-center text-cyan-400 font-bold">$0.10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { label: 'Cost Reduction', value: '88%', color: 'green' },
+            { label: 'Speed Improvement', value: '8x faster', color: 'cyan' },
+            { label: 'Hallucination Risk', value: 'Zero on calcs', color: 'green' },
+            { label: 'Gross Margin', value: '84-92%', color: 'cyan' },
+          ].map((item, i) => (
+            <div key={i} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700 text-center">
+              <div className={`text-2xl font-bold ${item.color === 'green' ? 'text-green-400' : 'text-cyan-400'}`}>
+                {item.value}
+              </div>
+              <div className="text-sm text-slate-400">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </GlowCard>
+    </div>
+    <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-center">
+      <p className="text-xl text-white">
+        <span className="text-cyan-400 font-bold">Math is deterministic.</span> No hallucinations on CGT calculations.{' '}
+        <span className="text-cyan-400 font-bold">AI adds value</span> where it matters: behavioral insights.
+      </p>
+    </div>
+  </div>
+);
+
 const ThankYouSlide = () => (
   <div className="h-full flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
     <FloatingParticles />
@@ -685,9 +941,11 @@ const SLIDES = [
   ProblemSlide,
   SolutionSlide,
   VeraSlide,
+  ArchitectureSlide,
   RegulatorySlide,
   MarketSlide,
   TractionSlide,
+  TeamSlide,
   BusinessModelSlide,
   AskSlide,
   VisionSlide,

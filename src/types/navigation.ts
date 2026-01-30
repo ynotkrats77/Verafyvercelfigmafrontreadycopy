@@ -48,4 +48,7 @@ export type PageType =
   | 'help'
   | 'logout'
   | 'investor-pitch'
-  | 'investor-video';
+  | 'investor-video'
+  | 'investor-commercials'
+  | 'investor-roadmap'
+  | 'investor-financials';

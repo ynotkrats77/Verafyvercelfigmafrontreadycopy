@@ -225,6 +225,9 @@ export const FOOTER_SECTIONS = {
     links: [
       { label: 'Pitch Deck', page: 'investor-pitch' as PageType },
       { label: 'Video Presentation', page: 'investor-video' as PageType },
+      { label: 'Commercials & Strategy', page: 'investor-commercials' as PageType },
+      { label: 'Product Roadmap', page: 'investor-roadmap' as PageType },
+      { label: 'Financial Model', page: 'investor-financials' as PageType },
     ],
   },
 } as const;
