@@ -21,7 +21,7 @@ export function SignInPage({ isDark, onSwitchToSignUp }: SignInPageProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Sign In:', formData);
+    // Auth integration will be added with AWS Cognito
   };
 
   const handleTabSwitch = (tab: 'signin' | 'signup') => {

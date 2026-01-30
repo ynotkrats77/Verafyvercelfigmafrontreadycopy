@@ -304,7 +304,7 @@ const PlanComparisonComponent = ({ isDark }: PlanComparisonProps) => {
                 {/* CTA Section */}
                 <div className={`p-4 sm:p-6 pt-3 ${isDark ? 'border-t border-slate-800' : 'border-t border-slate-200'}`}>
                   <ThemedButton
-                    onClick={() => console.log(`Selected ${plan.name}`)}
+                    onClick={() => { /* Stripe checkout integration */ }}
                     variant={index === 1 ? 'primary' : 'outline'}
                     size="lg"
                     fullWidth

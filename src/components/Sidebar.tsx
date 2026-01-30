@@ -482,8 +482,7 @@ export function DashboardSidebar({ isDark, currentSection = 'dashboard', onNavig
               <motion.div whileHover={{ x: 2 }} transition={{ duration: 0.2 }}>
                 <button
                   onClick={() => {
-                    // Admin functionality here
-                    console.log('Switch to Admin clicked');
+                    // Admin functionality - AWS Cognito role check
                   }}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all font-normal ${
                     isDark ? 'hover:bg-slate-800/50' : 'hover:bg-slate-100/50'
@@ -510,9 +509,7 @@ export function DashboardSidebar({ isDark, currentSection = 'dashboard', onNavig
               <motion.div whileHover={{ x: 2 }} transition={{ duration: 0.2 }} className="mt-2">
                 <button
                   onClick={() => {
-                    // Sign out functionality here
-                    console.log('Sign Out clicked');
-                    // In production, this would call auth.signOut() or similar
+                    // Sign out - AWS Cognito auth.signOut()
                   }}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all font-normal ${
                     isDark ? 'hover:bg-slate-800/50' : 'hover:bg-slate-100/50'
