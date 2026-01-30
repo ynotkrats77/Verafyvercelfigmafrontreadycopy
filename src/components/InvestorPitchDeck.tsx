@@ -13,13 +13,21 @@ import {
   Globe,
   Zap,
   Check,
+  X,
   ArrowRight,
   LineChart,
   PieChart,
   Award,
   Building2,
   Wallet,
-  Brain
+  Brain,
+  Clock,
+  FileText,
+  Briefcase,
+  MessageSquare,
+  Lock,
+  ArrowDown,
+  Calendar
 } from 'lucide-react';
 
 interface InvestorPitchDeckProps {
@@ -32,577 +40,767 @@ interface SlideProps {
 
 // Slide 1: Title Slide
 const TitleSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col items-center justify-center relative">
-    {/* Background glow */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[150px]" />
-
+  <div className="h-full flex flex-col items-center justify-center relative bg-[#0d4f4f]">
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8 }}
       className="relative z-10 text-center"
     >
-      {/* Logo */}
-      <div className="flex items-center justify-center gap-4 mb-8">
-        <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
-          <div className="w-8 h-8 bg-white rounded-lg transform rotate-45" />
-        </div>
-        <h1 className="text-5xl font-bold text-white tracking-wider">
-          VERAFY<span className="text-cyan-400">AI</span>
-        </h1>
-      </div>
+      <h1 className="text-8xl font-bold text-white mb-6">
+        VerafyAI
+      </h1>
 
-      {/* Tagline */}
-      <h2 className="text-6xl font-bold text-white mb-6">
-        Democratizing{' '}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-          Institutional-Grade
-        </span>
-        <br />
-        Investment Intelligence
-      </h2>
-
-      <p className="text-2xl text-slate-400 mb-12 max-w-3xl mx-auto">
-        AI-powered portfolio analytics for the Australian retail investor market
+      <p className="text-3xl text-cyan-400 italic mb-4">
+        The interface between finance and humans
       </p>
 
-      {/* Badge */}
-      <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30">
-        <Shield className="w-5 h-5 text-cyan-400" />
-        <span className="text-white font-medium">ASIC Compliant | Built for Australian Investors</span>
+      <p className="text-2xl text-white/80 mb-16">
+        Where 9 million investors meet institutional intelligence
+      </p>
+
+      <div className="text-lg text-white/60 mb-4">
+        Amit Vohra | Co-founder & CEO
+      </div>
+      <div className="text-lg text-white/60 mb-12">
+        amit@verafyai.com | verafyai.com.au
       </div>
     </motion.div>
 
-    {/* Footer */}
-    <div className="absolute bottom-8 text-slate-500 text-sm">
-      Investor Presentation | Q1 2026
-    </div>
+    {/* Ask Badge */}
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.5 }}
+      className="absolute top-8 right-12 px-6 py-3 bg-cyan-400 text-[#0d4f4f] font-bold text-xl rounded"
+    >
+      $1M Seed @ $10M Pre-Money
+    </motion.div>
   </div>
 );
 
-// Slide 2: The Problem
+// Slide 2: Two Markets. One Broken System.
 const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
+  <div className="h-full flex flex-col p-16 bg-white">
     <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-12"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-5xl font-bold text-slate-800 mb-12"
     >
-      The Problem
+      Two Markets. One Broken System.
     </motion.h2>
 
-    <div className="flex-1 grid grid-cols-2 gap-12">
-      <div className="space-y-8">
-        {[
-          { icon: Building2, title: 'Institutional Advantage', desc: 'Professional investors have access to sophisticated portfolio analytics tools that retail investors lack' },
-          { icon: BarChart3, title: 'Complex Data', desc: 'Retail investors struggle to understand their portfolio performance, risk exposure, and tax implications' },
-          { icon: Globe, title: 'Australian Gap', desc: 'Few platforms cater specifically to Australian investors with local tax, compliance, and market needs' },
-        ].map((item, i) => (
-          <motion.div
-            key={item.title}
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 + i * 0.1 }}
-            className="flex gap-4 p-6 bg-slate-800/50 rounded-xl border border-slate-700"
-          >
-            <div className="w-14 h-14 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0">
-              <item.icon className="w-7 h-7 text-red-400" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-              <p className="text-slate-400">{item.desc}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
+    <div className="flex-1 grid grid-cols-2 gap-8 mb-8">
+      {/* Retail Investors */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5 }}
-        className="flex items-center justify-center"
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+        className="p-8 bg-[#0d4f4f] rounded-lg text-white"
       >
-        <div className="relative">
-          <div className="w-80 h-80 rounded-full border-8 border-red-500/30 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-7xl font-bold text-red-400 mb-2">67%</div>
-              <div className="text-xl text-slate-400">of retail investors</div>
-              <div className="text-xl text-slate-400">don't understand their</div>
-              <div className="text-xl text-white font-semibold">portfolio risk</div>
-            </div>
-          </div>
-          <div className="absolute -bottom-4 -right-4 px-4 py-2 bg-red-500 rounded-lg text-white font-semibold">
-            Industry Research 2024
-          </div>
-        </div>
+        <h3 className="text-3xl font-bold text-cyan-400 mb-6">9 Million Retail Investors</h3>
+        <ul className="space-y-4 text-lg">
+          <li className="flex items-start gap-3">
+            <span className="text-cyan-400 mt-1">•</span>
+            Making decisions without institutional tools
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-cyan-400 mt-1">•</span>
+            Spreadsheets, basic trackers, or nothing
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-cyan-400 mt-1">•</span>
+            No real-time tax optimisation
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-cyan-400 mt-1">•</span>
+            No personalised guidance
+          </li>
+        </ul>
+      </motion.div>
+
+      {/* Financial Advisers */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3 }}
+        className="p-8 border-2 border-[#0d4f4f] rounded-lg"
+      >
+        <h3 className="text-3xl font-bold text-[#0d4f4f] mb-6">15,000 Financial Advisers</h3>
+        <ul className="space-y-4 text-lg text-slate-700">
+          <li className="flex items-start gap-3">
+            <span className="text-[#0d4f4f] mt-1">•</span>
+            Trapped in legacy software (Xplan)
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-[#0d4f4f] mt-1">•</span>
+            $2,000-$4,000/month for complexity they don't need
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-[#0d4f4f] mt-1">•</span>
+            3-week SOA turnarounds via paraplanners
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-[#0d4f4f] mt-1">•</span>
+            Hours on paperwork, minutes with clients
+          </li>
+        </ul>
       </motion.div>
     </div>
+
+    {/* Bottom Banner */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+      className="p-6 bg-[#0d4f4f] rounded-lg text-center"
+    >
+      <p className="text-xl text-white">
+        The gap between investors who need help and advisers who can deliver has never been wider.
+      </p>
+      <p className="text-lg text-cyan-400 italic mt-2">
+        They call it a 'necessary evil.' The industry is ripe for disruption.
+      </p>
+    </motion.div>
   </div>
 );
 
-// Slide 3: The Solution
+// Slide 3: The Solution - Three Phases
 const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
+  <div className="h-full flex flex-col p-16 bg-white">
     <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-4"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-5xl font-bold text-slate-800 mb-12"
     >
-      The Solution: Meet <span className="text-cyan-400">Vera</span>
+      The Solution: Three Phases
+    </motion.h2>
+
+    <div className="flex-1 grid grid-cols-3 gap-6">
+      {/* Phase 1 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="p-8 bg-[#0d4f4f] rounded-lg text-white"
+      >
+        <div className="text-cyan-400 font-semibold mb-2">PHASE 1</div>
+        <h3 className="text-2xl font-bold mb-2">Portfolio Intelligence</h3>
+        <div className="text-cyan-400 text-sm mb-6">NOW - LIVE</div>
+        <ul className="space-y-3 text-base">
+          <li className="flex items-start gap-2">
+            <span className="text-cyan-400">•</span>
+            Connect broker → real-time analysis
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-cyan-400">•</span>
+            Tax optimisation, rebalancing
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-cyan-400">•</span>
+            Plain English actions
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-cyan-400">•</span>
+            $5-$20/month
+          </li>
+        </ul>
+      </motion.div>
+
+      {/* Phase 2 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="p-8 border-2 border-[#0d4f4f] rounded-lg"
+      >
+        <div className="text-[#0d4f4f] font-semibold mb-2">PHASE 2</div>
+        <h3 className="text-2xl font-bold text-slate-800 mb-2">Trading App</h3>
+        <div className="text-[#0d4f4f] text-sm mb-6">JULY 2026</div>
+        <ul className="space-y-3 text-base text-slate-700">
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            Standalone app, separate entity
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            IBKR brokerage gateway
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            AWS enterprise deployment
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            Chinese wall maintained
+          </li>
+        </ul>
+      </motion.div>
+
+      {/* Phase 3 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="p-8 border-2 border-[#0d4f4f] rounded-lg"
+      >
+        <div className="text-[#0d4f4f] font-semibold mb-2">PHASE 3</div>
+        <h3 className="text-2xl font-bold text-slate-800 mb-2">Xplan Lite</h3>
+        <div className="text-[#0d4f4f] text-sm mb-6">2027</div>
+        <ul className="space-y-3 text-base text-slate-700">
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            One-meeting SOA generation
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            Conversational fact-find
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            No paraplanners needed
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-[#0d4f4f]">•</span>
+            $1,500-$4,000/month
+          </li>
+        </ul>
+      </motion.div>
+    </div>
+
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.6 }}
+      className="mt-8 text-center"
+    >
+      <span className="text-2xl font-bold text-cyan-500">All three phases live by Christmas 2026</span>
+    </motion.div>
+  </div>
+);
+
+// Slide 4: Vera - Bloomberg Terminal meets ChatGPT
+const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col p-16 bg-white">
+    <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+      <h2 className="text-5xl font-bold text-slate-800 mb-2">
+        Vera: Bloomberg Terminal meets ChatGPT
+      </h2>
+      <p className="text-xl text-cyan-600 italic mb-10">For the 9 million, not the 9 thousand</p>
+    </motion.div>
+
+    <div className="flex-1 grid grid-cols-2 gap-12">
+      {/* What Vera Does */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h3 className="text-2xl font-bold text-slate-800 mb-6">What Vera Does:</h3>
+        <ul className="space-y-4 text-lg text-slate-700">
+          {[
+            'Real-time portfolio analysis',
+            'Tax-loss harvesting alerts',
+            'Dividend tracking & forecasting',
+            'Risk exposure mapping',
+            'Rebalancing recommendations',
+            'All in plain English - not charts'
+          ].map((item, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + i * 0.1 }}
+              className="flex items-center gap-3"
+            >
+              <div className="w-2 h-2 bg-[#0d4f4f] rounded-full" />
+              {item}
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* Comparison Table */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-slate-50 rounded-xl overflow-hidden"
+      >
+        <table className="w-full">
+          <thead>
+            <tr className="bg-[#0d4f4f] text-white">
+              <th className="p-4 text-left font-semibold">Feature</th>
+              <th className="p-4 text-center font-semibold">Sharesight</th>
+              <th className="p-4 text-center font-semibold">Empower</th>
+              <th className="p-4 text-center font-semibold text-cyan-400">VerafyAI</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['AI Analysis', false, false, true],
+              ['Plain English', false, false, true],
+              ['AU Tax Rules', true, false, true],
+              ['Actionable', false, false, true],
+              ['Price', '$42/mo', 'Free (US)', '$5-20/mo'],
+            ].map(([feature, s, e, v], i) => (
+              <tr key={i} className="border-b border-slate-200">
+                <td className="p-4 font-medium text-slate-700">{feature}</td>
+                <td className="p-4 text-center">
+                  {typeof s === 'boolean' ? (
+                    s ? <Check className="w-6 h-6 text-green-500 mx-auto" /> : <X className="w-6 h-6 text-red-500 mx-auto" />
+                  ) : <span className="text-slate-600">{s}</span>}
+                </td>
+                <td className="p-4 text-center">
+                  {typeof e === 'boolean' ? (
+                    e ? <Check className="w-6 h-6 text-green-500 mx-auto" /> : <X className="w-6 h-6 text-red-500 mx-auto" />
+                  ) : <span className="text-slate-600">{e}</span>}
+                </td>
+                <td className="p-4 text-center bg-cyan-50">
+                  {typeof v === 'boolean' ? (
+                    v ? <Check className="w-6 h-6 text-cyan-600 mx-auto" /> : <X className="w-6 h-6 text-red-500 mx-auto" />
+                  ) : <span className="text-cyan-600 font-semibold">{v}</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </motion.div>
+    </div>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.8 }}
+      className="mt-8 text-center text-xl font-bold text-cyan-600"
+    >
+      Not charts that make you feel smart. Actions that make you money.
+    </motion.p>
+  </div>
+);
+
+// Slide 5: Chinese Walls - Regulatory Survival
+const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col p-16 bg-white">
+    <motion.h2
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-5xl font-bold text-slate-800 mb-4"
+    >
+      Chinese Walls: Regulatory Survival
     </motion.h2>
     <motion.p
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 0.2 }}
-      className="text-xl text-slate-400 mb-12"
+      transition={{ delay: 0.1 }}
+      className="text-xl text-slate-600 mb-12"
     >
-      Your AI-powered portfolio intelligence assistant
+      The smarts live in Portfolio. The trades live in Trading. No AI recommendations crossing the wall.
     </motion.p>
 
-    <div className="flex-1 grid grid-cols-3 gap-8">
-      {[
-        { icon: Brain, title: 'AI-Powered Insights', desc: 'Natural language analysis of your portfolio in plain English', color: 'cyan' },
-        { icon: LineChart, title: 'Real-time Analytics', desc: 'Live performance tracking, risk scoring, and opportunity detection', color: 'blue' },
-        { icon: Shield, title: 'Tax Optimization', desc: 'Australian tax-loss harvesting and ATO-ready reports', color: 'purple' },
-        { icon: Target, title: 'Action Center', desc: 'Personalized daily recommendations based on your goals', color: 'green' },
-        { icon: PieChart, title: 'Portfolio Health', desc: 'Concentration risk, sector analysis, and diversification scoring', color: 'orange' },
-        { icon: Zap, title: 'Scenario Modeling', desc: 'What-if analysis for investment decisions', color: 'yellow' },
-      ].map((item, i) => (
-        <motion.div
-          key={item.title}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 + i * 0.1 }}
-          whileHover={{ scale: 1.05, y: -5 }}
-          className={`p-6 rounded-2xl bg-slate-800/50 border border-${item.color}-500/30 hover:border-${item.color}-500/60 transition-all cursor-pointer`}
-          style={{ borderColor: `var(--${item.color}-500, #22d3ee)30` }}
-        >
-          <div
-            className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center"
-            style={{ background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))` }}
-          >
-            <item.icon className="w-7 h-7 text-white" />
-          </div>
-          <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-          <p className="text-slate-400 text-sm">{item.desc}</p>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-);
-
-// Slide 4: Market Opportunity
-const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
-    <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-12"
-    >
-      Market Opportunity
-    </motion.h2>
-
-    <div className="flex-1 grid grid-cols-2 gap-16">
-      <div className="space-y-8">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
-          className="p-8 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-500/30"
-        >
-          <div className="text-6xl font-bold text-cyan-400 mb-2">$3.4T</div>
-          <div className="text-xl text-white font-semibold mb-1">Australian Superannuation</div>
-          <div className="text-slate-400">Largest pension pool outside US/UK</div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
-          className="p-8 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-blue-500/30"
-        >
-          <div className="text-6xl font-bold text-blue-400 mb-2">9M+</div>
-          <div className="text-xl text-white font-semibold mb-1">Active Retail Investors</div>
-          <div className="text-slate-400">Growing 15% YoY since 2020</div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4 }}
-          className="p-8 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-500/30"
-        >
-          <div className="text-6xl font-bold text-purple-400 mb-2">$850M</div>
-          <div className="text-xl text-white font-semibold mb-1">TAM for Portfolio Analytics</div>
-          <div className="text-slate-400">Australian retail market</div>
-        </motion.div>
-      </div>
-
+    <div className="flex-1 flex items-center justify-center gap-8">
+      {/* Portfolio Intelligence */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5 }}
-        className="flex flex-col justify-center"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+        className="flex-1 p-8 bg-[#0d4f4f] rounded-lg text-white h-80"
       >
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-white mb-6">Why Now?</h3>
-          {[
-            'Post-pandemic surge in retail investing',
-            'Growing demand for self-directed SMSF management',
-            'Regulatory push for financial literacy',
-            'AI technology maturity for personalized insights',
-            'Underserved Australian-specific market'
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 + i * 0.1 }}
-              className="flex items-center gap-4"
-            >
-              <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
-                <Check className="w-5 h-5 text-cyan-400" />
-              </div>
-              <span className="text-lg text-slate-300">{item}</span>
-            </motion.div>
-          ))}
+        <h3 className="text-2xl font-bold text-cyan-400 mb-6">PORTFOLIO INTELLIGENCE</h3>
+        <ul className="space-y-3 text-lg">
+          <li className="flex items-center gap-2"><span className="text-cyan-400">•</span> AI-powered analysis</li>
+          <li className="flex items-center gap-2"><span className="text-cyan-400">•</span> Tax optimisation insights</li>
+          <li className="flex items-center gap-2"><span className="text-cyan-400">•</span> Risk assessment</li>
+          <li className="flex items-center gap-2"><span className="text-cyan-400">•</span> Information only</li>
+          <li className="flex items-center gap-2"><span className="text-cyan-400">•</span> No AFSL required</li>
+        </ul>
+      </motion.div>
+
+      {/* Wall */}
+      <motion.div
+        initial={{ opacity: 0, scaleY: 0 }}
+        animate={{ opacity: 1, scaleY: 1 }}
+        transition={{ delay: 0.4 }}
+        className="w-16 h-80 bg-gradient-to-b from-slate-300 to-slate-500 rounded flex items-center justify-center"
+      >
+        <div className="transform -rotate-90 text-slate-700 font-bold text-xl tracking-widest whitespace-nowrap">
+          WALL
         </div>
       </motion.div>
-    </div>
-  </div>
-);
 
-// Slide 5: Business Model
-const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
-    <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-12"
-    >
-      Business Model
-    </motion.h2>
-
-    <div className="flex-1 grid grid-cols-3 gap-8">
-      {[
-        {
-          name: 'Starter',
-          price: '$5',
-          annual: '$50/yr',
-          color: 'from-slate-400 to-slate-500',
-          features: ['50 holdings tracked', 'Basic Vera AI', 'Action Center (5/day)', 'Performance metrics']
-        },
-        {
-          name: 'Standard',
-          price: '$10',
-          annual: '$100/yr',
-          color: 'from-blue-400 to-cyan-400',
-          features: ['Unlimited holdings', 'Full Vera personality', 'Unlimited Action Center', 'Behavioral patterns', 'Sector analysis'],
-          popular: true
-        },
-        {
-          name: 'Pro',
-          price: '$20',
-          annual: '$200/yr',
-          color: 'from-cyan-400 to-blue-500',
-          features: ['Portfolio optimization', 'Chat with Vera (500/mo)', 'Scenario modeling', 'Tax Pack included', 'Priority support']
-        },
-      ].map((plan, i) => (
-        <motion.div
-          key={plan.name}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 + i * 0.1 }}
-          className={`relative p-8 rounded-2xl bg-slate-800/50 border-2 ${
-            plan.popular ? 'border-cyan-500' : 'border-slate-700'
-          }`}
-        >
-          {plan.popular && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-white text-sm font-semibold">
-              MOST POPULAR
-            </div>
-          )}
-
-          <h3 className={`text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r ${plan.color}`}>
-            {plan.name}
-          </h3>
-
-          <div className="flex items-baseline gap-2 mb-2">
-            <span className="text-5xl font-bold text-white">{plan.price}</span>
-            <span className="text-slate-400">/month</span>
-          </div>
-          <p className="text-slate-500 text-sm mb-6">or {plan.annual}</p>
-
-          <div className="space-y-3">
-            {plan.features.map((feature, j) => (
-              <div key={j} className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-cyan-400" />
-                <span className="text-slate-300">{feature}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      ))}
+      {/* Trading App */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+        className="flex-1 p-8 border-2 border-[#0d4f4f] rounded-lg h-80"
+      >
+        <h3 className="text-2xl font-bold text-[#0d4f4f] mb-6">TRADING APP</h3>
+        <ul className="space-y-3 text-lg text-slate-700">
+          <li className="flex items-center gap-2"><span className="text-[#0d4f4f]">•</span> Clean execution only</li>
+          <li className="flex items-center gap-2"><span className="text-[#0d4f4f]">•</span> No AI recommendations</li>
+          <li className="flex items-center gap-2"><span className="text-[#0d4f4f]">•</span> IBKR gateway</li>
+          <li className="flex items-center gap-2"><span className="text-[#0d4f4f]">•</span> Separate entity</li>
+          <li className="flex items-center gap-2"><span className="text-[#0d4f4f]">•</span> Standard broker licence</li>
+        </ul>
+      </motion.div>
     </div>
 
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.6 }}
-      className="mt-8 p-6 bg-orange-500/20 rounded-xl border border-orange-500/30 flex items-center justify-between"
+      className="mt-8 p-6 bg-slate-800 rounded-lg text-center"
     >
-      <div className="flex items-center gap-4">
-        <Zap className="w-8 h-8 text-orange-400" />
-        <div>
-          <div className="text-xl font-bold text-white">Founding Member Pricing</div>
-          <div className="text-orange-300">50% off locked in for life until June 30, 2026</div>
-        </div>
-      </div>
-      <div className="text-3xl font-bold text-orange-400">50% OFF</div>
+      <p className="text-xl text-white italic">
+        "Anyone building AI-driven trading recommendations without an AFSL is building a time bomb. We are not that."
+      </p>
     </motion.div>
   </div>
 );
 
-// Slide 6: Traction & Metrics
-const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
+// Slide 6: Xplan Lite - One Meeting. Job Done.
+const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col p-16 bg-white">
     <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-12"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-5xl font-bold text-slate-800 mb-4"
     >
-      Traction & Metrics
+      Xplan Lite: One Meeting. Job Done.
+    </motion.h2>
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.1 }}
+      className="text-xl text-slate-600 mb-10"
+    >
+      Not a killer. A simplifier. For the 60-70% who don't need enterprise complexity.
+    </motion.p>
+
+    <div className="flex-1 grid grid-cols-2 gap-12">
+      {/* Flow */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+        className="flex flex-col gap-2"
+      >
+        {[
+          { label: 'Meeting Start', highlight: true },
+          { label: 'Conversational Fact-Find' },
+          { label: 'Risk Profiling (real-time)' },
+          { label: 'Strategy Modelling (instant)' },
+          { label: 'Draft SOA Generated' },
+          { label: 'Adviser Signs Off' },
+          { label: 'Client Leaves with SOA', highlight: true },
+        ].map((step, i) => (
+          <React.Fragment key={i}>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + i * 0.08 }}
+              className={`p-4 rounded-lg ${step.highlight ? 'bg-[#0d4f4f] text-white' : 'bg-slate-100 text-slate-700'}`}
+            >
+              {step.label}
+            </motion.div>
+            {i < 6 && (
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#0d4f4f]" />
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </motion.div>
+
+      {/* Comparison */}
+      <div className="space-y-8">
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <h3 className="text-2xl font-bold text-slate-800 mb-4">Current Industry</h3>
+          <ul className="space-y-3 text-lg text-slate-600">
+            <li className="flex items-center gap-2"><X className="w-5 h-5 text-red-500" /> 3-week SOA turnaround</li>
+            <li className="flex items-center gap-2"><X className="w-5 h-5 text-red-500" /> Send to paraplanners</li>
+            <li className="flex items-center gap-2"><X className="w-5 h-5 text-red-500" /> $4,000/month platforms</li>
+            <li className="flex items-center gap-2"><X className="w-5 h-5 text-red-500" /> 80% features unused</li>
+          </ul>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          <h3 className="text-2xl font-bold text-[#0d4f4f] mb-4">With Xplan Lite</h3>
+          <ul className="space-y-3 text-lg text-slate-700">
+            <li className="flex items-center gap-2"><Check className="w-5 h-5 text-cyan-600" /> 55 minutes total</li>
+            <li className="flex items-center gap-2"><Check className="w-5 h-5 text-cyan-600" /> No paraplanners needed</li>
+            <li className="flex items-center gap-2"><Check className="w-5 h-5 text-cyan-600" /> $1,500-$4,000/month</li>
+            <li className="flex items-center gap-2"><Check className="w-5 h-5 text-cyan-600" /> Everything they actually need</li>
+          </ul>
+        </motion.div>
+      </div>
+    </div>
+  </div>
+);
+
+// Slide 7: Market Opportunity
+const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col p-16 bg-white">
+    <motion.h2
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-5xl font-bold text-slate-800 mb-12"
+    >
+      Market Opportunity
     </motion.h2>
 
-    <div className="flex-1 grid grid-cols-4 gap-6 mb-12">
+    {/* Big Numbers */}
+    <div className="grid grid-cols-3 gap-8 mb-12">
       {[
-        { value: '2,500+', label: 'Beta Users', icon: Users, color: 'cyan' },
-        { value: '4.8/5', label: 'User Rating', icon: Award, color: 'yellow' },
-        { value: '$2.4M', label: 'AUM Tracked', icon: Wallet, color: 'green' },
-        { value: '78%', label: 'Weekly Active', icon: TrendingUp, color: 'purple' },
-      ].map((metric, i) => (
+        { value: '9M+', label: 'Australians own shares/ETFs' },
+        { value: '15K', label: 'Financial advisers in AU' },
+        { value: '$6B', label: 'Advice industry revenue' },
+      ].map((stat, i) => (
         <motion.div
-          key={metric.label}
+          key={i}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 + i * 0.1 }}
-          className="p-6 bg-slate-800/50 rounded-2xl border border-slate-700 text-center"
+          className="text-center"
         >
-          <metric.icon className={`w-10 h-10 mx-auto mb-4 text-${metric.color}-400`} style={{ color: `var(--theme-primary)` }} />
-          <div className="text-4xl font-bold text-white mb-2">{metric.value}</div>
-          <div className="text-slate-400">{metric.label}</div>
+          <div className="text-6xl font-bold text-cyan-600 mb-2">{stat.value}</div>
+          <div className="text-lg text-slate-600">{stat.label}</div>
         </motion.div>
       ))}
     </div>
 
-    <div className="grid grid-cols-2 gap-8">
+    {/* TAM boxes */}
+    <div className="flex-1 grid grid-cols-2 gap-8">
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.6 }}
-        className="p-6 bg-slate-800/50 rounded-2xl border border-slate-700"
+        transition={{ delay: 0.5 }}
+        className="p-8 border-2 border-[#0d4f4f] rounded-lg"
       >
-        <h3 className="text-xl font-bold text-white mb-4">Growth Trajectory</h3>
-        <div className="flex items-end justify-between h-40 gap-2">
-          {[20, 35, 45, 60, 80, 100].map((height, i) => (
-            <div key={i} className="flex-1 flex flex-col items-center gap-2">
-              <div
-                className="w-full bg-gradient-to-t from-cyan-500 to-blue-500 rounded-t-lg"
-                style={{ height: `${height}%` }}
-              />
-              <span className="text-xs text-slate-500">M{i + 1}</span>
-            </div>
-          ))}
-        </div>
+        <h3 className="text-2xl font-bold text-[#0d4f4f] mb-4">Phase 1 TAM: Retail</h3>
+        <p className="text-xl text-slate-700 mb-4">9M × $15/mo avg = <span className="font-bold text-cyan-600">$1.6B potential</span></p>
+        <p className="text-lg text-slate-600">2.5M new investors since COVID</p>
+        <p className="text-lg text-slate-600">61% of Millennials now invest</p>
       </motion.div>
 
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.7 }}
-        className="p-6 bg-slate-800/50 rounded-2xl border border-slate-700"
+        transition={{ delay: 0.6 }}
+        className="p-8 border-2 border-[#0d4f4f] rounded-lg"
       >
-        <h3 className="text-xl font-bold text-white mb-4">Key Milestones</h3>
-        <div className="space-y-4">
-          {[
-            { date: 'Q3 2024', milestone: 'Product launch & beta program' },
-            { date: 'Q4 2024', milestone: '1,000 beta users achieved' },
-            { date: 'Q1 2025', milestone: 'Founding member pricing launched' },
-            { date: 'Q2 2025', milestone: 'Mobile app release (iOS/Android)' },
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <div className="w-20 text-cyan-400 font-semibold text-sm">{item.date}</div>
-              <div className="w-3 h-3 rounded-full bg-cyan-500" />
-              <div className="text-slate-300">{item.milestone}</div>
-            </div>
-          ))}
-        </div>
+        <h3 className="text-2xl font-bold text-[#0d4f4f] mb-4">Phase 3 TAM: Advisers</h3>
+        <p className="text-xl text-slate-700 mb-4">15K × $3K/mo = <span className="font-bold text-cyan-600">$540M/year</span></p>
+        <p className="text-lg text-slate-600">Average practice pays $2-4K/mo</p>
+        <p className="text-lg text-slate-600">for software they barely use</p>
       </motion.div>
     </div>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.8 }}
+      className="mt-8 text-center text-2xl font-bold text-cyan-600"
+    >
+      We start with the millions. We scale to the thousands.
+    </motion.p>
   </div>
 );
 
-// Slide 7: Competitive Advantage
-const CompetitiveSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
+// Slide 8: Traction & Team
+const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col p-16 bg-white">
     <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-12"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-5xl font-bold text-slate-800 mb-10"
     >
-      Competitive Advantage
-    </motion.h2>
-
-    <div className="flex-1 grid grid-cols-2 gap-12">
-      <div>
-        <h3 className="text-2xl font-bold text-white mb-6">Why Verafy AI Wins</h3>
-        <div className="space-y-4">
-          {[
-            { title: 'Australian-First Design', desc: 'Built specifically for Australian tax, compliance, and market conditions' },
-            { title: 'Conversational AI', desc: 'Vera explains complex concepts in plain English, not financial jargon' },
-            { title: 'Affordable Pricing', desc: '10x cheaper than traditional portfolio management tools' },
-            { title: 'Proactive Intelligence', desc: 'Daily actionable insights, not passive dashboards' },
-            { title: 'Privacy-First', desc: 'Read-only broker connections, bank-grade encryption' },
-          ].map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 + i * 0.1 }}
-              className="flex gap-4 p-4 bg-slate-800/50 rounded-xl border border-cyan-500/20"
-            >
-              <Check className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1" />
-              <div>
-                <h4 className="text-lg font-semibold text-white">{item.title}</h4>
-                <p className="text-slate-400 text-sm">{item.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        <h3 className="text-2xl font-bold text-white mb-6">Competitive Landscape</h3>
-        <div className="bg-slate-800/50 rounded-2xl border border-slate-700 overflow-hidden">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-slate-700">
-                <th className="p-4 text-left text-slate-400 font-medium">Feature</th>
-                <th className="p-4 text-center text-cyan-400 font-bold">Verafy AI</th>
-                <th className="p-4 text-center text-slate-400 font-medium">Others</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['Australian Tax Focus', true, false],
-                ['Conversational AI', true, false],
-                ['Under $20/month', true, false],
-                ['Daily Action Items', true, false],
-                ['SMSF Support', true, true],
-                ['Real-time Data', true, true],
-              ].map(([feature, us, them], i) => (
-                <tr key={i} className="border-b border-slate-700/50">
-                  <td className="p-4 text-slate-300">{feature}</td>
-                  <td className="p-4 text-center">
-                    {us ? <Check className="w-6 h-6 text-cyan-400 mx-auto" /> : <span className="text-slate-600">—</span>}
-                  </td>
-                  <td className="p-4 text-center">
-                    {them ? <Check className="w-6 h-6 text-slate-500 mx-auto" /> : <span className="text-slate-600">—</span>}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </motion.div>
-    </div>
-  </div>
-);
-
-// Slide 8: Team
-const TeamSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
-    <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-12"
-    >
-      Leadership Team
+      Traction & Team
     </motion.h2>
 
     <div className="flex-1 grid grid-cols-3 gap-8">
-      {[
-        {
-          name: 'Dr. Amit Vohra',
-          role: 'Co-Founder & CEO',
-          bio: '20+ years C-suite experience in CEO, COO, and EGM roles. Board director with expertise in M&A, healthcare and financial services.',
-          initials: 'AV'
-        },
-        {
-          name: 'Ms. Nupur Agarwal',
-          role: 'Co-Founder & CTO',
-          bio: 'Combined tech and business focus with financial sector expertise leading enterprise platform transformations and digital innovation.',
-          initials: 'NA'
-        },
-        {
-          name: 'Mr. Subodh Ramugade',
-          role: 'Head of AI & Engineering',
-          bio: 'Leading AI and engineering innovation, driving the development of intelligent portfolio management solutions.',
-          initials: 'SR'
-        },
-      ].map((member, i) => (
-        <motion.div
-          key={member.name}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 + i * 0.15 }}
-          className="p-8 bg-slate-800/50 rounded-2xl border border-slate-700 text-center"
-        >
-          <div
-            className="w-24 h-24 mx-auto rounded-full mb-6 flex items-center justify-center text-3xl font-bold text-white"
-            style={{ background: 'linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))' }}
-          >
-            {member.initials}
-          </div>
-          <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
-          <div className="text-cyan-400 font-semibold mb-4">{member.role}</div>
-          <p className="text-slate-400 text-sm leading-relaxed">{member.bio}</p>
-        </motion.div>
-      ))}
-    </div>
+      {/* What's Live */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h3 className="text-2xl font-bold text-[#0d4f4f] mb-6">What's Live</h3>
+        <ul className="space-y-3">
+          {[
+            'Platform built (AWS, React, Claude AI)',
+            '$150K pre-seed raised',
+            'Beta waitlist at capacity',
+            '2 patents lodged, more in pipeline',
+            'IBKR integration ready',
+          ].map((item, i) => (
+            <li key={i} className="flex items-start gap-3 text-slate-700">
+              <Check className="w-5 h-5 text-cyan-600 mt-0.5 flex-shrink-0" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
 
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6 }}
-      className="mt-8 grid grid-cols-4 gap-6"
-    >
-      {[
-        { label: 'Combined Experience', value: '50+ years' },
-        { label: 'Previous Exits', value: '3' },
-        { label: 'Team Size', value: '12' },
-        { label: 'Advisors', value: '5 Industry Experts' },
-      ].map((stat, i) => (
-        <div key={i} className="p-4 bg-slate-800/30 rounded-xl text-center">
-          <div className="text-2xl font-bold text-cyan-400">{stat.value}</div>
-          <div className="text-slate-400 text-sm">{stat.label}</div>
+      {/* Timeline */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        <h3 className="text-2xl font-bold text-[#0d4f4f] mb-6">Timeline</h3>
+        <ul className="space-y-3 text-slate-700">
+          <li><span className="font-semibold">Feb 15:</span> Beta launch</li>
+          <li><span className="font-semibold">Apr 1:</span> Public launch</li>
+          <li><span className="font-semibold">Jun 30:</span> Tax/reporting (EOFY)</li>
+          <li><span className="font-semibold">Jul:</span> Trading app (IBKR)</li>
+          <li><span className="font-semibold">2027:</span> Xplan Lite pilot</li>
+          <li className="font-bold text-[#0d4f4f]">Christmas: All phases live</li>
+        </ul>
+      </motion.div>
+
+      {/* Team */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="p-6 border-2 border-[#0d4f4f] rounded-lg"
+      >
+        <h3 className="text-2xl font-bold text-[#0d4f4f] mb-6">Team</h3>
+
+        <div className="mb-6">
+          <h4 className="text-lg font-bold text-slate-800">Amit Vohra - CEO</h4>
+          <p className="text-sm text-slate-600">PhD, MBA, GAICD | Ex-CEO GPRA (500% revenue growth)</p>
+          <p className="text-sm text-slate-600">Ex-EGM Sonic Clinical Services | Chairman GP2U</p>
         </div>
-      ))}
-    </motion.div>
+
+        <div>
+          <h4 className="text-lg font-bold text-slate-800">Nupur Agarwal - CTO</h4>
+          <p className="text-sm text-slate-600">Ex-GBST | Ex-JP Morgan (7 yrs) | MBA + Double Masters</p>
+          <p className="text-sm text-slate-600">Headhunted by Xplan (declined)</p>
+        </div>
+      </motion.div>
+    </div>
   </div>
 );
 
-// Slide 9: The Ask
-const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col p-16">
+// Slide 9: Business Model
+const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col p-16 bg-white">
     <motion.h2
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-5xl font-bold text-white mb-4"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-5xl font-bold text-slate-800 mb-4"
+    >
+      Business Model
+    </motion.h2>
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="text-2xl text-[#0d4f4f] font-semibold mb-10"
+    >
+      Three Revenue Streams
+    </motion.p>
+
+    <div className="grid grid-cols-3 gap-6 mb-10">
+      {/* Phase 1 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="p-6 bg-[#0d4f4f] rounded-lg text-white"
+      >
+        <h3 className="text-xl font-bold text-cyan-400 mb-4">Phase 1: SaaS</h3>
+        <p className="mb-2">Starter: $5/mo</p>
+        <p className="mb-2">Standard: $10/mo</p>
+        <p className="mb-4">Pro: $20/mo</p>
+        <p className="text-cyan-400 font-semibold">Founding: 50% off for life</p>
+      </motion.div>
+
+      {/* Phase 2 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="p-6 border-2 border-[#0d4f4f] rounded-lg"
+      >
+        <h3 className="text-xl font-bold text-[#0d4f4f] mb-4">Phase 2: Trading</h3>
+        <p className="text-slate-700 mb-2">Brokerage fees</p>
+        <p className="text-slate-700 mb-2">Premium features</p>
+        <p className="text-slate-700 mb-2">Standalone entity</p>
+        <p className="text-slate-500 italic">No advice liability</p>
+      </motion.div>
+
+      {/* Phase 3 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="p-6 border-2 border-[#0d4f4f] rounded-lg"
+      >
+        <h3 className="text-xl font-bold text-[#0d4f4f] mb-4">Phase 3: Adviser</h3>
+        <p className="text-slate-700 mb-2">$1,500-$4,000/mo per practice</p>
+        <p className="text-slate-700 mb-2">Implementation fees</p>
+        <p className="text-slate-700">Data/compliance add-ons</p>
+      </motion.div>
+    </div>
+
+    {/* Unit Economics */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+    >
+      <h3 className="text-2xl font-bold text-slate-800 mb-4">Unit Economics</h3>
+      <div className="bg-slate-50 rounded-lg overflow-hidden">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-[#0d4f4f] text-white">
+              <th className="p-4 text-center font-semibold">CAC</th>
+              <th className="p-4 text-center font-semibold">LTV</th>
+              <th className="p-4 text-center font-semibold">LTV:CAC</th>
+              <th className="p-4 text-center font-semibold">Payback</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="p-4 text-center text-xl font-bold text-slate-800">$25</td>
+              <td className="p-4 text-center text-xl font-bold text-slate-800">$360+</td>
+              <td className="p-4 text-center text-xl font-bold text-cyan-600">14:1</td>
+              <td className="p-4 text-center text-xl font-bold text-slate-800">2 months</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </motion.div>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.7 }}
+      className="mt-6 text-center text-xl font-bold text-cyan-600"
+    >
+      High margin SaaS. Global scale. Defensible IP.
+    </motion.p>
+  </div>
+);
+
+// Slide 10: The Ask
+const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col p-16 bg-[#0d4f4f]">
+    <motion.h2
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-6xl font-bold text-white mb-2"
     >
       The Ask
     </motion.h2>
@@ -610,157 +808,178 @@ const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.1 }}
-      className="text-xl text-slate-400 mb-12"
+      className="text-3xl text-cyan-400 mb-12"
     >
-      Seed Round - Series A Bridge
+      $1M Seed @ $10M Pre-Money
     </motion.p>
 
     <div className="flex-1 grid grid-cols-2 gap-12">
-      <div>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="p-8 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-500/30 mb-8"
-        >
-          <div className="text-6xl font-bold text-cyan-400 mb-2">$2.5M</div>
-          <div className="text-2xl text-white font-semibold">Seed Round</div>
-          <div className="text-slate-400 mt-2">Pre-money valuation: $10M</div>
-        </motion.div>
-
+      {/* Use of Funds */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+      >
         <h3 className="text-2xl font-bold text-white mb-6">Use of Funds</h3>
-        <div className="space-y-4">
+        <div className="space-y-6">
           {[
-            { label: 'Product Development', pct: 40 },
-            { label: 'Sales & Marketing', pct: 30 },
-            { label: 'Team Expansion', pct: 20 },
-            { label: 'Operations', pct: 10 },
+            { label: 'Product (Phase 1, 2, 3)', pct: 40, amount: '$400K' },
+            { label: 'Growth & Partnerships', pct: 30, amount: '$300K' },
+            { label: 'Runway & Operations', pct: 30, amount: '$300K' },
           ].map((item, i) => (
             <motion.div
-              key={item.label}
-              initial={{ opacity: 0, x: -30 }}
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + i * 0.1 }}
             >
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-slate-300">{item.label}</span>
-                <span className="text-cyan-400 font-semibold">{item.pct}%</span>
+              <div className="flex justify-between text-lg text-white mb-2">
+                <span>{item.label}</span>
+                <span className="text-cyan-400 font-bold">{item.pct}% <span className="text-white/60">{item.amount}</span></span>
               </div>
-              <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-4 bg-white/20 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${item.pct}%` }}
                   transition={{ delay: 0.5 + i * 0.1, duration: 0.8 }}
-                  className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
+                  className="h-full bg-cyan-400 rounded-full"
                 />
               </div>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      <div>
-        <h3 className="text-2xl font-bold text-white mb-6">18-Month Targets</h3>
-        <div className="space-y-4">
+      {/* What You Get */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <h3 className="text-2xl font-bold text-white mb-6">What You Get</h3>
+        <ul className="space-y-4">
           {[
-            { metric: '25,000', label: 'Paying Subscribers' },
-            { metric: '$3M', label: 'ARR' },
-            { metric: '$50M', label: 'AUM Tracked' },
-            { metric: '3', label: 'Enterprise Partnerships' },
+            'Seat at the table for AU wealth management disruption',
+            'Jurisdiction agnostic products → global play',
+            'Target markets: Australia, North America, India',
+            '2 patents lodged, defensible IP moat',
           ].map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, x: 30 }}
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 + i * 0.1 }}
-              className="p-6 bg-slate-800/50 rounded-xl border border-slate-700 flex items-center gap-6"
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className="flex items-start gap-3 text-lg text-white"
             >
-              <div className="text-4xl font-bold text-cyan-400">{item.metric}</div>
-              <div className="text-slate-300">{item.label}</div>
-            </motion.div>
+              <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0" />
+              {item}
+            </motion.li>
           ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="mt-8 p-6 bg-green-500/20 rounded-xl border border-green-500/30"
-        >
-          <div className="flex items-center gap-3">
-            <Rocket className="w-8 h-8 text-green-400" />
-            <div>
-              <div className="text-lg font-bold text-white">Path to Series A</div>
-              <div className="text-green-300">Targeting Q4 2026 at $30M+ valuation</div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+        </ul>
+      </motion.div>
     </div>
   </div>
 );
 
-// Slide 10: Thank You / Contact
-const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
-  <div className="h-full flex flex-col items-center justify-center relative">
-    {/* Background glow */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[150px]" />
+// Slide 11: The Vision
+const VisionSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col items-center justify-center p-16 bg-slate-900">
+    <motion.h2
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-6xl font-bold text-white mb-6"
+    >
+      The Vision
+    </motion.h2>
 
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2 }}
+      className="text-3xl text-cyan-400 mb-12 text-center"
+    >
+      The interface between humans and the global financial system
+    </motion.p>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.4 }}
+      className="text-xl text-slate-300 max-w-4xl text-center mb-12 italic"
+    >
+      Over the next 3 years, my ability to detect behavioural patterns at an individual and industry level
+      will grow to a point that we will carry risk for the advice delivered through the pattern.
+    </motion.p>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.6 }}
+      className="text-2xl text-white max-w-3xl text-center mb-16"
+    >
+      The ecosystem. The infrastructure. The rails that everything else runs on.
+    </motion.p>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.8 }}
+      className="text-xl text-cyan-400 italic"
+    >
+      "Nupur & Amit aren't selling their houses to build another tracker."
+    </motion.p>
+  </div>
+);
+
+// Slide 12: Thank You
+const ThankYouSlide: React.FC<SlideProps> = ({ isDark }) => (
+  <div className="h-full flex flex-col items-center justify-center relative bg-[#0d4f4f]">
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative z-10 text-center"
+      className="text-center"
     >
-      {/* Logo */}
-      <div className="flex items-center justify-center gap-4 mb-8">
-        <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-500/30">
-          <div className="w-10 h-10 bg-white rounded-lg transform rotate-45" />
-        </div>
-      </div>
+      <h1 className="text-8xl font-bold text-white mb-8">
+        VerafyAI
+      </h1>
 
-      <h2 className="text-6xl font-bold text-white mb-6">
-        Thank You
-      </h2>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="text-4xl text-cyan-400 mb-8"
+      >
+        I am inevitable.
+      </motion.p>
 
-      <p className="text-2xl text-slate-400 mb-12 max-w-2xl mx-auto">
-        Let's democratize investment intelligence together.
-      </p>
-
-      <div className="grid grid-cols-3 gap-8 mb-12">
-        {[
-          { icon: Globe, label: 'verafy.ai', href: '#' },
-          { icon: DollarSign, label: 'invest@verafy.ai', href: '#' },
-          { icon: Users, label: 'Schedule a Call', href: '#' },
-        ].map((item, i) => (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.1 }}
-            className="p-6 bg-slate-800/50 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-colors cursor-pointer"
-          >
-            <item.icon className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-            <div className="text-white font-semibold">{item.label}</div>
-          </motion.div>
-        ))}
-      </div>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="text-xl text-white/80 max-w-2xl mx-auto mb-16 italic"
+      >
+        The only question is whether you will be in the room when I truly arrive.
+      </motion.p>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold text-lg shadow-lg shadow-cyan-500/30 cursor-pointer hover:shadow-cyan-500/50 transition-shadow"
+        transition={{ delay: 0.7 }}
+        className="text-lg text-white/60 mb-4"
       >
-        <span>Let's Build the Future of Investing</span>
-        <ArrowRight className="w-5 h-5" />
+        Amit Vohra | amit@verafyai.com | verafyai.com.au
       </motion.div>
-    </motion.div>
 
-    {/* Footer */}
-    <div className="absolute bottom-8 text-slate-500 text-sm">
-      Verafy AI Pty Ltd | ABN XX XXX XXX XXX | Confidential
-    </div>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9 }}
+        className="text-2xl text-white"
+      >
+        Thank you. Questions?
+      </motion.p>
+    </motion.div>
   </div>
 );
 
@@ -773,12 +992,14 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
     TitleSlide,
     ProblemSlide,
     SolutionSlide,
+    VeraSlide,
+    RegulatorySlide,
+    XplanLiteSlide,
     MarketSlide,
-    BusinessModelSlide,
     TractionSlide,
-    CompetitiveSlide,
-    TeamSlide,
+    BusinessModelSlide,
     AskSlide,
+    VisionSlide,
     ThankYouSlide,
   ];
 
@@ -834,14 +1055,8 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
           transform: `scale(${scale})`,
           transformOrigin: 'center center'
         }}
-        className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 shadow-2xl border border-slate-800"
+        className="relative shadow-2xl"
       >
-        {/* Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-slate-950/0 to-slate-950/0" />
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950/0 to-slate-950/0" />
-        </div>
-
         {/* Slide Content */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -850,7 +1065,7 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.3 }}
-            className="relative z-10 h-full"
+            className="h-full"
           >
             <CurrentSlideComponent isDark={isDark} />
           </motion.div>
@@ -861,7 +1076,7 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
           <button
             onClick={() => setCurrentSlide(prev => Math.max(prev - 1, 0))}
             disabled={currentSlide === 0}
-            className="p-2 rounded-full bg-slate-800/80 border border-slate-700 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors"
+            className="p-2 rounded-full bg-black/50 border border-white/20 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-black/70 transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -873,8 +1088,8 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
                 onClick={() => setCurrentSlide(i)}
                 className={`w-2 h-2 rounded-full transition-all ${
                   i === currentSlide
-                    ? 'w-8 bg-cyan-500'
-                    : 'bg-slate-600 hover:bg-slate-500'
+                    ? 'w-8 bg-cyan-400'
+                    : 'bg-white/40 hover:bg-white/60'
                 }`}
               />
             ))}
@@ -883,20 +1098,15 @@ export function InvestorPitchDeck({ isDark }: InvestorPitchDeckProps) {
           <button
             onClick={() => setCurrentSlide(prev => Math.min(prev + 1, slides.length - 1))}
             disabled={currentSlide === slides.length - 1}
-            className="p-2 rounded-full bg-slate-800/80 border border-slate-700 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors"
+            className="p-2 rounded-full bg-black/50 border border-white/20 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-black/70 transition-colors"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
         {/* Slide Counter */}
-        <div className="absolute top-6 right-8 text-slate-500 text-sm z-20">
+        <div className="absolute top-6 right-8 text-white/60 text-sm z-20 bg-black/30 px-3 py-1 rounded">
           {currentSlide + 1} / {slides.length}
-        </div>
-
-        {/* Keyboard Hint */}
-        <div className="absolute bottom-6 right-8 text-slate-600 text-xs z-20">
-          Use arrow keys to navigate
         </div>
       </div>
     </div>
