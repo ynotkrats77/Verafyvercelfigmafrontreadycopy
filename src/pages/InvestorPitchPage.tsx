@@ -959,13 +959,21 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      const containerWidth = isFullscreen ? window.innerWidth : Math.min(window.innerWidth - 64, 1400);
-      const containerHeight = isFullscreen ? window.innerHeight : Math.min(window.innerHeight - 300, 800);
       const baseWidth = 1920;
       const baseHeight = 1080;
-      const scaleX = containerWidth / baseWidth;
-      const scaleY = containerHeight / baseHeight;
-      setScale(Math.min(scaleX, scaleY) * 0.95);
+
+      if (isFullscreen) {
+        const scaleX = window.innerWidth / baseWidth;
+        const scaleY = window.innerHeight / baseHeight;
+        setScale(Math.min(scaleX, scaleY) * 0.98);
+      } else {
+        // For non-fullscreen, scale to fit the container
+        const containerWidth = Math.min(window.innerWidth - 32, 1400);
+        const containerHeight = Math.min(window.innerHeight - 280, 800);
+        const scaleX = containerWidth / baseWidth;
+        const scaleY = containerHeight / baseHeight;
+        setScale(Math.min(scaleX, scaleY));
+      }
     };
 
     handleResize();
@@ -1067,52 +1075,76 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
   return (
     <div className={`min-h-screen ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-8">
-          <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div className="text-center mb-4">
+          <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
             Investor <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Pitch Deck</span>
           </h1>
-          <p className={`text-xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-lg md:text-xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
             VerafyAI • $1M Seed @ $10M Pre-Money Valuation
           </p>
         </div>
+      </div>
 
-        {/* Slide viewer */}
-        <div className="flex justify-center mb-8">
+      {/* Slide viewer - responsive container */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 pb-4">
+        <div
+          className="mx-auto"
+          style={{
+            maxWidth: '1400px',
+            height: `${Math.min(window.innerHeight - 280, 800) * (1920/1080)}px`,
+            maxHeight: 'calc(100vh - 280px)'
+          }}
+        >
           <div
+            className="relative w-full h-full overflow-hidden"
             style={{
-              width: 1920,
-              height: 1080,
-              transform: `scale(${scale})`,
-              transformOrigin: 'top center'
+              aspectRatio: '16/9',
+              maxHeight: 'calc(100vh - 280px)'
             }}
-            className="relative shadow-2xl rounded-lg overflow-hidden border border-cyan-500/20"
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.4 }}
-                className="h-full"
-              >
-                <CurrentSlideComponent />
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Fullscreen button */}
-            <button
-              onClick={() => setIsFullscreen(true)}
-              className="absolute top-4 right-4 p-3 rounded-lg bg-black/50 backdrop-blur-sm border border-cyan-500/30 text-white hover:bg-black/70 z-10"
+            <div
+              style={{
+                width: 1920,
+                height: 1080,
+                transform: `scale(${scale})`,
+                transformOrigin: 'top left',
+                position: 'absolute',
+                top: 0,
+                left: '50%',
+                marginLeft: `${-960 * scale}px`
+              }}
+              className="shadow-2xl rounded-lg overflow-hidden border border-cyan-500/20"
             >
-              <Maximize2 className="w-6 h-6" />
-            </button>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.4 }}
+                  className="h-full"
+                >
+                  <CurrentSlideComponent />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Fullscreen button */}
+              <button
+                onClick={() => setIsFullscreen(true)}
+                className="absolute top-4 right-4 p-3 rounded-lg bg-black/50 backdrop-blur-sm border border-cyan-500/30 text-white hover:bg-black/70 z-10"
+                title="Enter fullscreen (F)"
+              >
+                <Maximize2 className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Controls */}
-        <div className="flex flex-col items-center gap-4" style={{ marginTop: `${(1080 * scale) - 1080 + 32}px` }}>
+      {/* Controls */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setCurrentSlide(prev => Math.max(prev - 1, 0))}

@@ -1021,13 +1021,22 @@ export function InvestorVideoPage({ isDark }: InvestorVideoPageProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      const containerWidth = isFullscreen ? window.innerWidth : Math.min(window.innerWidth - 64, 1400);
-      const containerHeight = isFullscreen ? window.innerHeight - 100 : Math.min(window.innerHeight - 400, 700);
       const baseWidth = 1920;
       const baseHeight = 1080;
-      const scaleX = containerWidth / baseWidth;
-      const scaleY = containerHeight / baseHeight;
-      setScale(Math.min(scaleX, scaleY) * 0.95);
+
+      if (isFullscreen) {
+        // In fullscreen, leave room for controls at bottom
+        const scaleX = window.innerWidth / baseWidth;
+        const scaleY = (window.innerHeight - 120) / baseHeight;
+        setScale(Math.min(scaleX, scaleY) * 0.98);
+      } else {
+        // For non-fullscreen, scale to fit the container with room for controls
+        const containerWidth = Math.min(window.innerWidth - 32, 1400);
+        const containerHeight = Math.min(window.innerHeight - 320, 700);
+        const scaleX = containerWidth / baseWidth;
+        const scaleY = containerHeight / baseHeight;
+        setScale(Math.min(scaleX, scaleY));
+      }
     };
 
     handleResize();
@@ -1290,26 +1299,38 @@ export function InvestorVideoPage({ isDark }: InvestorVideoPageProps) {
       />
 
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-8">
-          <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div className="text-center mb-4">
+          <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
             Video <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Presentation</span>
           </h1>
-          <p className={`text-xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-lg md:text-xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
             Narrated pitch deck with audio • 8:23 duration
           </p>
         </div>
+      </div>
 
-        {/* Slide viewer */}
-        <div className="flex justify-center mb-8">
+      {/* Slide viewer - responsive container */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 pb-4">
+        <div
+          className="mx-auto relative"
+          style={{
+            maxWidth: '1400px',
+            height: `${1080 * scale}px`
+          }}
+        >
           <div
             style={{
               width: 1920,
               height: 1080,
               transform: `scale(${scale})`,
-              transformOrigin: 'top center'
+              transformOrigin: 'top left',
+              position: 'absolute',
+              top: 0,
+              left: '50%',
+              marginLeft: `${-960 * scale}px`
             }}
-            className="relative shadow-2xl rounded-lg overflow-hidden border border-cyan-500/20"
+            className="shadow-2xl rounded-lg overflow-hidden border border-cyan-500/20"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -1338,11 +1359,11 @@ export function InvestorVideoPage({ isDark }: InvestorVideoPageProps) {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={togglePlay}
-                  className="w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white shadow-2xl shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all"
+                  className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white shadow-2xl shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all"
                 >
-                  <Play className="w-16 h-16 ml-2" />
+                  <Play className="w-12 h-12 md:w-16 md:h-16 ml-1 md:ml-2" />
                 </motion.button>
-                <div className="absolute bottom-32 text-white text-2xl font-medium">
+                <div className="absolute bottom-20 md:bottom-32 text-white text-lg md:text-2xl font-medium text-center px-4">
                   Click to play narrated pitch
                 </div>
               </motion.div>
@@ -1351,22 +1372,25 @@ export function InvestorVideoPage({ isDark }: InvestorVideoPageProps) {
             {/* Fullscreen button */}
             <button
               onClick={() => setIsFullscreen(true)}
-              className="absolute top-4 right-4 p-3 rounded-lg bg-black/50 backdrop-blur-sm border border-cyan-500/30 text-white hover:bg-black/70 z-10"
+              className="absolute top-4 right-4 p-2 md:p-3 rounded-lg bg-black/50 backdrop-blur-sm border border-cyan-500/30 text-white hover:bg-black/70 z-10"
+              title="Enter fullscreen (F)"
             >
-              <Maximize2 className="w-6 h-6" />
+              <Maximize2 className="w-5 h-5 md:w-6 md:h-6" />
             </button>
 
             {/* Slide indicator */}
             <div className="absolute top-4 left-4 z-10">
-              <div className="px-4 py-2 rounded-full bg-black/60 backdrop-blur-sm border border-cyan-500/30 text-slate-300 text-sm">
+              <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-black/60 backdrop-blur-sm border border-cyan-500/30 text-slate-300 text-xs md:text-sm">
                 Slide {currentSlide + 1} / {SLIDES.length}
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Controls */}
-        <div className="flex flex-col items-center gap-4" style={{ marginTop: `${(1080 * scale) - 1080 + 32}px` }}>
+      {/* Controls */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex flex-col items-center gap-4">
           {/* Progress bar */}
           <div className={`w-full max-w-3xl flex items-center gap-4 px-4 py-3 rounded-xl ${isDark ? 'bg-slate-800/50' : 'bg-white'} border ${isDark ? 'border-cyan-500/20' : 'border-slate-200'}`}>
             <span className="text-cyan-400 text-sm font-mono w-12">{formatTime(currentTime)}</span>
