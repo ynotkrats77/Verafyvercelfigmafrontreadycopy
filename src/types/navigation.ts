@@ -51,4 +51,5 @@ export type PageType =
   | 'investor-video'
   | 'investor-commercials'
   | 'investor-roadmap'
-  | 'investor-financials';
+  | 'investor-financials'
+  | 'investor-competitive-analysis';

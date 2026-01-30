@@ -228,6 +228,7 @@ export const FOOTER_SECTIONS = {
       { label: 'Commercials & Strategy', page: 'investor-commercials' as PageType },
       { label: 'Product Roadmap', page: 'investor-roadmap' as PageType },
       { label: 'Financial Model', page: 'investor-financials' as PageType },
+      { label: 'Competitive Analysis', page: 'investor-competitive-analysis' as PageType },
     ],
   },
 } as const;
