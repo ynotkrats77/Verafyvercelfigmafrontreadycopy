@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Target, Users, Award, Rocket } from 'lucide-react';
+import { Target, Users, Award, Rocket, Heart, GraduationCap, Briefcase, AlertTriangle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
 interface AboutPageProps {
@@ -34,21 +34,50 @@ export function AboutPage({ isDark }: AboutPageProps) {
     },
   ];
 
-  const team = [
+  const solvingFor = [
     {
-      name: 'Dr. Amit Vohra',
+      icon: GraduationCap,
+      text: 'The 26-year-old spending a decade financially illiterate because no one taught them',
+    },
+    {
+      icon: Heart,
+      text: 'Divorcées trapped in bad splits because they never learned to negotiate',
+    },
+    {
+      icon: AlertTriangle,
+      text: 'Young traders losing $8.4B/year to preventable tax mistakes',
+    },
+    {
+      icon: Briefcase,
+      text: 'Anyone locked out of wealth-building by advisor minimums they can\'t meet',
+    },
+  ];
+
+  const founders = [
+    {
+      name: 'Amit Vohra',
       role: 'Co-Founder & CEO',
-      bio: '20+ years C-suite experience in CEO, COO, and EGM roles. Board director and chair with expertise in mergers and acquisitions, commercial and startup ventures with successful exits. Direct industry expertise in healthcare and financial services.',
+      credentials: 'PhD Health Workforce | MBA (Distinction) | GAICD',
+      highlights: [
+        'CEO GPRA: $2M → $12M revenue (500% growth)',
+        'Raised $10M from health funds & PHNs for integrated care models',
+        'Built national risk algorithm predicting hospitalization (98% accuracy) – still used by Sonic Healthcare and government',
+        'COO, AMA WA: led policy and commercial strategy for 3,000 doctors',
+        'Board advisor on healthcare workforce and AI transformation',
+      ],
+      extra: '25 years transforming complex systems across healthcare, finance, and government. Former First Officer, commercial shipping. NLP Master Practitioner – systems thinking, transformational leadership.',
     },
     {
-      name: 'Ms. Nupur Agarwal',
+      name: 'Nupur Agarwal',
       role: 'Co-Founder & CTO',
-      bio: 'Direct industry experience with a combined tech and business focus. Financial sector expertise leading large enterprise platform transformations and digital innovation initiatives.',
-    },
-    {
-      name: 'Mr. Subodh Ramugade',
-      role: 'Head of AI & Engineering',
-      bio: 'Leading AI and engineering innovation at VerafyAI, driving the development of intelligent portfolio management solutions.',
+      credentials: '40% equity stake – deeply aligned for the long term',
+      highlights: [
+        'Senior Software Engineer at GBST (xplan platform) – the system advisors use to manage billions in client wealth',
+        'Led platform development at AMA Finance – regulatory-compliant wealth solutions',
+        'Engineering roles at JP Morgan and enterprise fintech',
+        'Built VerafyAI\'s entire beta product solo before raising a dollar',
+      ],
+      extra: '10+ years building enterprise fintech infrastructure at scale. Deep expertise: Python, React, AWS (Aurora, ECS/EKS, Bedrock), financial APIs, compliance architecture.',
     },
   ];
 
@@ -78,13 +107,12 @@ export function AboutPage({ isDark }: AboutPageProps) {
               isDark ? 'text-slate-300' : 'text-slate-600'
             }`}
           >
-            We're on a mission to transform how investors understand and manage their
-            portfolios through the power of artificial intelligence.
+            We're building what we needed at 26 – the financial intelligence that was locked behind $500K advisor minimums.
           </p>
         </motion.div>
       </section>
 
-      {/* Story Section */}
+      {/* Our Story Section */}
       <section className="max-w-5xl mx-auto px-6 mb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,7 +134,102 @@ export function AboutPage({ isDark }: AboutPageProps) {
               isDark ? 'text-white' : 'text-slate-900'
             }`}
           >
-            Our Story
+            Our Story: Why We're Building This
+          </h2>
+          <div
+            className={`space-y-4 text-lg leading-relaxed ${
+              isDark ? 'text-slate-300' : 'text-slate-600'
+            }`}
+          >
+            <p className="text-xl font-semibold" style={{ color: 'var(--theme-primary)' }}>
+              We both learned about money at 40 – after wasting 15 years making preventable mistakes.
+            </p>
+            <p>
+              The problem wasn't intelligence. It was silence.
+            </p>
+            <p>
+              No one talks about money. Schools don't teach it. Parents avoid it. Friends fumble through it. Financial advisors won't touch you without $500K minimums.
+            </p>
+            <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              The system extracts value from people, not builds wealth for them.
+            </p>
+            <p className="text-xl font-semibold" style={{ color: 'var(--theme-primary)' }}>
+              So we're building what we needed at 26.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* What We're Solving For */}
+      <section className="max-w-5xl mx-auto px-6 mb-20">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className={`text-3xl font-bold text-center mb-10 ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}
+        >
+          What We're Solving For
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {solvingFor.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+              className={`p-6 rounded-2xl border-2 backdrop-blur-sm flex items-start gap-4 ${
+                isDark
+                  ? 'bg-slate-900/50 border-slate-800'
+                  : 'bg-white/50 border-slate-200'
+              }`}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))`,
+                  boxShadow: '0 4px 12px var(--theme-glow)',
+                }}
+              >
+                <item.icon className="h-6 w-6 text-white" />
+              </div>
+              <p
+                className={`text-lg ${
+                  isDark ? 'text-slate-300' : 'text-slate-600'
+                }`}
+              >
+                {item.text}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Why Now. Why Us. */}
+      <section className="max-w-5xl mx-auto px-6 mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className={`p-12 rounded-3xl border-2 backdrop-blur-sm ${
+            isDark
+              ? 'bg-slate-900/50 border-cyan-500/30'
+              : 'bg-white/50 border-cyan-500/30'
+          }`}
+          style={{
+            boxShadow: isDark
+              ? '0 8px 32px rgba(34, 211, 238, 0.2)'
+              : '0 8px 32px rgba(34, 211, 238, 0.15)',
+          }}
+        >
+          <h2
+            className={`text-3xl font-bold mb-6 ${
+              isDark ? 'text-white' : 'text-slate-900'
+            }`}
+          >
+            Why Now. Why Us.
           </h2>
           <div
             className={`space-y-4 text-lg leading-relaxed ${
@@ -114,21 +237,16 @@ export function AboutPage({ isDark }: AboutPageProps) {
             }`}
           >
             <p>
-              Verafy AI was founded in 2023 by a team of financial analysts and AI
-              researchers who recognized a critical gap in the investment technology
-              landscape. While institutional investors had access to sophisticated
-              portfolio intelligence tools, individual investors were left with basic
-              dashboards and generic advice.
+              Both our houses are on market (Q1 2026 settlement). We've spent our $150K pre-seed. We're launching in 15 days whether we raise or not.
             </p>
             <p>
-              We set out to change that. By combining cutting-edge natural language
-              processing with deep financial expertise, we created Vera – an AI
-              assistant that delivers institutional-grade insights in plain English.
+              We're raising to move faster. Compress 3 years into 18 months. Reach millions, not thousands.
             </p>
-            <p>
-              Today, Verafy AI serves thousands of investors across Australia and
-              beyond, helping them make more informed decisions about their financial
-              futures.
+            <p className={`font-semibold text-xl ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              This is personal. We're building her either way.
+            </p>
+            <p style={{ color: 'var(--theme-primary)' }} className="font-semibold text-xl">
+              But we'd rather build with the right partners in the room.
             </p>
           </div>
         </motion.div>
@@ -139,7 +257,7 @@ export function AboutPage({ isDark }: AboutPageProps) {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className={`text-4xl font-bold text-center mb-12 ${
             isDark ? 'text-white' : 'text-slate-900'
           }`}
@@ -153,7 +271,7 @@ export function AboutPage({ isDark }: AboutPageProps) {
               key={value.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
               whileHover={{ y: -8 }}
               className={`p-6 rounded-2xl border-2 backdrop-blur-sm group transition-all ${
                 isDark
@@ -189,8 +307,8 @@ export function AboutPage({ isDark }: AboutPageProps) {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="max-w-7xl mx-auto px-6 mb-20">
+      {/* Founders Section */}
+      <section className="max-w-6xl mx-auto px-6 mb-20">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -199,53 +317,87 @@ export function AboutPage({ isDark }: AboutPageProps) {
             isDark ? 'text-white' : 'text-slate-900'
           }`}
         >
-          Leadership Team
+          The Founders
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {team.map((member, index) => (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {founders.map((founder, index) => (
             <motion.div
-              key={member.name}
+              key={founder.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
-              className={`p-6 rounded-2xl border-2 backdrop-blur-sm ${
+              transition={{ duration: 0.6, delay: 0.9 + index * 0.15 }}
+              className={`p-8 rounded-3xl border-2 backdrop-blur-sm ${
                 isDark
                   ? 'bg-slate-900/50 border-slate-800'
                   : 'bg-white/50 border-slate-200'
               }`}
+              style={{
+                boxShadow: isDark
+                  ? '0 8px 32px rgba(34, 211, 238, 0.1)'
+                  : '0 8px 32px rgba(34, 211, 238, 0.08)',
+              }}
             >
-              <div
-                className={`w-20 h-20 rounded-full mb-4 flex items-center justify-center text-2xl font-bold ${
-                  isDark
-                    ? 'bg-gradient-to-br from-cyan-500 to-blue-600'
-                    : 'bg-gradient-to-br from-cyan-400 to-blue-500'
-                }`}
-                style={{
-                  boxShadow: '0 4px 12px var(--theme-glow)',
-                }}
-              >
-                {member.name.split(' ').map(n => n[0]).join('')}
+              <div className="flex items-start gap-5 mb-6">
+                <div
+                  className={`w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 ${
+                    isDark
+                      ? 'bg-gradient-to-br from-cyan-500 to-blue-600'
+                      : 'bg-gradient-to-br from-cyan-400 to-blue-500'
+                  }`}
+                  style={{
+                    boxShadow: '0 4px 12px var(--theme-glow)',
+                  }}
+                >
+                  {founder.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <h3
+                    className={`text-2xl font-bold ${
+                      isDark ? 'text-white' : 'text-slate-900'
+                    }`}
+                  >
+                    {founder.name}
+                  </h3>
+                  <div
+                    className="text-lg font-semibold mb-1"
+                    style={{ color: 'var(--theme-primary)' }}
+                  >
+                    {founder.role}
+                  </div>
+                  <p
+                    className={`text-sm ${
+                      isDark ? 'text-slate-400' : 'text-slate-500'
+                    }`}
+                  >
+                    {founder.credentials}
+                  </p>
+                </div>
               </div>
-              <h3
-                className={`text-lg font-bold mb-1 ${
-                  isDark ? 'text-white' : 'text-slate-900'
-                }`}
-              >
-                {member.name}
-              </h3>
-              <div
-                className="text-sm font-semibold mb-3"
-                style={{ color: 'var(--theme-primary)' }}
-              >
-                {member.role}
-              </div>
+
+              <ul className="space-y-3 mb-6">
+                {founder.highlights.map((highlight, i) => (
+                  <li
+                    key={i}
+                    className={`flex items-start gap-3 text-sm ${
+                      isDark ? 'text-slate-300' : 'text-slate-600'
+                    }`}
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                      style={{ background: 'var(--theme-primary)' }}
+                    />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+
               <p
-                className={`text-sm ${
-                  isDark ? 'text-slate-400' : 'text-slate-600'
+                className={`text-sm leading-relaxed ${
+                  isDark ? 'text-slate-400' : 'text-slate-500'
                 }`}
               >
-                {member.bio}
+                {founder.extra}
               </p>
             </motion.div>
           ))}
@@ -257,7 +409,7 @@ export function AboutPage({ isDark }: AboutPageProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
           className={`p-12 rounded-3xl border-2 backdrop-blur-sm text-center ${
             isDark
               ? 'bg-slate-900/50 border-slate-800'
