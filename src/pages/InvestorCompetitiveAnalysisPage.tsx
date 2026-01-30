@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { GlowCard } from '../components/GlowCard';
 import { SectionHeader } from '../components/SectionHeader';
+import { SectionDivider } from '../components/SectionDivider';
 
 interface InvestorCompetitiveAnalysisPageProps {
   isDark: boolean;
@@ -52,20 +53,6 @@ const FloatingParticles = () => (
         }}
       />
     ))}
-  </div>
-);
-
-// Section divider component
-const SectionDivider = () => (
-  <div className="relative py-16">
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="w-full max-w-4xl mx-auto">
-        <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
-      </div>
-    </div>
-    <div className="relative flex justify-center">
-      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
-    </div>
   </div>
 );
 
