@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronLeft,
@@ -31,6 +31,7 @@ import {
   CheckCircle2,
   Mail,
 } from 'lucide-react';
+import { GlowCard } from './GlowCard';
 
 interface InvestorPitchDeckProps {
   isDark: boolean;
@@ -64,33 +65,6 @@ const FloatingParticles = () => (
       />
     ))}
   </div>
-);
-
-// Glowing card component - cyan/blue scheme
-const GlowCard = ({ children, className = '', delay = 0, highlight = false }: { children: React.ReactNode; className?: string; delay?: number; highlight?: boolean }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay, duration: 0.6 }}
-    whileHover={{ scale: 1.02, y: -5 }}
-    className={`relative rounded-2xl backdrop-blur-sm ${className}`}
-    style={{
-      background: highlight
-        ? 'linear-gradient(135deg, rgba(8, 145, 178, 0.3), rgba(6, 182, 212, 0.2))'
-        : 'linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9))',
-      border: highlight ? '2px solid rgba(34, 211, 238, 0.6)' : '1px solid rgba(34, 211, 238, 0.2)',
-      boxShadow: highlight
-        ? '0 0 50px rgba(34, 211, 238, 0.25), inset 0 1px 0 rgba(255,255,255,0.1)'
-        : '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
-    }}
-  >
-    {highlight && (
-      <div className="absolute inset-0 rounded-2xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 animate-pulse" />
-      </div>
-    )}
-    <div className="relative z-10">{children}</div>
-  </motion.div>
 );
 
 // Slide 1: Title Slide
@@ -207,7 +181,7 @@ const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
 
     <div className="flex-1 grid grid-cols-2 gap-12 mb-10">
       {/* Retail Investors */}
-      <GlowCard className="p-10" delay={0.2} highlight>
+      <GlowCard className="p-10" delay={0.2} highlight animated>
         <div className="flex items-center gap-5 mb-8">
           <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
             <Users className="w-8 h-8 text-white" />
@@ -236,7 +210,7 @@ const ProblemSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Financial Advisers */}
-      <GlowCard className="p-10" delay={0.3}>
+      <GlowCard className="p-10" delay={0.3} animated>
         <div className="flex items-center gap-5 mb-8">
           <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center">
             <Briefcase className="w-8 h-8 text-white" />
@@ -302,7 +276,7 @@ const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
 
     <div className="flex-1 grid grid-cols-3 gap-10">
       {/* Phase 1 */}
-      <GlowCard className="p-10 flex flex-col" delay={0.2} highlight>
+      <GlowCard className="p-10 flex flex-col" delay={0.2} highlight animated>
         <div className="text-center mb-8">
           <motion.div
             className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-cyan-500/20 border border-cyan-500/50 mb-5"
@@ -328,7 +302,7 @@ const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Phase 2 */}
-      <GlowCard className="p-10 flex flex-col" delay={0.3}>
+      <GlowCard className="p-10 flex flex-col" delay={0.3} animated>
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-blue-500/20 border border-blue-500/30 mb-5">
             <Calendar className="w-6 h-6 text-blue-400" />
@@ -350,7 +324,7 @@ const SolutionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Phase 3 */}
-      <GlowCard className="p-10 flex flex-col" delay={0.4}>
+      <GlowCard className="p-10 flex flex-col" delay={0.4} animated>
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-purple-500/20 border border-purple-500/30 mb-5">
             <Rocket className="w-6 h-6 text-purple-400" />
@@ -409,7 +383,7 @@ const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
 
     <div className="flex-1 grid grid-cols-2 gap-14">
       {/* What Vera Does */}
-      <GlowCard className="p-10" delay={0.2}>
+      <GlowCard className="p-10" delay={0.2} animated>
         <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
           <Brain className="w-10 h-10 text-cyan-400" />
           What Vera Does
@@ -440,7 +414,7 @@ const VeraSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Comparison Table */}
-      <GlowCard className="p-10" delay={0.3}>
+      <GlowCard className="p-10" delay={0.3} animated>
         <h3 className="text-3xl font-bold text-white mb-8">Competitive Comparison</h3>
         <div className="rounded-xl overflow-hidden border border-cyan-500/20">
           <table className="w-full">
@@ -527,7 +501,7 @@ const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
 
     <div className="flex-1 flex items-center justify-center gap-6">
       {/* Portfolio Intelligence */}
-      <GlowCard className="flex-1 p-10 h-[450px]" delay={0.2} highlight>
+      <GlowCard className="flex-1 p-10 h-[450px]" delay={0.2} highlight animated>
         <h3 className="text-3xl font-bold text-cyan-400 mb-8 flex items-center gap-4">
           <Brain className="w-10 h-10" />
           PORTFOLIO INTELLIGENCE
@@ -571,7 +545,7 @@ const RegulatorySlide: React.FC<SlideProps> = ({ isDark }) => (
       </motion.div>
 
       {/* Trading App */}
-      <GlowCard className="flex-1 p-10 h-[450px]" delay={0.3}>
+      <GlowCard className="flex-1 p-10 h-[450px]" delay={0.3} animated>
         <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
           <LineChart className="w-10 h-10 text-slate-400" />
           TRADING APP
@@ -685,7 +659,7 @@ const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
 
       {/* Comparison */}
       <div className="space-y-10">
-        <GlowCard className="p-8" delay={0.4}>
+        <GlowCard className="p-8" delay={0.4} animated>
           <h3 className="text-3xl font-bold text-red-400 mb-6 flex items-center gap-4">
             <X className="w-10 h-10" />
             Current Industry
@@ -705,7 +679,7 @@ const XplanLiteSlide: React.FC<SlideProps> = ({ isDark }) => (
           </ul>
         </GlowCard>
 
-        <GlowCard className="p-8" delay={0.5} highlight>
+        <GlowCard className="p-8" delay={0.5} highlight animated>
           <h3 className="text-3xl font-bold text-cyan-400 mb-6 flex items-center gap-4">
             <CheckCircle2 className="w-10 h-10" />
             With Xplan Lite
@@ -770,7 +744,7 @@ const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
 
     {/* TAM boxes */}
     <div className="flex-1 grid grid-cols-2 gap-10">
-      <GlowCard className="p-10" delay={0.5}>
+      <GlowCard className="p-10" delay={0.5} animated>
         <h3 className="text-3xl font-bold text-cyan-400 mb-6 flex items-center gap-4">
           <Users className="w-10 h-10" />
           Phase 1 TAM: Retail
@@ -784,7 +758,7 @@ const MarketSlide: React.FC<SlideProps> = ({ isDark }) => (
         </div>
       </GlowCard>
 
-      <GlowCard className="p-10" delay={0.6}>
+      <GlowCard className="p-10" delay={0.6} animated>
         <h3 className="text-3xl font-bold text-purple-400 mb-6 flex items-center gap-4">
           <Briefcase className="w-10 h-10" />
           Phase 3 TAM: Advisers
@@ -830,7 +804,7 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
 
     <div className="flex-1 grid grid-cols-3 gap-10">
       {/* What's Live */}
-      <GlowCard className="p-8" delay={0.2} highlight>
+      <GlowCard className="p-8" delay={0.2} highlight animated>
         <h3 className="text-3xl font-bold text-cyan-400 mb-8 flex items-center gap-4">
           <Rocket className="w-10 h-10" />
           What's Live
@@ -858,7 +832,7 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Timeline */}
-      <GlowCard className="p-8" delay={0.3}>
+      <GlowCard className="p-8" delay={0.3} animated>
         <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
           <Calendar className="w-10 h-10 text-blue-400" />
           Timeline
@@ -887,7 +861,7 @@ const TractionSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Team */}
-      <GlowCard className="p-8" delay={0.4}>
+      <GlowCard className="p-8" delay={0.4} animated>
         <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-4">
           <Users className="w-10 h-10 text-purple-400" />
           Team
@@ -929,7 +903,7 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
 
     <div className="grid grid-cols-3 gap-8 mb-10">
       {/* Phase 1 */}
-      <GlowCard className="p-8" delay={0.2} highlight>
+      <GlowCard className="p-8" delay={0.2} highlight animated>
         <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
           <Brain className="w-8 h-8" />
           Phase 1: SaaS
@@ -948,7 +922,7 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Phase 2 */}
-      <GlowCard className="p-8" delay={0.3}>
+      <GlowCard className="p-8" delay={0.3} animated>
         <h3 className="text-2xl font-bold text-blue-400 mb-6 flex items-center gap-3">
           <LineChart className="w-8 h-8" />
           Phase 2: Trading
@@ -962,7 +936,7 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* Phase 3 */}
-      <GlowCard className="p-8" delay={0.4}>
+      <GlowCard className="p-8" delay={0.4} animated>
         <h3 className="text-2xl font-bold text-purple-400 mb-6 flex items-center gap-3">
           <FileText className="w-8 h-8" />
           Phase 3: Adviser
@@ -976,7 +950,7 @@ const BusinessModelSlide: React.FC<SlideProps> = ({ isDark }) => (
     </div>
 
     {/* Unit Economics */}
-    <GlowCard className="p-8" delay={0.5}>
+    <GlowCard className="p-8" delay={0.5} animated>
       <h3 className="text-3xl font-bold text-white mb-6">Unit Economics</h3>
       <div className="grid grid-cols-4 gap-6">
         {[
@@ -1036,7 +1010,7 @@ const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
 
     <div className="flex-1 grid grid-cols-2 gap-14">
       {/* Use of Funds */}
-      <GlowCard className="p-10" delay={0.2}>
+      <GlowCard className="p-10" delay={0.2} animated>
         <h3 className="text-3xl font-bold text-white mb-8">Use of Funds</h3>
         <div className="space-y-8">
           {[
@@ -1072,7 +1046,7 @@ const AskSlide: React.FC<SlideProps> = ({ isDark }) => (
       </GlowCard>
 
       {/* What You Get */}
-      <GlowCard className="p-10" delay={0.3} highlight>
+      <GlowCard className="p-10" delay={0.3} highlight animated>
         <h3 className="text-3xl font-bold text-cyan-400 mb-8">What You Get</h3>
         <ul className="space-y-6">
           {[

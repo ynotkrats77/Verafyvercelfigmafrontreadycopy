@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
   TrendingUp,
@@ -23,6 +22,7 @@ import {
   Crown,
   Percent,
 } from 'lucide-react';
+import { GlowCard } from '../components/GlowCard';
 
 interface InvestorCompetitiveAnalysisPageProps {
   isDark: boolean;
@@ -51,29 +51,6 @@ const FloatingParticles = () => (
         }}
       />
     ))}
-  </div>
-);
-
-// Glowing card component
-const GlowCard = ({ children, className = '', highlight = false }: { children: React.ReactNode; className?: string; highlight?: boolean }) => (
-  <div
-    className={`relative rounded-2xl backdrop-blur-sm ${className}`}
-    style={{
-      background: highlight
-        ? 'linear-gradient(135deg, rgba(8, 145, 178, 0.3), rgba(6, 182, 212, 0.2))'
-        : 'linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9))',
-      border: highlight ? '2px solid rgba(34, 211, 238, 0.6)' : '1px solid rgba(34, 211, 238, 0.2)',
-      boxShadow: highlight
-        ? '0 0 50px rgba(34, 211, 238, 0.25), inset 0 1px 0 rgba(255,255,255,0.1)'
-        : '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
-    }}
-  >
-    {highlight && (
-      <div className="absolute inset-0 rounded-2xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10" />
-      </div>
-    )}
-    <div className="relative z-10">{children}</div>
   </div>
 );
 
