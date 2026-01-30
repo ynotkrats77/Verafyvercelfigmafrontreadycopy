@@ -207,9 +207,9 @@ export function HomePage({ isDark }: HomePageProps) {
                       {/* YouTube Shorts Embed */}
                       <iframe
                         className="w-full h-full"
-                        src="https://www.youtube.com/embed/8okZgJP3qe4?autoplay=1&mute=1&loop=1&playlist=8okZgJP3qe4&controls=0&modestbranding=1&playsinline=1"
+                        src="https://www.youtube.com/embed/8okZgJP3qe4?autoplay=1&mute=0&loop=1&playlist=8okZgJP3qe4&controls=1&modestbranding=1&playsinline=1"
                         title="Institutional Intelligence Demo"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                         style={{
                           border: 'none',
