@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from "react";
-import { Home, Sun, Moon, Monitor, Presentation, Palette, Download, User, DollarSign } from "lucide-react";
+import { Home, Sun, Moon, Monitor, Presentation, Palette, Download, User, DollarSign, Briefcase } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { ThemeSelector } from "./components/ThemeSelector";
 import { Layout } from "./components/Layout";
@@ -48,6 +48,7 @@ const PricingSlide = lazy(() => import("./components/PricingSlide").then(m => ({
 const DesignSystemShowcase = lazy(() => import("./components/DesignSystemShowcase").then(m => ({ default: m.DesignSystemShowcase })));
 const LogoExporter = lazy(() => import("./components/LogoExporter").then(m => ({ default: m.LogoExporter })));
 const AuthButtonShowcase = lazy(() => import("./components/AuthButtonShowcase").then(m => ({ default: m.AuthButtonShowcase })));
+const InvestorPitchDeck = lazy(() => import("./components/InvestorPitchDeck").then(m => ({ default: m.InvestorPitchDeck })));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -127,7 +128,7 @@ const FloatingActionButton = ({ icon, isActive, isDark, onClick, title, ariaLabe
 );
 
 export default function App() {
-  const [mode, setMode] = useState<'web' | 'slide' | 'design' | 'export' | 'auth'>('web');
+  const [mode, setMode] = useState<'web' | 'slide' | 'design' | 'export' | 'auth' | 'investor'>('web');
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [isDark, setIsDark] = useState(true);
   const { theme, setTheme } = useTheme();
@@ -164,6 +165,15 @@ export default function App() {
     return (
       <Suspense fallback={<PageLoader />}>
         <AuthButtonShowcase isDark={isDark} />
+        <ModeToggleButtons isDark={isDark} onToggleDark={() => setIsDark(!isDark)} onBackToWeb={() => setMode('web')} />
+      </Suspense>
+    );
+  }
+
+  if (mode === 'investor') {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <InvestorPitchDeck isDark={isDark} />
         <ModeToggleButtons isDark={isDark} onToggleDark={() => setIsDark(!isDark)} onBackToWeb={() => setMode('web')} />
       </Suspense>
     );
@@ -247,6 +257,14 @@ export default function App() {
           onClick={() => setMode('auth')}
           title="Authentication Buttons"
           ariaLabel="View Authentication Buttons"
+        />
+
+        <FloatingActionButton
+          icon={<Briefcase className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} aria-hidden="true" />}
+          isDark={isDark}
+          onClick={() => setMode('investor')}
+          title="Investor Pitch Deck"
+          ariaLabel="View Investor Pitch Deck"
         />
       </div>
 
