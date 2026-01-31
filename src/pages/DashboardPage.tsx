@@ -1,77 +1,73 @@
-import { useEffect, useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { DashboardSidebar } from '../components/Sidebar';
-import { ThemedButton } from '../components/ui/themed-button';
-// // import { CONTACT_EMAILS, EmailLink } from '@/config/contacts';
 import { getUserTierConfig, CURRENT_USER_TIER, getRequiredTierForFeature } from '../config/userTier';
 import { UpgradeModal } from '../components/UpgradeModal';
-import { 
-  LayoutDashboard,
-  RefreshCw,
-  ChevronRight,
-  TrendingDown,
-  TrendingUp,
-  Clock,
+import {
   DollarSign,
-  AlertCircle,
   BarChart3,
-  Activity,
-  Zap,
+  TrendingDown,
   MessageSquare,
-  Briefcase,
-  TrendingUp as TrendingUpIcon,
-  Search,
-  Lightbulb,
-  BookOpen,
-  Calculator,
-  Menu,
 } from 'lucide-react';
 
-// Dashboard Content Pages
-import { ActionCenterPage } from './dashboard/ActionCenterPage';
-import { VeraDashboardPage } from './dashboard/VeraDashboardPage';
-import { PortfolioManagerPage } from './dashboard/PortfolioManagerPage';
-import { ConcentrationRiskPage } from './dashboard/ConcentrationRiskPage';
-import { AIDailyFeedPage } from './dashboard/AIDailyFeedPage';
-import { WinnersLosersPage } from './dashboard/WinnersLosersPage';
-import { SectorAllocationPage } from './dashboard/SectorAllocationPage';
-import { PlaceholderPage } from './dashboard/PlaceholderPage';
-import { ComparePortfoliosPage } from './dashboard/ComparePortfoliosPage';
-import { ConsolidatedViewPage } from './dashboard/ConsolidatedViewPage';
-import { PortfolioHealthPage } from './dashboard/PortfolioHealthPage';
-import { CashFlowPage } from './dashboard/CashFlowPage';
-import { RiskAdjustedPerformancePage } from './dashboard/RiskAdjustedPerformancePage';
-import { MarketOpportunityPage } from './dashboard/MarketOpportunityPage';
-import { WatchlistsPage } from './dashboard/WatchlistsPage';
-import { ScreenersPage } from './dashboard/ScreenersPage';
-import { StockPickersPage } from './dashboard/StockPickersPage';
-import { AIStrategyPage } from './dashboard/AIStrategyPage';
-import { FutureScenariosPage } from './dashboard/FutureScenariosPage';
-import { PeerComparisonPage } from './dashboard/PeerComparisonPage';
-import { StrategicPlannerPage } from './dashboard/StrategicPlannerPage';
-import { TaxCenterPage } from './dashboard/TaxCenterPage';
-import { TaxPlannerPage } from './dashboard/TaxPlannerPage';
-import { CapitalGainsPage } from './dashboard/CapitalGainsPage';
-import { TaxReportsPage } from './dashboard/TaxReportsPage';
-import { MultiJurisdictionTaxPage } from './dashboard/MultiJurisdictionTaxPage';
-import { ForeignTaxFilingPage } from './dashboard/ForeignTaxFilingPage';
+// Loading fallback component
+const PageLoader = ({ isDark }: { isDark: boolean }) => (
+  <div className="flex items-center justify-center h-full min-h-[400px]">
+    <div className="flex flex-col items-center gap-4">
+      <div
+        className="w-10 h-10 border-4 border-t-transparent rounded-full animate-spin"
+        style={{ borderColor: isDark ? '#22d3ee' : '#0891b2', borderTopColor: 'transparent' }}
+      />
+      <span className={isDark ? 'text-slate-400' : 'text-slate-600'}>Loading...</span>
+    </div>
+  </div>
+);
 
-// Learning Pages
-import { AcademyPage } from './learning/AcademyPage';
-import { CoursesPage } from './learning/CoursesPage';
-import { AchievementsPage } from './learning/AchievementsPage';
-import { EarnCreditsPage } from './learning/EarnCreditsPage';
+// Dashboard Content Pages - Lazy loaded
+const ActionCenterPage = lazy(() => import('./dashboard/ActionCenterPage').then(m => ({ default: m.ActionCenterPage })));
+const VeraDashboardPage = lazy(() => import('./dashboard/VeraDashboardPage').then(m => ({ default: m.VeraDashboardPage })));
+const PortfolioManagerPage = lazy(() => import('./dashboard/PortfolioManagerPage').then(m => ({ default: m.PortfolioManagerPage })));
+const ConcentrationRiskPage = lazy(() => import('./dashboard/ConcentrationRiskPage').then(m => ({ default: m.ConcentrationRiskPage })));
+const AIDailyFeedPage = lazy(() => import('./dashboard/AIDailyFeedPage').then(m => ({ default: m.AIDailyFeedPage })));
+const WinnersLosersPage = lazy(() => import('./dashboard/WinnersLosersPage').then(m => ({ default: m.WinnersLosersPage })));
+const SectorAllocationPage = lazy(() => import('./dashboard/SectorAllocationPage').then(m => ({ default: m.SectorAllocationPage })));
+const PlaceholderPage = lazy(() => import('./dashboard/PlaceholderPage').then(m => ({ default: m.PlaceholderPage })));
+const ComparePortfoliosPage = lazy(() => import('./dashboard/ComparePortfoliosPage').then(m => ({ default: m.ComparePortfoliosPage })));
+const ConsolidatedViewPage = lazy(() => import('./dashboard/ConsolidatedViewPage').then(m => ({ default: m.ConsolidatedViewPage })));
+const PortfolioHealthPage = lazy(() => import('./dashboard/PortfolioHealthPage').then(m => ({ default: m.PortfolioHealthPage })));
+const CashFlowPage = lazy(() => import('./dashboard/CashFlowPage').then(m => ({ default: m.CashFlowPage })));
+const RiskAdjustedPerformancePage = lazy(() => import('./dashboard/RiskAdjustedPerformancePage').then(m => ({ default: m.RiskAdjustedPerformancePage })));
+const MarketOpportunityPage = lazy(() => import('./dashboard/MarketOpportunityPage').then(m => ({ default: m.MarketOpportunityPage })));
+const WatchlistsPage = lazy(() => import('./dashboard/WatchlistsPage').then(m => ({ default: m.WatchlistsPage })));
+const ScreenersPage = lazy(() => import('./dashboard/ScreenersPage').then(m => ({ default: m.ScreenersPage })));
+const StockPickersPage = lazy(() => import('./dashboard/StockPickersPage').then(m => ({ default: m.StockPickersPage })));
+const AIStrategyPage = lazy(() => import('./dashboard/AIStrategyPage').then(m => ({ default: m.AIStrategyPage })));
+const FutureScenariosPage = lazy(() => import('./dashboard/FutureScenariosPage').then(m => ({ default: m.FutureScenariosPage })));
+const PeerComparisonPage = lazy(() => import('./dashboard/PeerComparisonPage').then(m => ({ default: m.PeerComparisonPage })));
+const StrategicPlannerPage = lazy(() => import('./dashboard/StrategicPlannerPage').then(m => ({ default: m.StrategicPlannerPage })));
+const TaxCenterPage = lazy(() => import('./dashboard/TaxCenterPage').then(m => ({ default: m.TaxCenterPage })));
+const TaxPlannerPage = lazy(() => import('./dashboard/TaxPlannerPage').then(m => ({ default: m.TaxPlannerPage })));
+const CapitalGainsPage = lazy(() => import('./dashboard/CapitalGainsPage').then(m => ({ default: m.CapitalGainsPage })));
+const TaxReportsPage = lazy(() => import('./dashboard/TaxReportsPage').then(m => ({ default: m.TaxReportsPage })));
+const MultiJurisdictionTaxPage = lazy(() => import('./dashboard/MultiJurisdictionTaxPage').then(m => ({ default: m.MultiJurisdictionTaxPage })));
+const ForeignTaxFilingPage = lazy(() => import('./dashboard/ForeignTaxFilingPage').then(m => ({ default: m.ForeignTaxFilingPage })));
 
-// Community Pages
-import { ForumPage } from './community/ForumPage';
-import { BlogPage } from './community/BlogPage';
+// Learning Pages - Lazy loaded
+const AcademyPage = lazy(() => import('./learning/AcademyPage').then(m => ({ default: m.AcademyPage })));
+const CoursesPage = lazy(() => import('./learning/CoursesPage').then(m => ({ default: m.CoursesPage })));
+const AchievementsPage = lazy(() => import('./learning/AchievementsPage').then(m => ({ default: m.AchievementsPage })));
+const EarnCreditsPage = lazy(() => import('./learning/EarnCreditsPage').then(m => ({ default: m.EarnCreditsPage })));
 
-// Referral Pages
-import { ReferralProgramPage } from './referral/ReferralProgramPage';
+// Community Pages - Lazy loaded
+const ForumPage = lazy(() => import('./community/ForumPage').then(m => ({ default: m.ForumPage })));
+const BlogPage = lazy(() => import('./community/BlogPage').then(m => ({ default: m.BlogPage })));
 
-// Profile Pages
-import { SettingsPage } from './profile/SettingsPage';
-import { SubscriptionsPage } from './profile/SubscriptionsPage';
-import { AcademyRecordPage } from './profile/AcademyRecordPage';
+// Referral Pages - Lazy loaded
+const ReferralProgramPage = lazy(() => import('./referral/ReferralProgramPage').then(m => ({ default: m.ReferralProgramPage })));
+
+// Profile Pages - Lazy loaded
+const SettingsPage = lazy(() => import('./profile/SettingsPage').then(m => ({ default: m.SettingsPage })));
+const SubscriptionsPage = lazy(() => import('./profile/SubscriptionsPage').then(m => ({ default: m.SubscriptionsPage })));
+const AcademyRecordPage = lazy(() => import('./profile/AcademyRecordPage').then(m => ({ default: m.AcademyRecordPage })));
 
 interface DashboardPageProps {
   isDark: boolean;
@@ -203,97 +199,99 @@ export function DashboardPage({ isDark }: DashboardPageProps) {
       />
 
       {/* Main Content */}
-      <div 
+      <div
         className="flex-1 overflow-y-auto"
         style={{
           background: isDark ? '#0f172a' : '#f8fafc',
         }}
       >
-        {/* Dashboard Content */}
-        {currentSection === 'dashboard' && <VeraDashboardPage isDark={isDark} />}
-        {currentSection === 'action-center' && <ActionCenterPage isDark={isDark} />}
-        {currentSection === 'vera-dashboard' && <VeraDashboardPage isDark={isDark} />}
-        {currentSection === 'classic-dashboard' && (
-          <PlaceholderPage
-            isDark={isDark}
-            title="Classic Dashboard"
-            description="Traditional portfolio view with detailed holdings and performance metrics"
-            badge={{ label: 'Legacy', color: '#64748b' }}
-            features={[
-              'Comprehensive holdings table with real-time prices',
-              'Performance charts and historical data',
-              'Transaction history and cost basis tracking',
-              'Customizable watchlists and alerts'
-            ]}
-          />
-        )}
-        {currentSection === 'vera-chat' && (
-          <PlaceholderPage
-            isDark={isDark}
-            title="Vera Chat"
-            description="Ask Vera anything about your portfolio, markets, or investment strategies"
-            icon={MessageSquare}
-            badge={{ label: 'AI-Powered', color: '#22D3EE' }}
-            features={[
-              'Natural language portfolio questions',
-              'Real-time market insights and analysis',
-              'Investment strategy recommendations',
-              'Educational content and explanations'
-            ]}
-          />
-        )}
-        
-        {/* Portfolio Section */}
-        {currentSection === 'portfolio-manager' && <PortfolioManagerPage isDark={isDark} />}
-        {currentSection === 'compare-portfolios' && <ComparePortfoliosPage isDark={isDark} />}
-        {currentSection === 'consolidated-view' && <ConsolidatedViewPage isDark={isDark} />}
-        {currentSection === 'portfolio-health' && <PortfolioHealthPage isDark={isDark} />}
-        
-        {/* Insights Section */}
-        {currentSection === 'concentration-risk' && <ConcentrationRiskPage isDark={isDark} />}
-        {currentSection === 'ai-daily-feed' && <AIDailyFeedPage isDark={isDark} />}
-        {currentSection === 'winners-losers' && <WinnersLosersPage isDark={isDark} />}
-        {currentSection === 'cash-flow' && <CashFlowPage isDark={isDark} />}
-        {currentSection === 'sector-allocation' && <SectorAllocationPage isDark={isDark} />}
-        {currentSection === 'risk-performance' && <RiskAdjustedPerformancePage isDark={isDark} />}
-        {currentSection === 'market-opportunity' && <MarketOpportunityPage isDark={isDark} />}
-        
-        {/* Research Section */}
-        {currentSection === 'watchlists' && <WatchlistsPage isDark={isDark} />}
-        {currentSection === 'screeners' && <ScreenersPage isDark={isDark} />}
-        {currentSection === 'stock-pickers' && <StockPickersPage isDark={isDark} />}
+        <Suspense fallback={<PageLoader isDark={isDark} />}>
+          {/* Dashboard Content */}
+          {currentSection === 'dashboard' && <VeraDashboardPage isDark={isDark} />}
+          {currentSection === 'action-center' && <ActionCenterPage isDark={isDark} />}
+          {currentSection === 'vera-dashboard' && <VeraDashboardPage isDark={isDark} />}
+          {currentSection === 'classic-dashboard' && (
+            <PlaceholderPage
+              isDark={isDark}
+              title="Classic Dashboard"
+              description="Traditional portfolio view with detailed holdings and performance metrics"
+              badge={{ label: 'Legacy', color: '#64748b' }}
+              features={[
+                'Comprehensive holdings table with real-time prices',
+                'Performance charts and historical data',
+                'Transaction history and cost basis tracking',
+                'Customizable watchlists and alerts'
+              ]}
+            />
+          )}
+          {currentSection === 'vera-chat' && (
+            <PlaceholderPage
+              isDark={isDark}
+              title="Vera Chat"
+              description="Ask Vera anything about your portfolio, markets, or investment strategies"
+              icon={MessageSquare}
+              badge={{ label: 'AI-Powered', color: '#22D3EE' }}
+              features={[
+                'Natural language portfolio questions',
+                'Real-time market insights and analysis',
+                'Investment strategy recommendations',
+                'Educational content and explanations'
+              ]}
+            />
+          )}
 
-        {/* Strategic Planning Section */}
-        {currentSection === 'ai-strategy' && <AIStrategyPage isDark={isDark} />}
-        {currentSection === 'future-scenarios' && <FutureScenariosPage isDark={isDark} />}
-        {currentSection === 'peer-comparison' && <PeerComparisonPage isDark={isDark} />}
-        {currentSection === 'strategic-planner' && <StrategicPlannerPage isDark={isDark} />}
+          {/* Portfolio Section */}
+          {currentSection === 'portfolio-manager' && <PortfolioManagerPage isDark={isDark} />}
+          {currentSection === 'compare-portfolios' && <ComparePortfoliosPage isDark={isDark} />}
+          {currentSection === 'consolidated-view' && <ConsolidatedViewPage isDark={isDark} />}
+          {currentSection === 'portfolio-health' && <PortfolioHealthPage isDark={isDark} />}
 
-        {/* Tax Pack Section */}
-        {currentSection === 'tax-center' && <TaxCenterPage isDark={isDark} />}
-        {currentSection === 'tax-planner' && <TaxPlannerPage isDark={isDark} />}
-        {currentSection === 'capital-gains' && <CapitalGainsPage isDark={isDark} />}
-        {currentSection === 'tax-reports' && <TaxReportsPage isDark={isDark} />}
-        {currentSection === 'multi-jurisdiction-tax' && <MultiJurisdictionTaxPage isDark={isDark} />}
-        {currentSection === 'foreign-tax-filing' && <ForeignTaxFilingPage isDark={isDark} />}
+          {/* Insights Section */}
+          {currentSection === 'concentration-risk' && <ConcentrationRiskPage isDark={isDark} />}
+          {currentSection === 'ai-daily-feed' && <AIDailyFeedPage isDark={isDark} />}
+          {currentSection === 'winners-losers' && <WinnersLosersPage isDark={isDark} />}
+          {currentSection === 'cash-flow' && <CashFlowPage isDark={isDark} />}
+          {currentSection === 'sector-allocation' && <SectorAllocationPage isDark={isDark} />}
+          {currentSection === 'risk-performance' && <RiskAdjustedPerformancePage isDark={isDark} />}
+          {currentSection === 'market-opportunity' && <MarketOpportunityPage isDark={isDark} />}
 
-        {/* Learning Section */}
-        {currentSection === 'academy' && <AcademyPage isDark={isDark} />}
-        {currentSection === 'courses' && <CoursesPage isDark={isDark} />}
-        {currentSection === 'achievements' && <AchievementsPage isDark={isDark} />}
-        {currentSection === 'earn-credits' && <EarnCreditsPage isDark={isDark} isAuthenticated={isAuthenticated} />}
+          {/* Research Section */}
+          {currentSection === 'watchlists' && <WatchlistsPage isDark={isDark} />}
+          {currentSection === 'screeners' && <ScreenersPage isDark={isDark} />}
+          {currentSection === 'stock-pickers' && <StockPickersPage isDark={isDark} />}
 
-        {/* Community Section */}
-        {currentSection === 'forum' && <ForumPage isDark={isDark} />}
-        {currentSection === 'blog' && <BlogPage isDark={isDark} />}
+          {/* Strategic Planning Section */}
+          {currentSection === 'ai-strategy' && <AIStrategyPage isDark={isDark} />}
+          {currentSection === 'future-scenarios' && <FutureScenariosPage isDark={isDark} />}
+          {currentSection === 'peer-comparison' && <PeerComparisonPage isDark={isDark} />}
+          {currentSection === 'strategic-planner' && <StrategicPlannerPage isDark={isDark} />}
 
-        {/* Referral Section */}
-        {currentSection === 'referral-program' && <ReferralProgramPage isDark={isDark} isAuthenticated={isAuthenticated} />}
+          {/* Tax Pack Section */}
+          {currentSection === 'tax-center' && <TaxCenterPage isDark={isDark} />}
+          {currentSection === 'tax-planner' && <TaxPlannerPage isDark={isDark} />}
+          {currentSection === 'capital-gains' && <CapitalGainsPage isDark={isDark} />}
+          {currentSection === 'tax-reports' && <TaxReportsPage isDark={isDark} />}
+          {currentSection === 'multi-jurisdiction-tax' && <MultiJurisdictionTaxPage isDark={isDark} />}
+          {currentSection === 'foreign-tax-filing' && <ForeignTaxFilingPage isDark={isDark} />}
 
-        {/* Profile Section */}
-        {currentSection === 'settings' && <SettingsPage isDark={isDark} />}
-        {currentSection === 'subscriptions' && <SubscriptionsPage isDark={isDark} />}
-        {currentSection === 'academy-record' && <AcademyRecordPage isDark={isDark} />}
+          {/* Learning Section */}
+          {currentSection === 'academy' && <AcademyPage isDark={isDark} />}
+          {currentSection === 'courses' && <CoursesPage isDark={isDark} />}
+          {currentSection === 'achievements' && <AchievementsPage isDark={isDark} />}
+          {currentSection === 'earn-credits' && <EarnCreditsPage isDark={isDark} isAuthenticated={isAuthenticated} />}
+
+          {/* Community Section */}
+          {currentSection === 'forum' && <ForumPage isDark={isDark} />}
+          {currentSection === 'blog' && <BlogPage isDark={isDark} />}
+
+          {/* Referral Section */}
+          {currentSection === 'referral-program' && <ReferralProgramPage isDark={isDark} isAuthenticated={isAuthenticated} />}
+
+          {/* Profile Section */}
+          {currentSection === 'settings' && <SettingsPage isDark={isDark} />}
+          {currentSection === 'subscriptions' && <SubscriptionsPage isDark={isDark} />}
+          {currentSection === 'academy-record' && <AcademyRecordPage isDark={isDark} />}
+        </Suspense>
       </div>
 
       {/* Upgrade Modal */}
