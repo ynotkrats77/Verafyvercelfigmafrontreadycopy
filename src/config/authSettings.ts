@@ -50,7 +50,6 @@ export const PUBLIC_PAGES: PageType[] = [
   'compliance',
   'disclaimers',
   'veraai',
-  'market-data',
   'tax-pack',
   'starter-plan',
   'standard-plan',

@@ -18,7 +18,6 @@ export type PageType =
   | 'compliance'
   | 'disclaimers'
   | 'veraai'
-  | 'market-data'
   | 'tax-pack'
   | 'starter-plan'
   | 'standard-plan'

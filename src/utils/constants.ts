@@ -176,7 +176,7 @@ export const FOOTER_SECTIONS = {
       { label: 'Features', page: 'features' as PageType },
       { label: 'Pricing', page: 'pricing' as PageType },
       { label: 'How Vera Works', page: 'veraai' as PageType },
-      { label: 'Market Data', page: 'market-data' as PageType },
+      { label: 'Market Data', page: 'markets' as PageType },
       { label: 'Enterprise', page: 'enterprise' as PageType },
     ],
   },
