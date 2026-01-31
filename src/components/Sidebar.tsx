@@ -187,12 +187,12 @@ export function DashboardSidebar({ isDark, currentSection = 'dashboard', onNavig
       ],
     },
     {
-      id: 'referrals',
-      label: 'Referrals & Rewards',
+      id: 'rewards',
+      label: 'Rewards',
       icon: Gift,
       children: [
-        { id: 'referral-program', label: 'Referral Program', icon: Users },
-        { id: 'earn-credits', label: 'Earn Verafy Cash', icon: Coins },
+        { id: 'earn-credits', label: 'Earn Credits', icon: Coins },
+        { id: 'referral-program', label: 'Refer Friends', icon: Users },
       ],
     },
     {

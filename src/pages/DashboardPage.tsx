@@ -262,6 +262,7 @@ export function DashboardPage({ isDark }: DashboardPageProps) {
 
           {/* Strategic Planning Section */}
           {currentSection === 'ai-strategy' && <AIStrategyPage isDark={isDark} />}
+          {currentSection === 'ai-strategy-insights' && <AIStrategyPage isDark={isDark} />}
           {currentSection === 'future-scenarios' && <FutureScenariosPage isDark={isDark} />}
           {currentSection === 'peer-comparison' && <PeerComparisonPage isDark={isDark} />}
           {currentSection === 'strategic-planner' && <StrategicPlannerPage isDark={isDark} />}
@@ -291,6 +292,20 @@ export function DashboardPage({ isDark }: DashboardPageProps) {
           {currentSection === 'settings' && <SettingsPage isDark={isDark} />}
           {currentSection === 'subscriptions' && <SubscriptionsPage isDark={isDark} />}
           {currentSection === 'academy-record' && <AcademyRecordPage isDark={isDark} />}
+          {currentSection === 'help' && (
+            <PlaceholderPage
+              isDark={isDark}
+              title="Help Centre"
+              description="Get help with your Verafy AI account and portfolio management"
+              badge={{ label: 'Support', color: '#22D3EE' }}
+              features={[
+                'Browse FAQs and common questions',
+                'Access documentation and guides',
+                'Ask Vera for instant assistance',
+                'Submit support tickets for account issues'
+              ]}
+            />
+          )}
         </Suspense>
       </div>
 

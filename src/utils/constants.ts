@@ -177,6 +177,7 @@ export const FOOTER_SECTIONS = {
       { label: 'Pricing', page: 'pricing' as PageType },
       { label: 'How Vera Works', page: 'veraai' as PageType },
       { label: 'Market Data', page: 'markets' as PageType },
+      { label: 'Rewards Program', page: 'rewards' as PageType },
       { label: 'Enterprise', page: 'enterprise' as PageType },
     ],
   },
@@ -194,10 +195,17 @@ export const FOOTER_SECTIONS = {
     title: 'Resources',
     links: [
       { label: 'Documentation', page: 'docs' as PageType },
-      { label: 'Help Centre', page: 'help-centre' as PageType },
-      { label: 'Blog', page: 'blog' as PageType },
+      { label: 'Help Centre', page: 'faq' as PageType },
       { label: 'Financial Glossary', page: 'glossary' as PageType },
       { label: 'Release Notes', page: 'release-notes' as PageType },
+    ],
+  },
+  education: {
+    title: 'Education',
+    links: [
+      { label: 'Verafy Academy', page: 'learn' as PageType },
+      { label: 'Learning Paths', page: 'learn' as PageType },
+      { label: 'Free Courses', page: 'learn' as PageType },
     ],
   },
   company: {
@@ -211,7 +219,6 @@ export const FOOTER_SECTIONS = {
   legal: {
     title: 'Trust Centre',
     links: [
-      { label: 'System Status', page: 'system-status' as PageType },
       { label: 'Security', page: 'security' as PageType },
       { label: 'Compliance Framework', page: 'compliance' as PageType },
       { label: 'Privacy Policy', page: 'privacy' as PageType },

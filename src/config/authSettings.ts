@@ -42,7 +42,6 @@ export const PUBLIC_PAGES: PageType[] = [
   'about',
   'docs',
   'contact',
-  'careers',
   'terms',
   'privacy',
   'refunds',
@@ -55,14 +54,12 @@ export const PUBLIC_PAGES: PageType[] = [
   'standard-plan',
   'pro-plan',
   'compare-plans',
-  'help-centre',
   'glossary',
   'release-notes',
-  'trust-centre',
-  'system-status',
-  'disclaimer',
   'chat',
   'faq',
+  'rewards',
+  'learn',
 ];
 
 /**
