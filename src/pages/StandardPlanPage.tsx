@@ -78,12 +78,12 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
               className="text-center mb-12"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
                 className="inline-block mb-6"
               >
                 <span 
@@ -174,7 +174,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="backdrop-blur-xl border-2 rounded-2xl p-6 mb-8"
               style={{
                 background: isDark
@@ -206,7 +206,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="backdrop-blur-xl border-2 rounded-2xl p-8 mb-8"
               style={{
                 background: isDark
@@ -226,7 +226,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={{ duration: 0.2, delay: index * 0.03, ease: 'easeOut' }}
                     className="flex items-start gap-3"
                   >
                     <div
@@ -250,7 +250,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="backdrop-blur-xl border-2 rounded-2xl p-8 mb-8"
               style={{
                 background: isDark
@@ -270,7 +270,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={{ duration: 0.2, delay: index * 0.03, ease: 'easeOut' }}
                     className="flex items-start gap-3"
                   >
                     <div
@@ -294,7 +294,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="backdrop-blur-xl border-2 rounded-2xl p-8"
               style={{
                 background: isDark
@@ -314,7 +314,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={{ duration: 0.2, delay: index * 0.03, ease: 'easeOut' }}
                     className="flex items-start gap-3"
                   >
                     <div
@@ -338,7 +338,7 @@ export function StandardPlanPage({ isDark }: StandardPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
             >
               {[

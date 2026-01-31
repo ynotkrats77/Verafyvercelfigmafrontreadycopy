@@ -71,14 +71,14 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
           <div className="relative max-w-5xl mx-auto px-6">
             <motion.div
               className="text-center mb-12"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
                 className="inline-block mb-6"
               >
                 <span 
@@ -168,7 +168,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="backdrop-blur-xl border-2 rounded-2xl p-8 mb-8"
               style={{
                 background: isDark
@@ -188,7 +188,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={{ duration: 0.2, delay: index * 0.03, ease: 'easeOut' }}
                     className="flex items-start gap-3"
                   >
                     <div
@@ -212,7 +212,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="backdrop-blur-xl border-2 rounded-2xl p-8 mb-8"
               style={{
                 background: isDark
@@ -232,7 +232,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={{ duration: 0.2, delay: index * 0.03, ease: 'easeOut' }}
                     className="flex items-start gap-3"
                   >
                     <div
@@ -256,7 +256,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="backdrop-blur-xl border-2 rounded-2xl p-8"
               style={{
                 background: isDark
@@ -276,7 +276,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={{ duration: 0.2, delay: index * 0.03, ease: 'easeOut' }}
                     className="flex items-start gap-3"
                   >
                     <div
@@ -300,7 +300,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
             >
               {[
@@ -379,7 +379,7 @@ export function StarterPlanPage({ isDark }: StarterPlanPageProps) {
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.05 }}
+                            transition={{ duration: 0.2, delay: index * 0.03, ease: 'easeOut' }}
                             className="border-b border-opacity-20 pb-4 last:border-0"
                             style={{ borderColor: isDark ? '#334155' : '#e2e8f0' }}
                           >
