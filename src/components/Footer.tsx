@@ -649,7 +649,7 @@ export function Footer({ isDark, onNavigate, currentPage, onModeChange, onToggle
                     variant="outline"
                     size="icon"
                     className={`border-2 transition-colors ${isDark ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 hover:border-cyan-400' : 'bg-white border-slate-300 hover:bg-slate-50 hover:border-cyan-400'}`}
-                    onClick={() => onModeChange?.('investor')}
+                    onClick={() => onNavigate?.('investor-pitch')}
                     title="Investor Pitch Deck"
                   >
                     <Briefcase className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`} />
