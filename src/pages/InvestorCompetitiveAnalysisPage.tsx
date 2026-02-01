@@ -21,6 +21,8 @@ import {
   Building2,
   Crown,
   Percent,
+  AlertTriangle,
+  Layers,
 } from 'lucide-react';
 import { GlowCard } from '../components/GlowCard';
 import { SectionHeader } from '../components/SectionHeader';
@@ -76,15 +78,15 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
             </div>
             <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Competitive Analysis & <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Market Sizing</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Market Intelligence</span>
             </h1>
             <p className={`text-xl md:text-2xl mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              January 2026
+              Document Version 1.1 | February 2026
             </p>
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl border border-cyan-500/30">
               <BarChart3 className="w-6 h-6 text-cyan-400" />
               <span className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Data-Driven Investment Thesis
+                Prepared for Antler Investment Committee
               </span>
             </div>
           </div>
@@ -101,30 +103,48 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
           />
 
           <GlowCard className="p-8" highlight>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-4 gap-6 mb-8">
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center mb-4">
-                  <Users className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center mb-3">
+                  <Users className="w-7 h-7 text-white" />
                 </div>
-                <div className="text-4xl font-bold text-cyan-400 mb-2">7.7M</div>
-                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Australian investors</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>holding $1.3 trillion in assets</p>
+                <div className="text-3xl font-bold text-cyan-400 mb-1">7.7M</div>
+                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Australian Retail Investors</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>38% of adult population</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center mb-4">
-                  <Target className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center mb-3">
+                  <DollarSign className="w-7 h-7 text-white" />
                 </div>
-                <div className="text-4xl font-bold text-purple-400 mb-2">77%</div>
-                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Use zero portfolio tools</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>~6 million underserved investors</p>
+                <div className="text-3xl font-bold text-green-400 mb-1">$1.3T</div>
+                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Total Retail Capital</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>in listed assets</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center mb-4">
-                  <DollarSign className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center mb-3">
+                  <Target className="w-7 h-7 text-white" />
                 </div>
-                <div className="text-4xl font-bold text-green-400 mb-2">$5-20</div>
-                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Per month pricing</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>50% founding member discount</p>
+                <div className="text-3xl font-bold text-red-400 mb-1">95%</div>
+                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Market Unaddressed</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>use spreadsheets only</p>
+              </div>
+              <div className="text-center">
+                <div className="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center mb-3">
+                  <TrendingUp className="w-7 h-7 text-white" />
+                </div>
+                <div className="text-3xl font-bold text-purple-400 mb-1">5M</div>
+                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Self-Directed Investors</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>65% of total investors</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-green-500/20 border border-green-500/30 text-center">
+                <p className="text-green-400 font-bold">Category Creator</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>First AI-powered pre-trade tax optimization platform</p>
+              </div>
+              <div className="p-4 rounded-xl bg-blue-500/20 border border-blue-500/30 text-center">
+                <p className="text-blue-400 font-bold">Three-Product Ecosystem</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Portfolio Intelligence → Trading → Advisor (all Year 1)</p>
               </div>
             </div>
           </GlowCard>
@@ -136,7 +156,7 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
         <section className="mb-8">
           <SectionHeader
             title="VerafyAI Pricing Structure"
-            subtitle="Simple, transparent pricing with founding member benefits"
+            subtitle="Founding member pricing: 50% off locked forever (before June 30, 2026)"
             isDark={isDark}
           />
 
@@ -152,24 +172,25 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
                   <span className="text-4xl font-bold text-cyan-400">$5</span>
                   <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>/month</span>
                 </div>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>or $50/year (save 17%)</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>or $50/year</p>
               </div>
               <div className="p-4 rounded-xl bg-orange-500/20 border border-orange-500/30 mb-6">
                 <p className="text-orange-400 font-semibold text-center flex items-center justify-center gap-2">
                   <Crown className="w-4 h-4" />
-                  Founding: $2.50/mo or $25/yr
+                  Regular: $10/mo or $100/yr
                 </p>
               </div>
               <ul className="space-y-3">
                 {[
-                  '1 Portfolio',
                   '50 Holdings',
-                  'Basic dashboard',
-                  'Performance tracking',
-                  'Email support',
+                  'Up to 3 Portfolios',
+                  'Action Center (5/day)',
+                  'Basic Vera voice',
+                  'Tax loss harvesting detection',
+                  '1 year tax history',
                 ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                    <Check className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  <li key={i} className={`flex items-center gap-2 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -190,25 +211,25 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
                   <span className="text-4xl font-bold text-cyan-400">$10</span>
                   <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>/month</span>
                 </div>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>or $100/year (save 17%)</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>or $100/year</p>
               </div>
               <div className="p-4 rounded-xl bg-orange-500/20 border border-orange-500/30 mb-6">
                 <p className="text-orange-400 font-semibold text-center flex items-center justify-center gap-2">
                   <Crown className="w-4 h-4" />
-                  Founding: $5/mo or $50/yr
+                  Regular: $20/mo or $200/yr
                 </p>
               </div>
               <ul className="space-y-3">
                 {[
-                  '3 Portfolios',
-                  '200 Holdings',
-                  'AI daily insights',
-                  'Tax-loss harvesting',
-                  'Dividend tracking',
+                  'Unlimited holdings & portfolios',
+                  'Full Action Center',
+                  'Full Vera personality',
+                  'Behavioral pattern detection',
+                  '2 years tax history',
                   'Priority support',
                 ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                    <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                  <li key={i} className={`flex items-center gap-2 text-sm ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -226,47 +247,235 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
                   <span className="text-4xl font-bold text-purple-400">$20</span>
                   <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>/month</span>
                 </div>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>or $200/year (save 17%)</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>or $200/year</p>
               </div>
               <div className="p-4 rounded-xl bg-orange-500/20 border border-orange-500/30 mb-6">
                 <p className="text-orange-400 font-semibold text-center flex items-center justify-center gap-2">
                   <Crown className="w-4 h-4" />
-                  Founding: $10/mo or $100/yr
+                  Regular: $40/mo or $400/yr
                 </p>
               </div>
               <ul className="space-y-3">
                 {[
-                  '10 Portfolios',
-                  '500 Holdings',
-                  'Vera AI assistant',
-                  'Pre-trade CGT modelling',
-                  'Strategic scenario planning',
-                  'White-glove support',
+                  'Chat with Vera (500 q/mo)',
+                  'Scenario Modeling (20/mo)',
+                  'Pre-trade CGT modeling',
+                  'ATO-ready tax reports (PDF)',
+                  '5 years tax history',
+                  'Priority phone support',
                 ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                    <Check className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                  <li key={i} className={`flex items-center gap-2 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    <Check className="w-4 h-4 text-purple-400 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
             </GlowCard>
           </div>
+        </section>
 
-          <GlowCard className="p-6">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <div className="flex items-center gap-3">
-                <Award className="w-8 h-8 text-orange-400" />
-                <div>
-                  <p className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Founding Member Benefits</p>
-                  <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>50% discount locked for life</p>
+        <SectionDivider />
+
+        {/* Direct Competitors Pricing */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Pricing Comparison (January 2026)"
+            subtitle="VerafyAI Pro: 57% cheaper than Sharesight Premium with 5x more features"
+            isDark={isDark}
+          />
+
+          <GlowCard className="p-6 overflow-x-auto">
+            <div className="rounded-xl overflow-hidden border border-cyan-500/20 min-w-[700px]">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
+                    <th className={`p-4 text-left font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Platform</th>
+                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Monthly</th>
+                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Annual</th>
+                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Holdings</th>
+                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Portfolios</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { name: 'Sharesight Free', monthly: '$0', annual: '$0', holdings: '10', portfolios: '1', highlight: false },
+                    { name: 'Sharesight Starter', monthly: '$19', annual: '$180', holdings: '30', portfolios: '1', highlight: false },
+                    { name: 'Sharesight Premium', monthly: '$49', annual: '$468', holdings: 'Unlimited', portfolios: '5-10', highlight: false },
+                    { name: 'Navexa Basic', monthly: 'N/A', annual: '$99', holdings: 'N/A', portfolios: '1', highlight: false },
+                    { name: 'Navexa Premium', monthly: 'N/A', annual: '$300', holdings: 'N/A', portfolios: '10', highlight: false },
+                    { name: 'VerafyAI Starter*', monthly: '$5', annual: '$50', holdings: '50', portfolios: '3', highlight: true },
+                    { name: 'VerafyAI Standard*', monthly: '$10', annual: '$100', holdings: 'Unlimited', portfolios: 'Unlimited', highlight: true },
+                    { name: 'VerafyAI Pro*', monthly: '$20', annual: '$200', holdings: 'Unlimited', portfolios: 'Unlimited', highlight: true },
+                  ].map((row, i) => (
+                    <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'} ${row.highlight ? 'bg-cyan-500/10' : ''}`}>
+                      <td className={`p-4 font-medium ${row.highlight ? 'text-cyan-400' : isDark ? 'text-white' : 'text-slate-800'}`}>{row.name}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.monthly}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.annual}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.holdings}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.portfolios}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className={`text-sm mt-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              *Founding member pricing (50% off) available before June 30, 2026. Prices in AUD.
+            </p>
+          </GlowCard>
+        </section>
+
+        <SectionDivider />
+
+        {/* Feature Comparison Matrix */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Feature Comparison Matrix"
+            subtitle="What VerafyAI has that nobody else does"
+            isDark={isDark}
+          />
+
+          <GlowCard className="p-6 overflow-x-auto">
+            <div className="rounded-xl overflow-hidden border border-cyan-500/20 min-w-[600px]">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
+                    <th className={`p-4 text-left font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Feature</th>
+                    <th className="p-4 text-center text-cyan-400 font-bold">VerafyAI</th>
+                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Sharesight</th>
+                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Navexa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { feature: 'Performance Tracking', verafy: true, sharesight: true, navexa: true },
+                    { feature: 'Post-Trade Tax Reporting', verafy: true, sharesight: true, navexa: true },
+                    { feature: 'Unrealized CGT Report', verafy: true, sharesight: 'Std+', navexa: 'Std+' },
+                    { feature: 'PRE-TRADE CGT Modeling', verafy: 'UNIQUE', sharesight: false, navexa: false },
+                    { feature: 'AI Behavioral Coaching', verafy: 'UNIQUE', sharesight: false, navexa: false },
+                    { feature: 'AI-Powered Parcel Selection', verafy: 'Pro', sharesight: false, navexa: 'Manual' },
+                    { feature: 'Tax Loss Harvesting', verafy: 'Proactive', sharesight: false, navexa: 'Detect' },
+                    { feature: 'Chat Interface (Vera AI)', verafy: 'Pro', sharesight: false, navexa: false },
+                    { feature: 'Scenario Modeling', verafy: 'Pro', sharesight: false, navexa: false },
+                    { feature: 'Academy & Community', verafy: 'Included', sharesight: false, navexa: false },
+                    { feature: 'Referral Program', verafy: true, sharesight: false, navexa: false },
+                    { feature: 'Mobile App', verafy: 'Q2 2026', sharesight: true, navexa: true },
+                  ].map((row, i) => (
+                    <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
+                      <td className={`p-4 ${isDark ? 'text-white' : 'text-slate-800'}`}>{row.feature}</td>
+                      <td className="p-4 text-center bg-cyan-500/10">
+                        {row.verafy === true ? <CheckCircle2 className="w-5 h-5 text-cyan-400 mx-auto" /> :
+                         row.verafy === false ? <X className="w-5 h-5 text-red-400 mx-auto" /> :
+                         row.verafy === 'UNIQUE' ? <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold">UNIQUE</span> :
+                         <span className="text-cyan-400 text-sm">{row.verafy}</span>}
+                      </td>
+                      <td className="p-4 text-center">
+                        {row.sharesight === true ? <Check className="w-5 h-5 text-green-400 mx-auto" /> :
+                         row.sharesight === false ? <X className="w-5 h-5 text-red-400/50 mx-auto" /> :
+                         <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.sharesight}</span>}
+                      </td>
+                      <td className="p-4 text-center">
+                        {row.navexa === true ? <Check className="w-5 h-5 text-green-400 mx-auto" /> :
+                         row.navexa === false ? <X className="w-5 h-5 text-red-400/50 mx-auto" /> :
+                         <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.navexa}</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </GlowCard>
+
+          {/* Unique Features Grid */}
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+            {[
+              { title: 'Pre-Trade CGT Modeling', desc: 'Shows tax impact BEFORE you execute trade', tag: 'UNIQUE' },
+              { title: 'AI Behavioral Coaching', desc: 'Patent-pending emotional decision prevention', tag: 'UNIQUE' },
+              { title: 'Chat with Vera', desc: 'Conversational AI (500 q/mo)', tag: 'UNIQUE' },
+              { title: 'Scenario Modeling', desc: "Test 'what-if' strategies (20/mo)", tag: 'UNIQUE' },
+              { title: 'AI Parcel Selection', desc: 'Optimal parcels for lowest CGT', tag: 'AI' },
+              { title: 'Educational Ecosystem', desc: 'Academy + Community included', tag: 'INCLUDED' },
+              { title: 'Year 1 Ecosystem', desc: 'Portfolio + Trading + Advisor', tag: 'UNIQUE' },
+            ].map((item, i) => (
+              <GlowCard key={i} className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${
+                    item.tag === 'UNIQUE' ? 'bg-green-500/20 text-green-400' :
+                    item.tag === 'AI' ? 'bg-blue-500/20 text-blue-400' :
+                    'bg-cyan-500/20 text-cyan-400'
+                  }`}>{item.tag}</span>
                 </div>
-              </div>
-              <div className="h-12 w-px bg-slate-700 hidden md:block" />
-              <div className="flex items-center gap-3">
-                <Calculator className="w-8 h-8 text-cyan-400" />
-                <div>
-                  <p className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Tax Pack Add-On</p>
-                  <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>$100/FY comprehensive CGT report</p>
+                <h4 className={`font-bold text-sm mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</h4>
+                <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</p>
+              </GlowCard>
+            ))}
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* Adjacent Competitors Review */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Adjacent & Emerging Players - Full Review"
+            subtitle="Not direct competitors but monitored for potential pivots"
+            isDark={isDark}
+          />
+
+          <GlowCard className="p-6 overflow-x-auto">
+            <div className="rounded-xl overflow-hidden border border-cyan-500/20 min-w-[800px]">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
+                    <th className={`p-3 text-left font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Platform</th>
+                    <th className={`p-3 text-left ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Type</th>
+                    <th className={`p-3 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Est. Users</th>
+                    <th className={`p-3 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Pricing</th>
+                    <th className={`p-3 text-left ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Why Not Direct Competition</th>
+                    <th className={`p-3 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Threat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { name: 'Pearler', type: 'Robo-advisor', users: '~50K', pricing: '$9-15/mo', why: 'Auto-invest focus, no AI', threat: 'Medium' },
+                    { name: 'Stockspot', type: 'Robo-advisor', users: '100K+', pricing: '$29-49/mo', why: 'ETF/SMSF, not self-directed', threat: 'Medium' },
+                    { name: 'Simply Wall St', type: 'Analysis tool', users: '~200K AU', pricing: '$10-20/mo', why: 'Analysis-first, weak tax', threat: 'Low' },
+                    { name: 'CommSec Portfolio', type: 'Broker-embedded', users: 'N/A', pricing: 'Free', why: 'CommSec clients only', threat: 'Low' },
+                    { name: 'CMC Markets', type: 'Broker-embedded', users: 'N/A', pricing: 'Free', why: 'CMC clients only', threat: 'Low' },
+                    { name: 'Yahoo Finance', type: 'Free global', users: 'N/A', pricing: 'Free', why: 'No AU tax intelligence', threat: 'Very Low' },
+                  ].map((row, i) => (
+                    <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
+                      <td className={`p-3 font-medium ${isDark ? 'text-white' : 'text-slate-800'}`}>{row.name}</td>
+                      <td className={`p-3 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.type}</td>
+                      <td className={`p-3 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.users}</td>
+                      <td className={`p-3 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.pricing}</td>
+                      <td className={`p-3 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.why}</td>
+                      <td className="p-3 text-center">
+                        <span className={`px-2 py-0.5 rounded-full text-xs ${
+                          row.threat === 'Medium' ? 'bg-yellow-500/20 text-yellow-400' :
+                          row.threat === 'Low' ? 'bg-blue-500/20 text-blue-400' :
+                          'bg-green-500/20 text-green-400'
+                        }`}>{row.threat}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-6 p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
+              <h4 className={`font-bold text-sm mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Key Insight: No Adjacent Player Offers Our Core Value</h4>
+              <div className="grid md:grid-cols-3 gap-3">
+                <div className="flex items-center gap-2">
+                  <X className="w-4 h-4 text-red-400" />
+                  <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Pre-trade CGT modeling</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <X className="w-4 h-4 text-red-400" />
+                  <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>AI behavioral coaching</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <X className="w-4 h-4 text-red-400" />
+                  <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Complete ecosystem</span>
                 </div>
               </div>
             </div>
@@ -275,111 +484,362 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
 
         <SectionDivider />
 
-        {/* Competitive Landscape */}
+        {/* Market Sizing */}
         <section className="mb-8">
           <SectionHeader
-            title="Competitive Landscape"
-            subtitle="How we compare to existing solutions"
+            title="Market Sizing (TAM)"
+            subtitle="Australian & Global Self-Directed Investor Market"
             isDark={isDark}
           />
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
-            {/* Sharesight */}
-            <GlowCard className="p-6">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                  <LineChart className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Sharesight</h3>
-                  <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>Established market leader</p>
-                </div>
-              </div>
-              <div className={`p-4 rounded-lg mb-4 ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                <p className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Pricing:</p>
-                <ul className="space-y-2">
-                  <li className={isDark ? 'text-slate-300' : 'text-slate-700'}>Starter: <span className="text-blue-400 font-bold">$19/mo</span> (10 holdings)</li>
-                  <li className={isDark ? 'text-slate-300' : 'text-slate-700'}>Investor: <span className="text-blue-400 font-bold">$35/mo</span> (unlimited)</li>
-                  <li className={isDark ? 'text-slate-300' : 'text-slate-700'}>Expert: <span className="text-blue-400 font-bold">$49/mo</span> (advanced)</li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><Check className="w-4 h-4 inline text-green-400 mr-2" />Good tax reporting</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><Check className="w-4 h-4 inline text-green-400 mr-2" />Multi-broker support</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><X className="w-4 h-4 inline text-red-400 mr-2" />No AI insights</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><X className="w-4 h-4 inline text-red-400 mr-2" />No pre-trade modelling</p>
+            <GlowCard className="p-8" highlight>
+              <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
+                <Globe className="w-8 h-8" />
+                Australia
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { label: 'Total Retail Investors', value: '7.7M adults', note: '38% of adult population' },
+                  { label: 'Median Portfolio Value', value: '$170,000 AUD', note: 'ASX 2025' },
+                  { label: 'Self-Directed Investors', value: '5M', note: '65% trade via non-advice' },
+                  { label: 'SMSF Investors', value: '1.1M', note: 'Managing $900B' },
+                  { label: 'Current Penetration', value: '~5%', note: '~250K use tracking tools' },
+                  { label: 'Unaddressed Market', value: '95%', note: '~4.75M use spreadsheets' },
+                ].map((item, i) => (
+                  <div key={i} className={`p-3 rounded-lg flex justify-between items-center ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                    <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>{item.label}</span>
+                    <div className="text-right">
+                      <span className="font-bold text-cyan-400">{item.value}</span>
+                      <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.note}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </GlowCard>
 
-            {/* Navexa */}
-            <GlowCard className="p-6">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-                  <BarChart3 className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Navexa</h3>
-                  <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>Australian challenger</p>
-                </div>
-              </div>
-              <div className={`p-4 rounded-lg mb-4 ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                <p className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Pricing:</p>
-                <ul className="space-y-2">
-                  <li className={isDark ? 'text-slate-300' : 'text-slate-700'}>Investor: <span className="text-green-400 font-bold">$99/yr</span> (1 portfolio)</li>
-                  <li className={isDark ? 'text-slate-300' : 'text-slate-700'}>Trader: <span className="text-green-400 font-bold">$159/yr</span> (3 portfolios)</li>
-                  <li className={isDark ? 'text-slate-300' : 'text-slate-700'}>Pro: <span className="text-green-400 font-bold">$299/yr</span> (unlimited)</li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><Check className="w-4 h-4 inline text-green-400 mr-2" />Clean interface</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><Check className="w-4 h-4 inline text-green-400 mr-2" />AU tax focused</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><X className="w-4 h-4 inline text-red-400 mr-2" />No AI features</p>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}><X className="w-4 h-4 inline text-red-400 mr-2" />Limited actionable insights</p>
+            <GlowCard className="p-8">
+              <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <TrendingUp className="w-8 h-8 text-purple-400" />
+                Global Market
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { label: 'Global Total', value: '145M accounts', note: '$104.1B market value' },
+                  { label: 'Growth Rate', value: '4.49% CAGR', note: 'to 2034' },
+                  { label: 'North America', value: '80M+ investors', note: '4-5% CAGR' },
+                  { label: 'India', value: '40M+ demat accounts', note: '12-15% CAGR (high growth)' },
+                ].map((item, i) => (
+                  <div key={i} className={`p-3 rounded-lg flex justify-between items-center ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                    <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>{item.label}</span>
+                    <div className="text-right">
+                      <span className="font-bold text-purple-400">{item.value}</span>
+                      <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.note}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </GlowCard>
           </div>
+        </section>
 
-          {/* Feature Comparison Matrix */}
+        <SectionDivider />
+
+        {/* Three-Product Ecosystem */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Three-Product Ecosystem (All Year 1)"
+            subtitle="VerafyAI is the ONLY platform delivering all three products in Year 1"
+            isDark={isDark}
+          />
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {[
+              {
+                phase: 'Phase 1',
+                product: 'Portfolio Intelligence',
+                launch: 'Feb 15 (Beta) / Apr 1 (Public)',
+                target: '5M self-directed investors',
+                revenue: '$50-$200/year',
+                competitors: 'Sharesight, Navexa',
+                color: 'cyan',
+                icon: Brain,
+              },
+              {
+                phase: 'Phase 2',
+                product: 'Trading Platform',
+                launch: 'Q2-Q3 2026',
+                target: '7.7M retail investors',
+                revenue: 'Included in Pro or standalone',
+                competitors: 'CommSec, Superhero, SelfWealth',
+                color: 'blue',
+                icon: LineChart,
+              },
+              {
+                phase: 'Phase 3',
+                product: 'Advisor Platform',
+                launch: 'Q4 2026',
+                target: '~100K financial advisors',
+                revenue: '$3,000/year per advisor',
+                competitors: 'Xplan (IOOF), Midwinter',
+                color: 'purple',
+                icon: Briefcase,
+              },
+            ].map((item, i) => (
+              <GlowCard key={i} className="p-6" highlight={i === 0}>
+                <div className="text-center mb-4">
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                    item.color === 'cyan' ? 'bg-cyan-500/20 text-cyan-400' :
+                    item.color === 'blue' ? 'bg-blue-500/20 text-blue-400' :
+                    'bg-purple-500/20 text-purple-400'
+                  }`}>{item.phase}</span>
+                </div>
+                <div className={`w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 ${
+                  item.color === 'cyan' ? 'bg-gradient-to-br from-cyan-400 to-blue-500' :
+                  item.color === 'blue' ? 'bg-gradient-to-br from-blue-400 to-indigo-500' :
+                  'bg-gradient-to-br from-purple-400 to-pink-500'
+                }`}>
+                  <item.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className={`text-xl font-bold text-center mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.product}</h3>
+                <p className={`text-center text-sm mb-4 ${
+                  item.color === 'cyan' ? 'text-cyan-400' :
+                  item.color === 'blue' ? 'text-blue-400' :
+                  'text-purple-400'
+                }`}>{item.launch}</p>
+                <div className={`space-y-2 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <p><strong>Target:</strong> {item.target}</p>
+                  <p><strong>Revenue:</strong> {item.revenue}</p>
+                  <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>Competitors: {item.competitors}</p>
+                </div>
+              </GlowCard>
+            ))}
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* Competitive Moats */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Competitive Moats"
+            subtitle="Defensible advantages with 12-36 month head start"
+            isDark={isDark}
+          />
+
+          <div className="space-y-4">
+            {[
+              {
+                moat: 'Behavioral Finance AI',
+                strength: 'Very High',
+                patent: 'Patent-pending',
+                replicate: '12-18 months',
+                desc: 'Tracks emotional patterns, intervenes on panic-selling, learns individual risk tolerance.',
+                why: 'Requires 10K+ user interactions to train; competitors start from scratch',
+              },
+              {
+                moat: 'Pre-Trade CGT Engine',
+                strength: 'Very High',
+                patent: 'First-mover',
+                replicate: '12-18 months',
+                desc: 'Calculates tax impact BEFORE trade, suggests optimal parcel selection.',
+                why: 'Requires deep AU tax law expertise + real-time parcel tracking',
+              },
+              {
+                moat: 'AI-Native Architecture',
+                strength: 'High',
+                patent: 'Architectural',
+                replicate: '18-24 months',
+                desc: 'Built on Claude Sonnet (AWS Bedrock) from day one.',
+                why: 'Sharesight/Navexa have 10+ years legacy code; AI requires full rebuild',
+              },
+              {
+                moat: 'Three-Product Ecosystem',
+                strength: 'Very High',
+                patent: 'Execution moat',
+                replicate: '24-36 months',
+                desc: 'Portfolio → Trading → Advisor launching in Year 1.',
+                why: 'Requires $5M+, 3 product teams, coordinating parallel launches',
+              },
+              {
+                moat: 'Behavioral Data Moat',
+                strength: 'High',
+                patent: 'Network effect',
+                replicate: 'Compounding',
+                desc: 'Every interaction trains Vera; data creates actuarial advantage.',
+                why: 'Winner-takes-most: 1K users = weak AI, 100K users = strong AI',
+              },
+            ].map((item, i) => (
+              <GlowCard key={i} className="p-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.moat}</h3>
+                  <div className="flex gap-2">
+                    <span className={`px-2 py-1 rounded-full text-xs ${
+                      item.strength === 'Very High' ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'
+                    }`}>{item.strength}</span>
+                    <span className="px-2 py-1 rounded-full text-xs bg-cyan-500/20 text-cyan-400">{item.patent}</span>
+                  </div>
+                </div>
+                <p className={`mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{item.desc}</p>
+                <div className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  <strong>Time to replicate:</strong> {item.replicate} | <strong>Why hard:</strong> {item.why}
+                </div>
+              </GlowCard>
+            ))}
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* Risk Analysis */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Risk Analysis & Mitigation"
+            isDark={isDark}
+          />
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <GlowCard className="p-6">
+              <h3 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
+                <AlertTriangle className="w-6 h-6" />
+                External Risks
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { risk: 'ATO CGT Rule Changes', impact: 'High', likelihood: 'Low-Medium', mitigation: 'Flexible engine; expand to zero-CGT markets' },
+                  { risk: 'AI Regulation', impact: 'Medium', likelihood: 'Medium', mitigation: "Design as 'decision support' not 'advice'" },
+                  { risk: 'Sharesight Adds Pre-Trade CGT', impact: 'High', likelihood: 'Medium (12-18mo)', mitigation: 'First-mover data moat; ecosystem lock-in; patents' },
+                  { risk: 'Market Downturn', impact: 'Medium', likelihood: 'Medium', mitigation: 'Counter-cyclical value prop; sticky SMSF segment' },
+                ].map((item, i) => (
+                  <div key={i} className={`p-3 rounded-lg ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.risk}</span>
+                      <span className="px-2 py-0.5 rounded-full text-xs bg-red-500/20 text-red-400">Impact: {item.impact}</span>
+                    </div>
+                    <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.mitigation}</p>
+                  </div>
+                ))}
+              </div>
+            </GlowCard>
+
+            <GlowCard className="p-6">
+              <h3 className="text-xl font-bold text-orange-400 mb-4 flex items-center gap-2">
+                <Shield className="w-6 h-6" />
+                Internal Risks
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { risk: 'AI False Positives', impact: 'Medium', likelihood: 'Medium', mitigation: 'Conservative thresholds; A/B testing; clear disclaimers' },
+                  { risk: 'Tax Calculation Errors', impact: 'High', likelihood: 'Low', mitigation: 'Rigorous QA; accountant partnerships; PI insurance' },
+                  { risk: 'CAC Inflation', impact: 'Medium', likelihood: 'Medium', mitigation: 'Diversify channels; target LTV:CAC > 5:1' },
+                ].map((item, i) => (
+                  <div key={i} className={`p-3 rounded-lg ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.risk}</span>
+                      <span className="px-2 py-0.5 rounded-full text-xs bg-orange-500/20 text-orange-400">Impact: {item.impact}</span>
+                    </div>
+                    <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.mitigation}</p>
+                  </div>
+                ))}
+              </div>
+            </GlowCard>
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* Churn & Retention */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Churn & Retention Strategy"
+            subtitle="Target: <15% annual churn vs 22% industry average"
+            isDark={isDark}
+          />
+
+          <GlowCard className="p-8">
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="text-center p-4 rounded-xl bg-red-500/10 border border-red-500/30">
+                <p className="text-3xl font-bold text-red-400">22%</p>
+                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Industry Avg Annual Churn</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>(360 Research Reports 2025)</p>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-green-500/10 border border-green-500/30">
+                <p className="text-3xl font-bold text-green-400">&lt;15%</p>
+                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>VerafyAI Target</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Annual Churn</p>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30">
+                <p className="text-3xl font-bold text-cyan-400">3-4 yrs</p>
+                <p className={isDark ? 'text-slate-300' : 'text-slate-700'}>Expected Customer</p>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Lifetime</p>
+              </div>
+            </div>
+
+            <h4 className={`font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Retention Mechanisms</h4>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+              {[
+                { title: 'Behavioral AI Lock-in', desc: 'Vera learns patterns; switching = starting over' },
+                { title: 'Historical Data Moat', desc: '5 years of tax history stored; migration friction' },
+                { title: 'Community Network Effects', desc: 'Academy + Forum = social switching costs' },
+                { title: 'Founding Member Pricing', desc: '50% discount forever = financial disincentive' },
+                { title: 'Free Trial Conversion', desc: '14-day trial demonstrates value before payment' },
+                { title: 'Ecosystem Progression', desc: 'Portfolio → Trading → Advisor cross-sell stickiness' },
+              ].map((item, i) => (
+                <div key={i} className={`p-3 rounded-lg ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                  <p className={`font-medium text-sm mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</p>
+                  <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <h4 className={`font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Early Warning Metrics</h4>
+            <div className="grid md:grid-cols-4 gap-3">
+              {[
+                'Login frequency drop (30-day rolling)',
+                'Action Center engagement decline',
+                'Vera chat abandonment rate',
+                'Community forum inactivity',
+              ].map((item, i) => (
+                <div key={i} className="p-2 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-center">
+                  <p className="text-xs text-yellow-400">{item}</p>
+                </div>
+              ))}
+            </div>
+          </GlowCard>
+        </section>
+
+        <SectionDivider />
+
+        {/* Global Expansion */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Global Expansion Roadmap"
+            isDark={isDark}
+          />
+
           <GlowCard className="p-6 overflow-x-auto">
-            <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Feature Comparison Matrix</h3>
             <div className="rounded-xl overflow-hidden border border-cyan-500/20 min-w-[600px]">
               <table className="w-full">
                 <thead>
                   <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
-                    <th className={`p-4 text-left font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Feature</th>
-                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Sharesight</th>
-                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Navexa</th>
-                    <th className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Empower</th>
-                    <th className="p-4 text-center text-cyan-400 font-bold">VerafyAI</th>
+                    <th className={`p-4 text-left font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Year</th>
+                    <th className={`p-4 text-left ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Markets</th>
+                    <th className={`p-4 text-left ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Strategy</th>
+                    <th className={`p-4 text-left ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Localization</th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    ['Pre-trade CGT Modelling', false, false, false, true],
-                    ['AI-Powered Insights', false, false, false, true],
-                    ['Plain English Recommendations', false, false, false, true],
-                    ['Tax-Loss Harvesting Alerts', false, false, false, true],
-                    ['Australian Tax Rules', true, true, false, true],
-                    ['Dividend Tracking', true, true, true, true],
-                    ['Multi-Portfolio Support', true, true, true, true],
-                    ['Corporate Actions', true, true, false, true],
-                    ['Real-time Sync', true, true, false, true],
-                    ['Price/mo (mid-tier)', '$35', '$13', 'Free', '$10'],
-                  ].map(([feature, s, n, e, v], i) => (
+                    { year: '2026', markets: 'Australia', strategy: 'Launch all 3 products, establish category', local: 'Full AU tax engine, ATO integration' },
+                    { year: '2027', markets: 'USA, Canada', strategy: 'Portfolio Intelligence only', local: 'US federal + state tax, Canadian CGT' },
+                    { year: '2027', markets: 'India', strategy: 'Portfolio Intelligence only', local: 'STCG/LTCG tax engine, INR currency' },
+                    { year: '2028', markets: 'Singapore, UAE, HK', strategy: 'Performance + behavioral (no tax)', local: 'Multi-currency, minimal tax features' },
+                  ].map((row, i) => (
                     <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                      <td className={`p-4 ${isDark ? 'text-white' : 'text-slate-800'}`}>{feature}</td>
-                      <td className="p-4 text-center">
-                        {typeof s === 'boolean' ? (s ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{s}</span>}
-                      </td>
-                      <td className="p-4 text-center">
-                        {typeof n === 'boolean' ? (n ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{n}</span>}
-                      </td>
-                      <td className="p-4 text-center">
-                        {typeof e === 'boolean' ? (e ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{e}</span>}
-                      </td>
-                      <td className="p-4 text-center bg-cyan-500/10">
-                        {typeof v === 'boolean' ? (v ? <CheckCircle2 className="w-6 h-6 text-cyan-400 mx-auto" /> : <X className="w-5 h-5 text-red-400 mx-auto" />) : <span className="text-cyan-400 font-bold">{v}</span>}
-                      </td>
+                      <td className="p-4 font-bold text-cyan-400">{row.year}</td>
+                      <td className={`p-4 font-medium ${isDark ? 'text-white' : 'text-slate-800'}`}>{row.markets}</td>
+                      <td className={`p-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.strategy}</td>
+                      <td className={`p-4 text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{row.local}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -390,310 +850,25 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
 
         <SectionDivider />
 
-        {/* Market Sizing */}
-        <section className="mb-8">
-          <SectionHeader
-            title="Market Sizing"
-            subtitle="Australian Retail Investment Landscape"
-            isDark={isDark}
-          />
-
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <GlowCard className="p-8" highlight>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
-                <Globe className="w-8 h-8" />
-                Total Addressable Market
-              </h3>
-              <div className="space-y-6">
-                <div className={`p-4 rounded-lg ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>Australian investors</span>
-                    <span className="text-2xl font-bold text-cyan-400">7.7M</span>
-                  </div>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Direct share ownership</p>
-                </div>
-                <div className={`p-4 rounded-lg ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>Assets under management</span>
-                    <span className="text-2xl font-bold text-cyan-400">$1.3T</span>
-                  </div>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Direct equities held by retail</p>
-                </div>
-                <div className={`p-4 rounded-lg ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>Using portfolio tools</span>
-                    <span className="text-2xl font-bold text-red-400">23%</span>
-                  </div>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>77% use nothing or spreadsheets</p>
-                </div>
-              </div>
-            </GlowCard>
-
-            <GlowCard className="p-8">
-              <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                <Target className="w-8 h-8 text-purple-400" />
-                Serviceable Market
-              </h3>
-              <div className="space-y-6">
-                <div>
-                  <div className="flex justify-between mb-2">
-                    <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>Active self-directed investors</span>
-                    <span className="text-xl font-bold text-purple-400">3.5M</span>
-                  </div>
-                  <div className={`h-3 rounded-full overflow-hidden ${isDark ? 'bg-slate-800' : 'bg-slate-200'}`}>
-                    <div className="h-full rounded-full bg-gradient-to-r from-purple-400 to-pink-500" style={{ width: '45%' }} />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between mb-2">
-                    <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>Addressable (tech-savvy, paying)</span>
-                    <span className="text-xl font-bold text-purple-400">1.5M</span>
-                  </div>
-                  <div className={`h-3 rounded-full overflow-hidden ${isDark ? 'bg-slate-800' : 'bg-slate-200'}`}>
-                    <div className="h-full rounded-full bg-gradient-to-r from-purple-400 to-pink-500" style={{ width: '20%' }} />
-                  </div>
-                </div>
-                <div className="p-4 rounded-lg bg-purple-500/20 border border-purple-500/30">
-                  <p className="text-purple-400 font-semibold text-center">
-                    1.5M × $12/mo avg = <span className="text-2xl">$216M</span> ARR potential
-                  </p>
-                </div>
-              </div>
-            </GlowCard>
-          </div>
-
-          {/* Growth Drivers */}
-          <GlowCard className="p-8">
-            <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Market Growth Drivers</h3>
-            <div className="grid md:grid-cols-4 gap-6">
+        {/* Summary */}
+        <section>
+          <GlowCard className="p-10 text-center" highlight>
+            <h2 className={`text-4xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Why We Win</h2>
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
               {[
-                { icon: TrendingUp, label: 'Post-COVID surge', value: '+2.5M', desc: 'new investors since 2020', color: 'green' },
-                { icon: Users, label: 'Millennial adoption', value: '61%', desc: 'now invest directly', color: 'cyan' },
-                { icon: Building2, label: 'SMSF growth', value: '1.1M', desc: 'funds, $900B assets', color: 'purple' },
-                { icon: Percent, label: 'ETF explosion', value: '40%', desc: 'annual inflow growth', color: 'orange' },
+                { title: '12-18 Month Window', desc: 'Sharesight has 500K+ users but ZERO pre-trade CGT. By late 2027, we have ecosystem lock-in + 18 months AI training advantage.' },
+                { title: 'Founder-Market Fit', desc: 'CTO built xplan (the advisor tool). CEO scaled healthcare platforms to $12M. We know where the inefficiencies are coded.' },
+                { title: 'AI-Native Architecture', desc: "While others bolt on AI chatbots, we've built AI-native from day one. We ship in weeks what takes competitors months." },
               ].map((item, i) => (
-                <div key={i} className="text-center">
-                  <div className={`w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-3 ${
-                    item.color === 'green' ? 'bg-green-500/20' :
-                    item.color === 'cyan' ? 'bg-cyan-500/20' :
-                    item.color === 'purple' ? 'bg-purple-500/20' : 'bg-orange-500/20'
-                  }`}>
-                    <item.icon className={`w-7 h-7 ${
-                      item.color === 'green' ? 'text-green-400' :
-                      item.color === 'cyan' ? 'text-cyan-400' :
-                      item.color === 'purple' ? 'text-purple-400' : 'text-orange-400'
-                    }`} />
-                  </div>
-                  <div className={`text-2xl font-bold mb-1 ${
-                    item.color === 'green' ? 'text-green-400' :
-                    item.color === 'cyan' ? 'text-cyan-400' :
-                    item.color === 'purple' ? 'text-purple-400' : 'text-orange-400'
-                  }`}>{item.value}</div>
-                  <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.label}</p>
+                <div key={i} className={`p-4 rounded-xl ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                  <h3 className={`font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</h3>
                   <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</p>
                 </div>
               ))}
             </div>
-          </GlowCard>
-        </section>
-
-        <SectionDivider />
-
-        {/* Ecosystem Strategy */}
-        <section className="mb-8">
-          <SectionHeader
-            title="Ecosystem Strategy"
-            subtitle="Three phases to market dominance"
-            isDark={isDark}
-          />
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <GlowCard className="p-6" highlight>
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-500/50 mb-4">
-                  <Sparkles className="w-5 h-5 text-cyan-400" />
-                  <span className="text-cyan-400 font-bold">PHASE 1: NOW</span>
-                </div>
-                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Portfolio Intelligence</h3>
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-                  <Brain className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <ul className="space-y-3 mb-6">
-                {[
-                  'Vera AI assistant',
-                  'Real-time portfolio analysis',
-                  'Tax optimisation insights',
-                  'Plain English actions',
-                ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                    <Check className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className={`p-3 rounded-lg text-center ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                <span className="text-cyan-400 font-bold">$5-$20/month</span>
-              </div>
-            </GlowCard>
-
-            <GlowCard className="p-6">
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-500/30 mb-4">
-                  <Clock className="w-5 h-5 text-blue-400" />
-                  <span className="text-blue-400 font-bold">PHASE 2: JULY 2026</span>
-                </div>
-                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Trading Platform</h3>
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-                  <LineChart className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <ul className="space-y-3 mb-6">
-                {[
-                  'IBKR brokerage gateway',
-                  'Seamless execution',
-                  'Separate entity (Chinese wall)',
-                  'No AI advice crossing',
-                ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                    <Check className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className={`p-3 rounded-lg text-center ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                <span className="text-blue-400 font-bold">Brokerage fees</span>
-              </div>
-            </GlowCard>
-
-            <GlowCard className="p-6">
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 mb-4">
-                  <Target className="w-5 h-5 text-purple-400" />
-                  <span className="text-purple-400 font-bold">PHASE 3: 2027</span>
-                </div>
-                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Adviser Platform</h3>
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-                  <Briefcase className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <ul className="space-y-3 mb-6">
-                {[
-                  'One-meeting SOA generation',
-                  'Conversational fact-find',
-                  'Xplan replacement',
-                  '15,000 adviser market',
-                ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                    <Check className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className={`p-3 rounded-lg text-center ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                <span className="text-purple-400 font-bold">$1,500-$4,000/month</span>
-              </div>
-            </GlowCard>
-          </div>
-
-          <div className="text-center">
-            <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-cyan-500/30">
-              <Zap className="w-6 h-6 text-cyan-400" />
-              <span className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Combined TAM: <span className="text-cyan-400">$2.1B+</span> across all phases
-              </span>
-              <Zap className="w-6 h-6 text-purple-400" />
-            </div>
-          </div>
-        </section>
-
-        <SectionDivider />
-
-        {/* Key Differentiators */}
-        <section className="mb-8">
-          <SectionHeader
-            title="Key Differentiators"
-            subtitle="Why VerafyAI wins"
-            isDark={isDark}
-          />
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <GlowCard className="p-8" highlight>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
-                <Brain className="w-8 h-8" />
-                Technology Moat
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { title: 'Hybrid AI Architecture', desc: 'Rules for math (no hallucinations), AI for insights' },
-                  { title: '2 Patents Lodged', desc: 'Pre-trade CGT modelling methodology' },
-                  { title: 'Plain English Output', desc: 'Actions, not charts that confuse' },
-                  { title: 'Australian Tax Native', desc: 'Built for AU rules from day one' },
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-cyan-400 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</p>
-                      <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </GlowCard>
-
-            <GlowCard className="p-8">
-              <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                <Shield className="w-8 h-8 text-purple-400" />
-                Business Moat
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { title: 'Regulatory Clarity', desc: 'Chinese wall architecture - no AFSL required for Phase 1' },
-                  { title: 'Unit Economics', desc: 'LTV:CAC of 48:1, 84-92% gross margins' },
-                  { title: 'Founder-Market Fit', desc: 'Ex-GBST/Xplan CTO + healthcare scaling CEO' },
-                  { title: 'Capital Efficiency', desc: 'Product built before raising, $150K deployed' },
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</p>
-                      <p className={isDark ? 'text-slate-400' : 'text-slate-500'}>{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </GlowCard>
-          </div>
-        </section>
-
-        <SectionDivider />
-
-        {/* Summary */}
-        <section>
-          <GlowCard className="p-10 text-center" highlight>
-            <h2 className={`text-4xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Investment Thesis</h2>
-            <p className="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8 font-light max-w-3xl mx-auto">
-              VerafyAI captures the massive underserved retail investor market with AI-powered tools
-              at half the price of competitors, with a clear path to 3x market expansion through
-              trading and adviser platforms.
+            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              Data sourced from: ASX 2025, Investability AU (June/Nov 2025), First Advisers 2025, 360 Research Reports 2025, Sharesight & Navexa official pricing (Jan 30, 2026)
             </p>
-            <div className="grid md:grid-cols-4 gap-6 mb-8">
-              {[
-                { value: '7.7M', label: 'Investors' },
-                { value: '77%', label: 'Underserved' },
-                { value: '50%', label: 'Price Advantage' },
-                { value: '$2.1B', label: 'Total TAM' },
-              ].map((stat, i) => (
-                <div key={i}>
-                  <div className="text-3xl font-bold text-cyan-400 mb-1">{stat.value}</div>
-                  <div className={isDark ? 'text-slate-400' : 'text-slate-500'}>{stat.label}</div>
-                </div>
-              ))}
-            </div>
-            <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl text-white font-bold text-xl shadow-2xl shadow-cyan-500/30">
-              <DollarSign className="w-6 h-6" />
-              $1M Seed @ $10M Pre-Money
-            </div>
           </GlowCard>
         </section>
 
