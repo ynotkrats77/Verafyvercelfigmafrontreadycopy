@@ -40,7 +40,8 @@ const TaxPackPage = lazy(() => import("./pages/TaxPackPage").then(m => ({ defaul
 const GlossaryPage = lazy(() => import("./pages/GlossaryPage").then(m => ({ default: m.GlossaryPage })));
 const DashboardPage = lazy(() => import("./pages/DashboardPage").then(m => ({ default: m.DashboardPage })));
 const ComparePlansPage = lazy(() => import("./pages/ComparePlansPage").then(m => ({ default: m.ComparePlansPage })));
-const InvestorPitchPage = lazy(() => import("./pages/InvestorPitchPage").then(m => ({ default: m.InvestorPitchPage })));
+// InvestorPitchPage loaded eagerly for instant investor access
+import { InvestorPitchPage } from "./pages/InvestorPitchPage";
 const InvestorVideoPage = lazy(() => import("./pages/InvestorVideoPage").then(m => ({ default: m.InvestorVideoPage })));
 const InvestorCommercialsPage = lazy(() => import("./pages/InvestorCommercialsPage").then(m => ({ default: m.InvestorCommercialsPage })));
 const InvestorRoadmapPage = lazy(() => import("./pages/InvestorRoadmapPage").then(m => ({ default: m.InvestorRoadmapPage })));
