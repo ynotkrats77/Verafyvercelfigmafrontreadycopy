@@ -94,9 +94,16 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
               <DollarSign className="w-6 h-6" />
               $1M Seed @ $10M Pre-Money
             </div>
-            <div className={`mt-8 text-lg ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              <p className={`${isDark ? 'text-white' : 'text-slate-900'}`}>Amit Vohra | Co-founder & CEO</p>
-              <p>amit.vohra@axientai.au | +61 431 909 502 | verafyai.com.au</p>
+            <div className={`mt-8 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-3">
+                <p className={`text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>Amit Vohra | Co-founder & CEO</p>
+                <p className={`text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>Nupur Agarwal | Co-founder & CTO</p>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-base">
+                <span>amit.vohra@axientai.au</span>
+                <span>nupur.agarwal@axientai.au</span>
+              </div>
+              <p className="mt-2 text-base">+61 431 909 502 | verafyai.com.au</p>
             </div>
           </div>
         </div>
@@ -179,7 +186,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
         <section className="mb-8">
           <SectionHeader
             title="The Solution"
-            subtitle="VerafyAI brings the gap between DIY and full advice"
+            subtitle="VerafyAI bridges the gap between DIY and full advice"
             isDark={isDark}
           />
 
@@ -647,7 +654,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
         <section className="mb-8">
           <SectionHeader
             title="The Team"
-            subtitle="Proven Founders, Aligned Incentives"
+            subtitle="Proven Founders"
             isDark={isDark}
           />
 
@@ -719,9 +726,6 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                     ))}
                   </ul>
                 </div>
-                <div className="mt-3 p-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-center">
-                  <span className="text-purple-400 font-semibold text-xs">40% equity – deeply aligned</span>
-                </div>
               </div>
               <div className={`mt-4 pt-4 border-t flex items-center justify-center gap-2 ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
                 <Linkedin className="w-4 h-4 text-blue-400" />
@@ -730,27 +734,27 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
             </GlowCard>
 
             {/* Subodh Ramugade */}
-            <GlowCard className="p-6">
+            <GlowCard className="p-6" highlight>
               <div className="text-center mb-4">
                 <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center mb-4 text-3xl font-bold text-white">
                   SR
                 </div>
                 <h3 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Subodh Ramugade</h3>
-                <p className="text-orange-400 font-semibold">Head of AI</p>
+                <p className="text-orange-400 font-semibold">Head of AI/ML</p>
               </div>
               <div className="space-y-2 text-sm">
                 <div className={`flex items-center gap-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                   <GraduationCap className="w-4 h-4 text-orange-400" />
-                  <span>MIT Deep Learning | AI/ML Expert</span>
+                  <span>MIT Deep Learning Certificate</span>
                 </div>
                 <div className={`p-3 rounded-lg ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'} mt-3`}>
                   <p className={`text-xs mb-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Track Record</p>
                   <ul className="space-y-1.5">
                     {[
-                      'VP, AI in Healthcare (CloudxLab)',
-                      'Ex-Amazon (Digital Payments UX Lead)',
-                      'Ex-JP Morgan Sydney',
-                      'Complex systems architecture expert',
+                      'VP AI, Healthcare Analytics (CloudxLab)',
+                      'Ex-Amazon, Digital Payments UX Lead',
+                      'Ex-JP Morgan Sydney, Systems Architecture',
+                      '15+ years enterprise AI/ML deployment',
                     ].map((item, i) => (
                       <li key={i} className={`flex items-start gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                         <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
@@ -766,21 +770,6 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
               </div>
             </GlowCard>
           </div>
-
-          <GlowCard className="p-6">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                <span className={isDark ? 'text-white' : 'text-slate-800'}>Both founders learned about money at 40</span>
-                <span className="text-cyan-400">(founder-market fit)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400" />
-                <span className={isDark ? 'text-white' : 'text-slate-800'}>Houses on market</span>
-                <span className="text-cyan-400">(skin in game)</span>
-              </div>
-            </div>
-          </GlowCard>
         </section>
 
         <SectionDivider />
@@ -946,27 +935,29 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
               The only question is whether you will be in the room when I truly arrive.
             </p>
             <div className="space-y-4">
-              <div className={`flex flex-col sm:flex-row items-center justify-center gap-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+              <div className={`flex flex-col sm:flex-row items-center justify-center gap-8 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                 <div className="text-center">
-                  <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Amit Vohra</p>
-                  <p className="flex items-center gap-2 justify-center">
+                  <p className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Amit Vohra</p>
+                  <p className="text-cyan-400 font-semibold mb-2">Co-founder & CEO</p>
+                  <p className="flex items-center gap-2 justify-center text-sm">
                     <Mail className="w-4 h-4" />
                     amit.vohra@axientai.au
                   </p>
-                  <p className="flex items-center gap-2 justify-center">
+                  <p className="flex items-center gap-2 justify-center text-sm">
                     <Phone className="w-4 h-4" />
                     +61 431 909 502
                   </p>
                 </div>
                 <div className="text-center">
-                  <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Nupur Agarwal</p>
-                  <p className="flex items-center gap-2 justify-center">
+                  <p className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Nupur Agarwal</p>
+                  <p className="text-purple-400 font-semibold mb-2">Co-founder & CTO</p>
+                  <p className="flex items-center gap-2 justify-center text-sm">
                     <Mail className="w-4 h-4" />
                     nupur.agarwal@axientai.au
                   </p>
                 </div>
               </div>
-              <p className="flex items-center gap-2 justify-center">
+              <p className="flex items-center gap-2 justify-center mt-4">
                 <Globe className="w-5 h-5" />
                 verafyai.com.au
               </p>
