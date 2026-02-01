@@ -15,7 +15,6 @@ import {
   Clock,
   FileText,
   Briefcase,
-  MessageSquare,
   Lock,
   Calendar,
   Sparkles,
@@ -26,6 +25,8 @@ import {
   Cpu,
   Linkedin,
   GraduationCap,
+  Phone,
+  Building2,
 } from 'lucide-react';
 import { GlowCard } from '../components/GlowCard';
 import { SectionHeader } from '../components/SectionHeader';
@@ -112,6 +113,12 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
             isDark={isDark}
           />
 
+          {/* $21B Stat */}
+          <div className="text-center mb-10">
+            <div className="text-6xl md:text-7xl font-bold text-red-400 mb-4">$21B</div>
+            <p className={`text-xl ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>lost annually to poor financial decisions</p>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <GlowCard className="p-8" highlight>
               <div className="flex items-center gap-4 mb-6">
@@ -171,7 +178,65 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
         {/* Solution Section */}
         <section className="mb-8">
           <SectionHeader
-            title="The Solution: Three Phases"
+            title="The Solution"
+            subtitle="VerafyAI brings the gap between DIY and full advice"
+            isDark={isDark}
+          />
+
+          {/* Comparison Table */}
+          <GlowCard className="p-8 mb-8">
+            <div className="rounded-xl overflow-hidden border border-cyan-500/20">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
+                    <th className={`p-4 text-left text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Feature</th>
+                    <th className={`p-4 text-center text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Sharesight</th>
+                    <th className={`p-4 text-center text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Empower</th>
+                    <th className="p-4 text-center text-lg text-cyan-400 font-bold">VerafyAI</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Pre-trade CGT Analysis', false, false, true],
+                    ['AI Recommendations', false, false, true],
+                    ['Plain English Insights', false, false, true],
+                    ['Tax-loss Harvesting', false, true, true],
+                    ['AU Tax Rules Native', true, false, true],
+                    ['Real-time Alerts', false, true, true],
+                  ].map(([feature, s, e, v], i) => (
+                    <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
+                      <td className={`p-4 text-lg ${isDark ? 'text-white' : 'text-slate-800'}`}>{feature}</td>
+                      <td className="p-4 text-center">
+                        {typeof s === 'boolean' ? (s ? <Check className="w-6 h-6 text-green-400 mx-auto" /> : <X className="w-6 h-6 text-red-400/50 mx-auto" />) : <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{s}</span>}
+                      </td>
+                      <td className="p-4 text-center">
+                        {typeof e === 'boolean' ? (e ? <Check className="w-6 h-6 text-green-400 mx-auto" /> : <X className="w-6 h-6 text-red-400/50 mx-auto" />) : <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{e}</span>}
+                      </td>
+                      <td className="p-4 text-center bg-cyan-500/10">
+                        {typeof v === 'boolean' ? (v ? <CheckCircle2 className="w-7 h-7 text-cyan-400 mx-auto" /> : <X className="w-6 h-6 text-red-400 mx-auto" />) : <span className="text-cyan-400 font-bold">{v}</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </GlowCard>
+
+          <div className="text-center">
+            <p className="text-xl font-bold">
+              <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Not charts that make you feel smart.</span>{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Actions that make you money.</span>
+            </p>
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* Product Roadmap Section */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Product Roadmap"
+            subtitle="Three phases to full ecosystem"
             isDark={isDark}
           />
 
@@ -182,7 +247,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                   <Sparkles className="w-5 h-5 text-cyan-400" />
                   <span className="text-cyan-400 font-bold">NOW - LIVE</span>
                 </div>
-                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Portfolio Intelligence</h3>
+                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Phase 1: Portfolio Intelligence</h3>
                 <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
                   <Brain className="w-8 h-8 text-white" />
                 </div>
@@ -203,7 +268,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                   <Calendar className="w-5 h-5 text-blue-400" />
                   <span className="text-blue-400 font-bold">JULY 2026</span>
                 </div>
-                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Trading App</h3>
+                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Phase 2: Trading App</h3>
                 <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
                   <LineChart className="w-8 h-8 text-white" />
                 </div>
@@ -224,7 +289,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                   <Rocket className="w-5 h-5 text-purple-400" />
                   <span className="text-purple-400 font-bold">2027</span>
                 </div>
-                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Xplan Lite</h3>
+                <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Phase 3: Adviser Platform</h3>
                 <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
                   <FileText className="w-8 h-8 text-white" />
                 </div>
@@ -251,204 +316,81 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
 
         <SectionDivider />
 
-        {/* Vera Section */}
+        {/* Adviser Opportunity - One Meeting SOA */}
         <section className="mb-8">
           <SectionHeader
-            title="Vera: Bloomberg Terminal meets ChatGPT"
-            subtitle="For the 9 million, not the 9 thousand"
+            title="The Adviser Opportunity"
+            subtitle="One-Meeting SOA: From 3 weeks to 55 minutes"
             isDark={isDark}
           />
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <GlowCard className="p-8">
-              <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                <Brain className="w-8 h-8 text-cyan-400" />
-                What Vera Does
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { icon: LineChart, text: 'Real-time portfolio analysis' },
-                  { icon: TrendingDown, text: 'Tax-loss harvesting alerts' },
-                  { icon: DollarSign, text: 'Dividend tracking & forecasting' },
-                  { icon: Shield, text: 'Risk exposure mapping' },
-                  { icon: Target, text: 'Rebalancing recommendations' },
-                  { icon: MessageSquare, text: 'All in plain English - not charts' },
-                ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                    <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-5 h-5 text-cyan-400" />
+          <GlowCard className="p-8 mb-8" highlight>
+            <h3 className={`text-2xl font-bold mb-6 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              The One-Meeting SOA Process
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { step: 1, title: 'Client arrives', desc: 'Vera greets, collects data conversationally', time: '10 min', icon: Users },
+                { step: 2, title: 'Fact-find complete', desc: 'Goals, risk, situation captured', time: '15 min', icon: FileText },
+                { step: 3, title: 'AI generates draft SOA', desc: 'While adviser reviews notes', time: '5 min', icon: Brain },
+                { step: 4, title: 'Adviser reviews', desc: 'Tweaks, approves', time: '10 min', icon: CheckCircle2 },
+                { step: 5, title: 'Client signs', desc: 'Digital signature on iPad', time: '5 min', icon: FileText },
+                { step: 6, title: 'Done', desc: 'Client walks out with advice', time: '10 min', icon: Rocket },
+              ].map((item) => (
+                <div key={item.step} className={`p-4 rounded-xl ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">
+                      {item.step}
                     </div>
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
-            </GlowCard>
-
-            <GlowCard className="p-8">
-              <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Competitive Comparison</h3>
-              <div className="rounded-xl overflow-hidden border border-cyan-500/20">
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
-                      <th className={`p-3 text-left text-sm font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Feature</th>
-                      <th className={`p-3 text-center text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Sharesight</th>
-                      <th className={`p-3 text-center text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Navexa</th>
-                      <th className={`p-3 text-center text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Empower</th>
-                      <th className="p-3 text-center text-sm text-cyan-400 font-bold">VerafyAI</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      ['Pre-trade CGT', false, false, false, true],
-                      ['AI Recommendations', false, false, false, true],
-                      ['Plain English', false, false, false, true],
-                      ['AU Tax Rules', true, true, false, true],
-                      ['Price', '$42/mo', '$19/mo', 'Free', '$20/mo'],
-                    ].map(([feature, s, n, e, v], i) => (
-                      <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                        <td className={`p-3 text-sm ${isDark ? 'text-white' : 'text-slate-800'}`}>{feature}</td>
-                        <td className="p-3 text-center">
-                          {typeof s === 'boolean' ? (s ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{s}</span>}
-                        </td>
-                        <td className="p-3 text-center">
-                          {typeof n === 'boolean' ? (n ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{n}</span>}
-                        </td>
-                        <td className="p-3 text-center">
-                          {typeof e === 'boolean' ? (e ? <Check className="w-5 h-5 text-green-400 mx-auto" /> : <X className="w-5 h-5 text-red-400/50 mx-auto" />) : <span className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{e}</span>}
-                        </td>
-                        <td className="p-3 text-center bg-cyan-500/10">
-                          {typeof v === 'boolean' ? (v ? <CheckCircle2 className="w-6 h-6 text-cyan-400 mx-auto" /> : <X className="w-5 h-5 text-red-400 mx-auto" />) : <span className="text-cyan-400 font-bold text-sm">{v}</span>}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </GlowCard>
-          </div>
-
-          <div className="text-center">
-            <p className="text-xl font-bold">
-              <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Not charts that make you feel smart.</span>{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Actions that make you money.</span>
-            </p>
-          </div>
-        </section>
-
-        <SectionDivider />
-
-        {/* Architecture Section */}
-        <section className="mb-8">
-          <SectionHeader
-            title="Smart Architecture = Fast + Cheap"
-            subtitle="Hybrid Intelligence: Rules for math, AI for insights"
-            isDark={isDark}
-          />
-
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <GlowCard className="p-8">
-              <h3 className="text-2xl font-bold text-red-400 mb-6 flex items-center gap-3">
-                <AlertTriangle className="w-8 h-8" />
-                The Problem with "AI Everything"
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { label: 'Response time', value: '3.8 seconds', icon: Clock },
-                  { label: 'API costs at scale', value: '$4,800/month', icon: DollarSign },
-                  { label: 'Hallucination risk', value: 'On financial calculations', icon: AlertTriangle },
-                ].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-4 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                    <div className="w-12 h-12 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-6 h-6 text-red-400" />
-                    </div>
-                    <div>
-                      <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{item.label}: </span>
-                      <span className="text-red-400 font-semibold">{item.value}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </GlowCard>
-
-            <GlowCard className="p-8" highlight>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
-                <Cpu className="w-8 h-8" />
-                Our Hybrid Approach
-              </h3>
-              <div className="rounded-xl overflow-hidden border border-cyan-500/30 mb-6">
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-cyan-500/20">
-                      <th className={`p-3 text-left text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>Task</th>
-                      <th className={`p-3 text-center text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>Method</th>
-                      <th className={`p-3 text-center text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>Speed</th>
-                      <th className={`p-3 text-center text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>Cost</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                      <td className={`p-3 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Math (CGT, returns)</td>
-                      <td className="p-3 text-center">
-                        <span className="px-2 py-1 rounded bg-blue-500/20 text-blue-400 text-xs">Rules Engine</span>
-                      </td>
-                      <td className="p-3 text-center text-green-400 font-bold text-sm">5ms</td>
-                      <td className="p-3 text-center text-green-400 font-bold text-sm">$0</td>
-                    </tr>
-                    <tr className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                      <td className={`p-3 text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Insights (behavioral)</td>
-                      <td className="p-3 text-center">
-                        <span className="px-2 py-1 rounded bg-purple-500/20 text-purple-400 text-xs">AI (Claude)</span>
-                      </td>
-                      <td className="p-3 text-center text-cyan-400 font-bold text-sm">500ms</td>
-                      <td className="p-3 text-center text-cyan-400 font-bold text-sm">$0.10</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { label: 'Cost Reduction', value: '88%', color: 'green' },
-                  { label: 'Speed Improvement', value: '8x faster', color: 'cyan' },
-                  { label: 'Hallucination Risk', value: 'Zero on calcs', color: 'green' },
-                  { label: 'Gross Margin', value: '84-92%', color: 'cyan' },
-                ].map((item, i) => (
-                  <div key={i} className={`p-3 rounded-lg text-center ${isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                    <div className={`text-xl font-bold ${item.color === 'green' ? 'text-green-400' : 'text-cyan-400'}`}>
-                      {item.value}
-                    </div>
-                    <div className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.label}</div>
+                    <item.icon className="w-5 h-5 text-cyan-400" />
                   </div>
-                ))}
-              </div>
-            </GlowCard>
-          </div>
+                  <h4 className={`font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</h4>
+                  <p className={`text-sm mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</p>
+                  <span className="text-cyan-400 font-semibold text-sm">{item.time}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 text-center">
+              <p className={`text-lg ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                Total time: <span className="text-cyan-400 font-bold text-2xl">55 minutes</span>
+              </p>
+              <p className={`text-sm mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>vs. 3 weeks industry average</p>
+            </div>
+          </GlowCard>
 
-          <div className="p-6 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-center">
-            <p className={`text-lg ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              <span className="text-cyan-400 font-bold">Math is deterministic.</span> No hallucinations on CGT calculations.{' '}
-              <span className="text-cyan-400 font-bold">AI adds value</span> where it matters: behavioral insights.
-            </p>
-          </div>
-        </section>
-
-        <SectionDivider />
-
-        {/* Regulatory Section */}
-        <section className="mb-8">
-          <SectionHeader
-            title="Chinese Walls: Regulatory Survival"
-            subtitle="The smarts live in Portfolio. The trades live in Trading. No AI recommendations crossing the wall."
-            isDark={isDark}
-          />
-
-          <div className="flex flex-col md:flex-row items-stretch gap-4 mb-8">
-            <GlowCard className="flex-1 p-6" highlight>
-              <h3 className="text-xl font-bold text-cyan-400 mb-4 flex items-center gap-3">
-                <Brain className="w-6 h-6" />
-                PORTFOLIO INTELLIGENCE
+          <div className="grid md:grid-cols-2 gap-6">
+            <GlowCard className="p-6">
+              <h3 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-3">
+                <AlertTriangle className="w-6 h-6" />
+                Current Reality
               </h3>
               <ul className="space-y-3">
-                {['AI-powered analysis', 'Tax optimisation insights', 'Risk assessment', 'Information only', 'No AFSL required'].map((item, i) => (
+                {[
+                  '3-week average SOA turnaround',
+                  '$2,000-$4,000/month software costs',
+                  'Paraplanner bottleneck',
+                  'Client drops off between meetings',
+                ].map((item, i) => (
+                  <li key={i} className={`flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                    <X className="w-5 h-5 text-red-400 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </GlowCard>
+
+            <GlowCard className="p-6" highlight>
+              <h3 className="text-xl font-bold text-cyan-400 mb-4 flex items-center gap-3">
+                <Sparkles className="w-6 h-6" />
+                With VerafyAI
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  'SOA in one meeting',
+                  '3x more clients per day',
+                  'No paraplanner needed',
+                  'Higher conversion rate',
+                ].map((item, i) => (
                   <li key={i} className={`flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-800'}`}>
                     <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                     {item}
@@ -456,38 +398,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                 ))}
               </ul>
             </GlowCard>
-
-            <div className="flex items-center justify-center px-4 py-8 md:py-0">
-              <div className="w-full md:w-16 h-16 md:h-full min-h-[200px] relative">
-                <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-b from-orange-500 via-red-500 to-orange-500 rounded-lg opacity-90" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="transform md:-rotate-90 text-white font-bold text-xl tracking-[0.2em] whitespace-nowrap">WALL</div>
-                </div>
-              </div>
-            </div>
-
-            <GlowCard className="flex-1 p-6">
-              <h3 className={`text-xl font-bold mb-4 flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                <LineChart className="w-6 h-6 text-slate-400" />
-                TRADING APP
-              </h3>
-              <ul className="space-y-3">
-                {['Clean execution only', 'No AI recommendations', 'IBKR gateway', 'Separate entity', 'Standard broker licence'].map((item, i) => (
-                  <li key={i} className={`flex items-center gap-3 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                    <Check className="w-5 h-5 text-slate-400 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </GlowCard>
           </div>
-
-          <GlowCard className="p-6">
-            <p className={`text-lg text-center italic ${isDark ? 'text-white' : 'text-slate-800'}`}>
-              "Anyone building AI-driven trading recommendations without an AFSL is building a <span className="text-red-400 font-semibold">time bomb</span>.
-              <span className="text-cyan-400 font-semibold"> We are not that.</span>"
-            </p>
-          </GlowCard>
         </section>
 
         <SectionDivider />
@@ -498,6 +409,12 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
             title="Market Opportunity"
             isDark={isDark}
           />
+
+          {/* TAM Headline */}
+          <div className="text-center mb-10">
+            <div className="text-6xl md:text-7xl font-bold text-cyan-400 mb-4">$756M</div>
+            <p className={`text-xl ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Total Addressable Market (annually)</p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-10">
             {[
@@ -519,7 +436,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                 Phase 1 TAM: Retail
               </h3>
               <p className={`text-lg mb-4 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                9M × $15/mo avg = <span className="text-3xl font-bold text-cyan-400">$1.6B</span> potential
+                9M × 5% penetration × $14/mo = <span className="text-3xl font-bold text-cyan-400">$75.6M</span>/year
               </p>
               <div className={`space-y-2 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                 <p className="flex items-center gap-2"><TrendingUp className="w-5 h-5 text-green-400" /> 2.5M new investors since COVID</p>
@@ -533,7 +450,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                 Phase 3 TAM: Advisers
               </h3>
               <p className={`text-lg mb-4 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                15K × $3K/mo = <span className="text-3xl font-bold text-purple-400">$540M</span>/year
+                15K × 30% × $1,500/mo = <span className="text-3xl font-bold text-purple-400">$81M</span>/year
               </p>
               <div className={`space-y-2 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                 <p className="flex items-center gap-2"><DollarSign className="w-5 h-5 text-orange-400" /> Average practice pays $2-4K/mo</p>
@@ -548,7 +465,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
         {/* Traction Section */}
         <section className="mb-8">
           <SectionHeader
-            title="Traction"
+            title="Traction & Milestones"
             subtitle="Built the product before raising"
             isDark={isDark}
           />
@@ -565,8 +482,8 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                   '$150K pre-seed deployed',
                   '$25K AWS credits secured',
                   'CGT engine complete',
-                  'Beta waitlist at capacity',
-                  '2 patents lodged',
+                  'Beta users onboarded',
+                  '2 provisional patents lodged',
                   'R&D tax credit: $60K expected Q1 2026',
                   'Trademarks filed (IP Australia)',
                 ].map((item, i) => (
@@ -587,10 +504,10 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                 {[
                   { date: 'Nov 2025', text: 'Infrastructure deployed', status: 'done' },
                   { date: 'Jan 2026', text: 'Core product built', status: 'done' },
-                  { date: 'Feb 15', text: 'Beta launch', status: 'target' },
+                  { date: 'Feb 15', text: 'Beta launch', status: 'done' },
                   { date: 'Apr 1', text: 'Public launch', status: 'target' },
-                  { date: 'Q2-Q3', text: 'Trading platform (IBKR)', status: 'planned' },
-                  { date: 'Q4', text: 'Advisor platform', status: 'planned' },
+                  { date: 'Jul 2026', text: 'Trading platform (IBKR)', status: 'planned' },
+                  { date: 'Q4 2026', text: 'Advisor platform beta', status: 'planned' },
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <span className="w-20 text-blue-400 font-semibold flex-shrink-0 text-sm">{item.date}</span>
@@ -606,6 +523,122 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
               </div>
             </GlowCard>
           </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* Business Model Section */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Business Model"
+            subtitle="Three Revenue Streams"
+            isDark={isDark}
+          />
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <GlowCard className="p-6" highlight>
+              <h3 className="text-lg font-bold text-cyan-400 mb-4 flex items-center gap-2">
+                <Brain className="w-5 h-5" />
+                Phase 1: SaaS
+              </h3>
+              <div className={`space-y-2 mb-4 ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                <p>Starter: <span className="font-bold">$5/mo</span></p>
+                <p>Standard: <span className="font-bold">$10/mo</span></p>
+                <p>Pro: <span className="font-bold">$20/mo</span></p>
+              </div>
+              <div className="p-3 rounded-lg bg-orange-500/20 border border-orange-500/30">
+                <p className="text-orange-400 font-semibold text-sm flex items-center gap-1">
+                  <Zap className="w-4 h-4" />
+                  Founding: 50% off for life
+                </p>
+              </div>
+            </GlowCard>
+
+            <GlowCard className="p-6">
+              <h3 className="text-lg font-bold text-blue-400 mb-4 flex items-center gap-2">
+                <LineChart className="w-5 h-5" />
+                Phase 2: Trading
+              </h3>
+              <div className={`space-y-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                <p>Brokerage fees</p>
+                <p>Premium features</p>
+                <p>Standalone entity</p>
+                <p className={`italic text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>No advice liability</p>
+              </div>
+            </GlowCard>
+
+            <GlowCard className="p-6">
+              <h3 className="text-lg font-bold text-purple-400 mb-4 flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                Phase 3: Adviser
+              </h3>
+              <div className={`space-y-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                <p className="font-bold">$1,500-$4,000/mo per practice</p>
+                <p>Implementation fees</p>
+                <p>Data/compliance add-ons</p>
+              </div>
+            </GlowCard>
+          </div>
+
+          <GlowCard className="p-6 mb-8">
+            <h3 className={`text-xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Unit Economics</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: 'CAC (blended)', value: '$25', highlight: false },
+                { label: 'LTV', value: '$360+', highlight: false },
+                { label: 'LTV:CAC', value: '14:1', highlight: true },
+                { label: 'Gross Margin', value: '85%+', highlight: false },
+              ].map((item, i) => (
+                <div key={i} className={`p-4 rounded-xl text-center ${item.highlight ? 'bg-cyan-500/20 border-2 border-cyan-500/50' : isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
+                  <div className={`text-sm mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.label}</div>
+                  <div className={`text-2xl font-bold ${item.highlight ? 'text-cyan-400' : isDark ? 'text-white' : 'text-slate-900'}`}>{item.value}</div>
+                </div>
+              ))}
+            </div>
+          </GlowCard>
+        </section>
+
+        <SectionDivider />
+
+        {/* Financial Projections Section */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Financial Projections"
+            subtitle="Conservative path to profitability"
+            isDark={isDark}
+          />
+
+          <GlowCard className="p-8">
+            <div className="rounded-xl overflow-hidden border border-cyan-500/20">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
+                    <th className={`p-4 text-left text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Metric</th>
+                    <th className={`p-4 text-center text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>2026</th>
+                    <th className={`p-4 text-center text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>2027</th>
+                    <th className={`p-4 text-center text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>2028</th>
+                    <th className="p-4 text-center text-lg text-cyan-400 font-bold">2029</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { metric: 'Revenue', y1: '$600K', y2: '$3.5M', y3: '$12M', y4: '$35M' },
+                    { metric: 'Paying Users', y1: '5,000', y2: '25,000', y3: '80,000', y4: '200,000' },
+                    { metric: 'MRR', y1: '$50K', y2: '$290K', y3: '$1M', y4: '$2.9M' },
+                    { metric: 'Burn Rate', y1: '$80K/mo', y2: '$150K/mo', y3: 'Breakeven', y4: 'Profitable' },
+                  ].map((row, i) => (
+                    <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
+                      <td className={`p-4 text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>{row.metric}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{row.y1}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{row.y2}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{row.y3}</td>
+                      <td className="p-4 text-center text-cyan-400 font-bold bg-cyan-500/10">{row.y4}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </GlowCard>
         </section>
 
         <SectionDivider />
@@ -637,10 +670,10 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                   <p className={`text-xs mb-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Track Record</p>
                   <ul className="space-y-1.5">
                     {[
-                      'CEO GPRA: $2M → $12M (500% growth)',
+                      '25+ years in senior healthcare leadership',
+                      'CEO GPRA: $2M → $12M ARR (500% growth)',
                       'Raised $10M from health funds',
                       'Risk algorithm 98% accuracy (Sonic Healthcare)',
-                      'COO AMA WA: wealth programs for 3,000 doctors',
                     ].map((item, i) => (
                       <li key={i} className={`flex items-start gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                         <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
@@ -674,10 +707,10 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                   <p className={`text-xs mb-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Track Record</p>
                   <ul className="space-y-1.5">
                     {[
-                      'Ex-GBST/xplan – knows where gatekeeping is coded',
-                      'Ex-JP Morgan & enterprise fintech',
-                      'Built entire beta solo before raising',
-                      'Python, React, AWS, financial APIs',
+                      '15+ years enterprise fintech',
+                      'Ex-GBST/Xplan – knows where gatekeeping is coded',
+                      'Ex-JP Morgan, Macquarie',
+                      'Built entire beta platform solo',
                     ].map((item, i) => (
                       <li key={i} className={`flex items-start gap-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                         <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
@@ -752,79 +785,6 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
 
         <SectionDivider />
 
-        {/* Business Model Section */}
-        <section className="mb-8">
-          <SectionHeader
-            title="Business Model"
-            subtitle="Three Revenue Streams"
-            isDark={isDark}
-          />
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <GlowCard className="p-6" highlight>
-              <h3 className="text-lg font-bold text-cyan-400 mb-4 flex items-center gap-2">
-                <Brain className="w-5 h-5" />
-                Phase 1: SaaS
-              </h3>
-              <div className={`space-y-2 mb-4 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                <p>Starter: <span className="font-bold">$5/mo</span></p>
-                <p>Standard: <span className="font-bold">$10/mo</span></p>
-                <p>Pro: <span className="font-bold">$20/mo</span></p>
-              </div>
-              <div className="p-3 rounded-lg bg-orange-500/20 border border-orange-500/30">
-                <p className="text-orange-400 font-semibold text-sm flex items-center gap-1">
-                  <Zap className="w-4 h-4" />
-                  Founding: 50% off for life
-                </p>
-              </div>
-            </GlowCard>
-
-            <GlowCard className="p-6">
-              <h3 className="text-lg font-bold text-blue-400 mb-4 flex items-center gap-2">
-                <LineChart className="w-5 h-5" />
-                Phase 2: Trading
-              </h3>
-              <div className={`space-y-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                <p>Brokerage fees</p>
-                <p>Premium features</p>
-                <p>Standalone entity</p>
-                <p className={`italic text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>No advice liability</p>
-              </div>
-            </GlowCard>
-
-            <GlowCard className="p-6">
-              <h3 className="text-lg font-bold text-purple-400 mb-4 flex items-center gap-2">
-                <FileText className="w-5 h-5" />
-                Phase 3: Adviser
-              </h3>
-              <div className={`space-y-2 ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                <p className="font-bold">$1,500-$4,000/mo per practice</p>
-                <p>Implementation fees</p>
-                <p>Data/compliance add-ons</p>
-              </div>
-            </GlowCard>
-          </div>
-
-          <GlowCard className="p-6">
-            <h3 className={`text-xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Unit Economics</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { label: 'CAC (blended)', value: '$17', highlight: false },
-                { label: 'LTV', value: '$816', highlight: false },
-                { label: 'LTV:CAC', value: '48:1', highlight: true },
-                { label: 'Payback', value: '<1 month', highlight: false },
-              ].map((item, i) => (
-                <div key={i} className={`p-4 rounded-xl text-center ${item.highlight ? 'bg-cyan-500/20 border-2 border-cyan-500/50' : isDark ? 'bg-slate-800/50 border border-slate-700' : 'bg-slate-100 border border-slate-200'}`}>
-                  <div className={`text-sm mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.label}</div>
-                  <div className={`text-2xl font-bold ${item.highlight ? 'text-cyan-400' : isDark ? 'text-white' : 'text-slate-900'}`}>{item.value}</div>
-                </div>
-              ))}
-            </div>
-          </GlowCard>
-        </section>
-
-        <SectionDivider />
-
         {/* The Ask Section */}
         <section className="mb-8">
           <SectionHeader
@@ -839,7 +799,7 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             <GlowCard className="p-6">
               <h3 className={`text-xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Use of Funds</h3>
               <div className="space-y-6">
@@ -864,13 +824,13 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
             </GlowCard>
 
             <GlowCard className="p-6" highlight>
-              <h3 className="text-xl font-bold text-cyan-400 mb-6">What You Get</h3>
+              <h3 className="text-xl font-bold text-cyan-400 mb-6">Investment Terms</h3>
               <ul className="space-y-4">
                 {[
-                  'Seat at the table for AU wealth management disruption',
-                  'Jurisdiction agnostic products → global play',
-                  'Target markets: Australia, North America, India',
-                  '2 patents lodged, defensible IP moat',
+                  'SAFE or priced equity (open to discussion)',
+                  '$500K lead investor minimum',
+                  'Pro-rata rights for future rounds',
+                  'Board observer seat available',
                 ].map((item, i) => (
                   <li key={i} className={`flex items-start gap-3 ${isDark ? 'text-white' : 'text-slate-800'}`}>
                     <CheckCircle2 className="w-6 h-6 text-cyan-400 mt-0.5 flex-shrink-0" />
@@ -879,6 +839,66 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
                 ))}
               </ul>
             </GlowCard>
+          </div>
+
+          {/* Return Scenarios */}
+          <GlowCard className="p-8">
+            <h3 className={`text-xl font-bold mb-6 text-center ${isDark ? 'text-white' : 'text-slate-900'}`}>Return Scenarios</h3>
+            <div className="rounded-xl overflow-hidden border border-cyan-500/20">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30">
+                    <th className={`p-4 text-left text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Scenario</th>
+                    <th className={`p-4 text-center text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Exit Valuation</th>
+                    <th className={`p-4 text-center text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Return Multiple</th>
+                    <th className="p-4 text-center text-lg text-cyan-400 font-bold">$100K → </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { scenario: 'Conservative', valuation: '$60M', multiple: '6x', returns: '$600K' },
+                    { scenario: 'Base Case', valuation: '$110M', multiple: '11x', returns: '$1.1M' },
+                    { scenario: 'Aggressive', valuation: '$220M', multiple: '22x', returns: '$2.2M' },
+                  ].map((row, i) => (
+                    <tr key={i} className={`border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
+                      <td className={`p-4 text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>{row.scenario}</td>
+                      <td className={`p-4 text-center ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{row.valuation}</td>
+                      <td className={`p-4 text-center font-bold ${i === 2 ? 'text-green-400' : i === 1 ? 'text-cyan-400' : isDark ? 'text-slate-300' : 'text-slate-600'}`}>{row.multiple}</td>
+                      <td className={`p-4 text-center font-bold bg-cyan-500/10 ${i === 2 ? 'text-green-400' : 'text-cyan-400'}`}>{row.returns}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </GlowCard>
+        </section>
+
+        <SectionDivider />
+
+        {/* Why Now Section */}
+        <section className="mb-8">
+          <SectionHeader
+            title="Why Now?"
+            subtitle="Five forces converging"
+            isDark={isDark}
+          />
+
+          <div className="grid md:grid-cols-5 gap-4">
+            {[
+              { icon: Cpu, title: 'AI Maturity', desc: 'LLMs finally good enough for financial reasoning', color: 'cyan' },
+              { icon: Shield, title: 'Regulatory Tailwind', desc: 'ASIC pushing for accessible advice', color: 'blue' },
+              { icon: Users, title: 'Demographic Shift', desc: 'Millennials demand digital-first', color: 'purple' },
+              { icon: Building2, title: 'Incumbent Fatigue', desc: 'Advisers hate legacy software', color: 'orange' },
+              { icon: TrendingUp, title: 'Post-COVID Boom', desc: '2.5M new retail investors', color: 'green' },
+            ].map((item, i) => (
+              <GlowCard key={i} className="p-4 text-center">
+                <div className={`w-12 h-12 mx-auto rounded-xl bg-${item.color}-500/20 flex items-center justify-center mb-3`}>
+                  <item.icon className={`w-6 h-6 text-${item.color}-400`} />
+                </div>
+                <h4 className={`font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.title}</h4>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</p>
+              </GlowCard>
+            ))}
           </div>
         </section>
 
@@ -926,17 +946,31 @@ export function InvestorPitchPage({ isDark }: InvestorPitchPageProps) {
               The only question is whether you will be in the room when I truly arrive.
             </p>
             <div className="space-y-4">
-              <div className={`flex flex-col sm:flex-row items-center justify-center gap-6 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                <span className="flex items-center gap-2">
-                  <Mail className="w-5 h-5" />
-                  amit.vohra@axientai.au
-                </span>
-                <span className="flex items-center gap-2">
-                  <Globe className="w-5 h-5" />
-                  verafyai.com.au
-                </span>
+              <div className={`flex flex-col sm:flex-row items-center justify-center gap-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                <div className="text-center">
+                  <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Amit Vohra</p>
+                  <p className="flex items-center gap-2 justify-center">
+                    <Mail className="w-4 h-4" />
+                    amit.vohra@axientai.au
+                  </p>
+                  <p className="flex items-center gap-2 justify-center">
+                    <Phone className="w-4 h-4" />
+                    +61 431 909 502
+                  </p>
+                </div>
+                <div className="text-center">
+                  <p className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Nupur Agarwal</p>
+                  <p className="flex items-center gap-2 justify-center">
+                    <Mail className="w-4 h-4" />
+                    nupur.agarwal@axientai.au
+                  </p>
+                </div>
               </div>
-              <p className={`text-2xl font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Thank you. Questions?</p>
+              <p className="flex items-center gap-2 justify-center">
+                <Globe className="w-5 h-5" />
+                verafyai.com.au
+              </p>
+              <p className={`text-2xl font-semibold mt-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>Thank you. Questions?</p>
             </div>
           </GlowCard>
         </section>
