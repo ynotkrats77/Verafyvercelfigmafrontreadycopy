@@ -79,7 +79,7 @@ export function InvestorCommercialsPage({ isDark }: InvestorCommercialsPageProps
               VerafyAI: From Portfolio Intelligence to Financial Operating System
             </p>
             <p className={`text-lg mt-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              Axient AI Pty Ltd | Prepared for Antler | January 2026
+              Axient AI Pty Ltd | Investor Terms | February 2026
             </p>
           </div>
         </div>

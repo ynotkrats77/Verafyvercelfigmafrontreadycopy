@@ -86,7 +86,7 @@ export function InvestorCompetitiveAnalysisPage({ isDark }: InvestorCompetitiveA
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl border border-cyan-500/30">
               <BarChart3 className="w-6 h-6 text-cyan-400" />
               <span className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Prepared for Antler Investment Committee
+                Investor Briefing Document
               </span>
             </div>
           </div>

@@ -80,7 +80,7 @@ export function InvestorRoadmapPage({ isDark }: InvestorRoadmapPageProps) {
               Technical Development Plan: From Portfolio Intelligence to Full Financial Ecosystem
             </p>
             <p className={`text-lg mt-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              Prepared for Antler / AXIENT Executive | Version 3.0 | January 2026
+              Axient AI Pty Ltd | Version 3.0 | February 2026
             </p>
           </div>
         </div>
