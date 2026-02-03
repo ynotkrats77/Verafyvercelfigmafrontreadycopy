@@ -4,6 +4,7 @@ import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { ThemedButton } from '../components/ui/themed-button';
 import { FloatingParticles } from '../components/FloatingParticles';
 import { InteractiveCursor } from '../components/InteractiveCursor';
+import { useAuth } from '../contexts/AuthContext';
 
 interface SignInPageProps {
   isDark: boolean;
@@ -12,6 +13,7 @@ interface SignInPageProps {
 }
 
 export function SignInPage({ isDark, onSwitchToSignUp, onNavigate }: SignInPageProps) {
+  const { signIn, isSupabaseEnabled } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +24,7 @@ export function SignInPage({ isDark, onSwitchToSignUp, onNavigate }: SignInPageP
     rememberMe: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -34,28 +36,25 @@ export function SignInPage({ isDark, onSwitchToSignUp, onNavigate }: SignInPageP
 
     setIsLoading(true);
 
-    // Simulate authentication delay for better UX
-    setTimeout(() => {
-      // Store auth state in localStorage (demo auth)
-      const authUser = {
-        id: 'user-' + Date.now(),
-        email: formData.email,
-        name: formData.email.split('@')[0],
-        plan: 'pro' as const,
-        addOns: ['tax-pack'],
-        isAuthenticated: true,
-        loginTime: new Date().toISOString(),
-      };
+    try {
+      const { error: authError } = await signIn(formData.email, formData.password);
 
-      localStorage.setItem('verafy_auth', JSON.stringify(authUser));
+      if (authError) {
+        setError(authError.message || 'Sign in failed. Please check your credentials.');
+        setIsLoading(false);
+        return;
+      }
 
-      setIsLoading(false);
-
-      // Navigate to dashboard
+      // Navigate to dashboard on success
       if (onNavigate) {
         onNavigate('dashboard');
       }
-    }, 800);
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+      console.error('Sign in error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleTabSwitch = (tab: 'signin' | 'signup') => {

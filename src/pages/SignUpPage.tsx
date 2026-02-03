@@ -4,15 +4,21 @@ import { Eye, EyeOff, Calendar, Phone, Mail, Lock } from 'lucide-react';
 import { ThemedButton } from '../components/ui/themed-button';
 import { FloatingParticles } from '../components/FloatingParticles';
 import { InteractiveCursor } from '../components/InteractiveCursor';
+import { useAuth } from '../contexts/AuthContext';
 
 interface SignUpPageProps {
   isDark: boolean;
   onSwitchToSignIn?: () => void;
+  onNavigate?: (page: string) => void;
 }
 
-export function SignUpPage({ isDark, onSwitchToSignIn }: SignUpPageProps) {
+export function SignUpPage({ isDark, onSwitchToSignIn, onNavigate }: SignUpPageProps) {
+  const { signUp } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signup');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,9 +29,53 @@ export function SignUpPage({ isDark, onSwitchToSignIn }: SignUpPageProps) {
     agreeToTerms: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Auth integration will be added with AWS Cognito
+    setError(null);
+
+    // Validation
+    if (!formData.email || !formData.password) {
+      setError('Please enter email and password');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
+    if (!formData.agreeToTerms) {
+      setError('Please agree to the terms and conditions');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+      const { error: authError } = await signUp(formData.email, formData.password, fullName || undefined);
+
+      if (authError) {
+        setError(authError.message || 'Sign up failed. Please try again.');
+        setIsLoading(false);
+        return;
+      }
+
+      // Show success message or navigate
+      setSuccess(true);
+
+      // Navigate to dashboard after short delay
+      setTimeout(() => {
+        if (onNavigate) {
+          onNavigate('dashboard');
+        }
+      }, 1500);
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+      console.error('Sign up error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleTabSwitch = (tab: 'signin' | 'signup') => {
@@ -330,6 +380,20 @@ export function SignUpPage({ isDark, onSwitchToSignIn }: SignUpPageProps) {
                 </p>
               </div>
 
+              {/* Error Message */}
+              {error && (
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center">
+                  {error}
+                </div>
+              )}
+
+              {/* Success Message */}
+              {success && (
+                <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 text-sm text-center">
+                  Account created successfully! Redirecting to dashboard...
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="pt-2">
                 <ThemedButton
@@ -337,8 +401,9 @@ export function SignUpPage({ isDark, onSwitchToSignIn }: SignUpPageProps) {
                   variant="primary"
                   size="lg"
                   fullWidth
+                  disabled={isLoading || success}
                 >
-                  Sign Up
+                  {isLoading ? 'Creating account...' : success ? 'Success!' : 'Sign Up'}
                 </ThemedButton>
               </div>
 

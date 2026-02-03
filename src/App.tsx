@@ -3,6 +3,7 @@ import { Sun, Moon, Monitor } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Layout } from "./components/Layout";
 import { useTheme } from "./hooks/useTheme";
+import { AuthProvider } from "./contexts/AuthContext";
 import type { PageType } from "./types/navigation";
 
 /**
@@ -162,6 +163,7 @@ export default function App() {
 
   // Main web application
   return (
+    <AuthProvider>
     <Layout
       isDark={isDark}
       onToggleDark={() => setIsDark(!isDark)}
@@ -184,7 +186,7 @@ export default function App() {
         {currentPage === 'contact' && <ContactPage isDark={isDark} />}
         {currentPage === 'chat' && <ChatPage isDark={isDark} />}
         {currentPage === 'signin' && <SignInPage isDark={isDark} onNavigate={setCurrentPage} />}
-        {currentPage === 'signup' && <SignUpPage isDark={isDark} />}
+        {currentPage === 'signup' && <SignUpPage isDark={isDark} onNavigate={setCurrentPage} />}
         {currentPage === 'faq' && <FAQPage isDark={isDark} />}
         {currentPage === 'compliance' && <CompliancePage isDark={isDark} />}
         {currentPage === 'disclaimers' && <DisclaimersPage isDark={isDark} />}
@@ -211,5 +213,6 @@ export default function App() {
         {currentPage === 'learn' && <LearnPage isDark={isDark} />}
       </Suspense>
     </Layout>
+    </AuthProvider>
   );
 }
