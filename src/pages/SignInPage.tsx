@@ -8,11 +8,14 @@ import { InteractiveCursor } from '../components/InteractiveCursor';
 interface SignInPageProps {
   isDark: boolean;
   onSwitchToSignUp?: () => void;
+  onNavigate?: (page: string) => void;
 }
 
-export function SignInPage({ isDark, onSwitchToSignUp }: SignInPageProps) {
+export function SignInPage({ isDark, onSwitchToSignUp, onNavigate }: SignInPageProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,7 +24,38 @@ export function SignInPage({ isDark, onSwitchToSignUp }: SignInPageProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Auth integration will be added with AWS Cognito
+    setError(null);
+
+    // Basic validation
+    if (!formData.email || !formData.password) {
+      setError('Please enter both email and password');
+      return;
+    }
+
+    setIsLoading(true);
+
+    // Simulate authentication delay for better UX
+    setTimeout(() => {
+      // Store auth state in localStorage (demo auth)
+      const authUser = {
+        id: 'user-' + Date.now(),
+        email: formData.email,
+        name: formData.email.split('@')[0],
+        plan: 'pro' as const,
+        addOns: ['tax-pack'],
+        isAuthenticated: true,
+        loginTime: new Date().toISOString(),
+      };
+
+      localStorage.setItem('verafy_auth', JSON.stringify(authUser));
+
+      setIsLoading(false);
+
+      // Navigate to dashboard
+      if (onNavigate) {
+        onNavigate('dashboard');
+      }
+    }, 800);
   };
 
   const handleTabSwitch = (tab: 'signin' | 'signup') => {
@@ -250,6 +284,13 @@ export function SignInPage({ isDark, onSwitchToSignUp }: SignInPageProps) {
                 </p>
               </div>
 
+              {/* Error Message */}
+              {error && (
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center">
+                  {error}
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="pt-2">
                 <ThemedButton
@@ -257,8 +298,9 @@ export function SignInPage({ isDark, onSwitchToSignUp }: SignInPageProps) {
                   variant="primary"
                   size="lg"
                   fullWidth
+                  disabled={isLoading}
                 >
-                  Sign In
+                  {isLoading ? 'Signing in...' : 'Sign In'}
                 </ThemedButton>
               </div>
 

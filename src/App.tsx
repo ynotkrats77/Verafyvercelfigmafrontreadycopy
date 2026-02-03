@@ -183,7 +183,7 @@ export default function App() {
         {currentPage === 'docs' && <DocumentationPage isDark={isDark} />}
         {currentPage === 'contact' && <ContactPage isDark={isDark} />}
         {currentPage === 'chat' && <ChatPage isDark={isDark} />}
-        {currentPage === 'signin' && <SignInPage isDark={isDark} />}
+        {currentPage === 'signin' && <SignInPage isDark={isDark} onNavigate={setCurrentPage} />}
         {currentPage === 'signup' && <SignUpPage isDark={isDark} />}
         {currentPage === 'faq' && <FAQPage isDark={isDark} />}
         {currentPage === 'compliance' && <CompliancePage isDark={isDark} />}
